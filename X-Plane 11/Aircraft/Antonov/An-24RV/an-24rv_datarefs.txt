@@ -1,0 +1,7 @@
+Initial - Release 0.01 (update 5.06.2020)
+--------------------------
+
+POWER
+----------------------------
+BATTERY_ON			an-24rv/battery_on
+
