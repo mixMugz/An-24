@@ -1,5 +1,8 @@
 ﻿**/.DS_Store
 **/Thumbs.db
+**/apt.cache
+**/state.txt
+**/SASLLog.txt
 **/*.???~
 **/*.bak
 **/An-24RV/an-24rv_settings.ini
