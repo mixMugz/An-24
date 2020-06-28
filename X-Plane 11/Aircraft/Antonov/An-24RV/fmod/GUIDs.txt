@@ -3,6 +3,7 @@
 {d0468620-3333-4ae6-a32c-248bba2913a3} event:/ambience/ambience_int_rw
 {3c4397de-13db-4c62-b217-e6f805008970} event:/avionics/po750
 {37212847-6a06-4a3e-ad94-60132091c1ed} event:/avionics/pt1000
+{7ebd00eb-1dc7-4571-8267-9e632f1ccf3f} event:/cockpit/cap_sw
 {bb6ae8c7-a26f-4ef7-92c7-fe602fee4322} event:/cockpit/click_btn
 {6e025332-1b9b-47be-9556-f7c6892b33b7} event:/cockpit/clock
 {14883188-f7bf-4260-aa1a-72db87ebffaf} event:/cockpit/fan

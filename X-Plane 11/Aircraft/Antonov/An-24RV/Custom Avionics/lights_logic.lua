@@ -90,11 +90,14 @@ return 0
 end
 registerCommandHandler(taxi_light_command, 0, taxi_light_handler)
 
-
+registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_on", "Instruments light on (main)."), 0, function(p) if p == 0 and get(cockpit_panel) ~= 1 then set(cockpit_panel, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_emerg", "Instruments light on (emergency)."), 0, function(p) if p == 0 and get(cockpit_panel) ~= -1 then set(cockpit_panel, -1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_off", "Instruments light off."), 0, function(p) if p == 0 and get(cockpit_panel) ~= 0 then set(cockpit_panel, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_up", "Instruments light switch up."), 0, function(p) if p == 0 and get(cockpit_panel) ~= 1 then set(cockpit_panel, get(cockpit_panel)+1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_down", "Instruments light switch down."), 0, function(p) if p == 0 and get(cockpit_panel) ~= -1 then set(cockpit_panel, get(cockpit_panel)-1) end return 0 end)
 
 local time_counter = 0
 local not_loaded = true
-
 
 -- local variables
 local now = get(sim_time)

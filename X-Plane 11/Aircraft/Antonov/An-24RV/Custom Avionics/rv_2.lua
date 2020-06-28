@@ -38,7 +38,6 @@ local time_counter = 0
 local not_loaded = true
 local alert_counter = 0
 
-
 local switch_sound = loadSample('sounds/custom/metal_switch.wav')
 local cap_sound = loadSample('sounds/custom/cap.wav')
 local btn_click = loadSample('sounds/custom/plastic_btn.wav')
@@ -49,7 +48,6 @@ local alt_sound = loadSample('sounds/custom/altitude_alert.wav')
 local switcher_pushed = false
 
 -- post frame calculations
-
 local alt_angle = 0
 local dh_angle = 90  -- DH altitude in degrees of scale
 local red_led_vis = true  -- red flag that indicates that gauge is fail or OFF
@@ -58,13 +56,13 @@ local switch_last = get(rv_sw)
 local timer_started = false
 local start_time = get(flight_time)
 local passed = 0
-
 local test = false
-
 local angle = 0
 local last_angle = 0
 
-
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/rv_on", "RV on."), 0, function(p) if p == 0 and get(rv_sw) ~= 1 then set(rv_sw, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/rv_off", "RV off."), 0, function(p) if p == 0 and get(rv_sw) ~= 0 then set(rv_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/rv_toggle", "RV toggle."), 0, function(p) if p == 0 then if get(rv_sw) ~= 1 then set(rv_sw, 1) else set(rv_sw, 0) end end return 0 end)
 
 function update()
 	passed = get(frame_time)

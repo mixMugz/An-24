@@ -37,12 +37,9 @@ defineProperty("bkk_sw", globalPropertyi("an-24rv/gauges/bkk_sw"))
 defineProperty("bkk_sw_cap", globalPropertyi("an-24rv/gauges/bkk_sw_cap"))
 defineProperty("bkk_check_sw", globalPropertyi("an-24rv/gauges/bkk_check_sw"))
 defineProperty("bkk_check_sw_cap", globalPropertyi("an-24rv/gauges/bkk_check_sw_cap"))
-
 defineProperty("AP_roll", globalPropertyf("an-24rv/ap/indicated_roll")) -- roll for autopilot
 defineProperty("AP_pitch", globalPropertyf("an-24rv/ap/indicated_pitch")) -- pitch for autopilot
-
 defineProperty("roll_high", globalPropertyf("an-24rv/gauges/roll_high")) -- to much roll
-
 
 -- failures
 defineProperty("left_fail", globalPropertyi("sim/operation/failures/rel_ss_ahz")) -- failure for pilot ahz
@@ -62,7 +59,6 @@ createGlobalPropertyf("an-24rv/misc/ag3_pitch", 0) -- тангаж на АГ3
 createGlobalPropertyf("an-24rv/misc/ag1_pitch_rot", 0) -- тангаж на АГ1
 createGlobalPropertyf("an-24rv/misc/ag2_pitch_rot", 0) -- тангаж на АГ2
 createGlobalPropertyf("an-24rv/misc/ag3_pitch_rot", 0) -- тангаж на АГ3
-
 createGlobalPropertyf("an-24rv/misc/ag3_roll", 0) -- крен на АГ3
 
 defineProperty("ag1_roll", globalPropertyf("an-24rv/misc/ag1_roll")) -- roll for anmation
@@ -84,7 +80,6 @@ defineProperty("left_agd_arrest", globalPropertyi("an-24rv/set/left_agd_arrest")
 -- SmartCopilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster"))  -- 0 - не определено/плагин не найден, 1 - слейв, 2 - мастер
 
-
 -- initial switchers values
 defineProperty("N1", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[0]"))   
 defineProperty("N2", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[1]"))
@@ -101,9 +96,7 @@ local winHeight = 130 / 512
 
 -- height of one degrees in texture coord
 local pitch_deg = 2.0 / 512
-
 local now = get(sim_time)
-
 local real_num = get(set_real_ahz)
 local real = real_num == 1
 
@@ -154,32 +147,25 @@ local arrest_push_third = false -- validate if arrest button is pushed
 local pitch_rot_third = 0
 local ahz_third_fail = true
 local ahz_start_third = get(sim_time)
-
 local roll_left_big = false
 local roll_right_big = false
 local check_ahz = false
 local check_bkk = false
-
 local left_agd_arrest_start = now - 10
 local right_agd_arrest_start = now - 10
-
 local power_roll_left = 0 --get(roll_left)
 local power_pitch_left = 0 --get(pitch_left)
-
 local power_roll_right = 0 --get(roll_right)
 local power_pitch_right = 0 --get(pitch_right)
-
 local power_roll_third = 0 --get(roll_right)
 local power_pitch_third = 0 --get(pitch_right)
-
 local time_counter = 0
 local notLoaded = true
-
 local power27 = 0
 local power27_main = 0
 local power36 = 0
-
 local eng_check = true
+
 add_roll_left = 0
 add_roll_right = 0
 add_roll_third = 0
@@ -192,38 +178,49 @@ flag1 = 0
 flag2 = 0
 flag3 = 0
 
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/agb_left_sw_on", "AGB 1 on."), 0, function(p) if p == 0 and get(AGB_left) ~= 1 then set(AGB_left, 1) ahz_start_third = get(sim_time) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/agb_left_sw_off", "AGB 1 off."), 0, function(p) if p == 0 and get(AGB_left) ~= 0 then set(AGB_left, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/agb_left_sw_toggle", "AGB 1 toggle."), 0, function(p) if p == 0 then if get(AGB_left) == 0 then set(AGB_left, 1) ahz_start_third = get(sim_time) else set(AGB_left, 0) end end return 0 end)
+
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/agd_left_sw_on", "AGD 1 on."), 0, function(p) if p == 0 and get(AGD_left) ~= 1 then set(AGD_left, 1) ahz_start_left = get(sim_time) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/agd_left_sw_off", "AGD 1 off."), 0, function(p) if p == 0 and get(AGD_left) ~= 0 then set(AGD_left, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/agd_left_sw_toggle", "AGD 1 toggle."), 0, function(p) if p == 0 then if get(AGD_left) == 0 then set(AGD_left, 1) ahz_start_left = get(sim_time) else set(AGD_left, 0) end end return 0 end)
+
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/bkk_cap_open", "BKK CAP open."), 0, function(p) if p == 0 and get(bkk_sw_cap) ~= 1 then set(bkk_sw_cap, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/bkk_cap_close", "BKK CAP close."), 0, function(p) if p == 0 and get(bkk_sw_cap) ~= 0 then set(bkk_sw_cap, 0) set(bkk_sw, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/bkk_cap_toggle", "BKK CAP toggle."), 0, function(p) if p == 0 then if get(bkk_sw_cap) ~= 1 then set(bkk_sw_cap, 1) else set(bkk_sw_cap, 0) set(bkk_sw, 1) end end return 0 end)
+
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/bkk_on", "BKK on."), 0, function(p) if p == 0 and get(bkk_sw) ~= 1 then set(bkk_sw, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/bkk_off", "BKK off."), 0, function(p) if p == 0 and get(bkk_sw) ~= 0 then set(bkk_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/bkk_toggle", "BKK toggle."), 0, function(p) if p == 0 then if get(bkk_sw) ~= 1 then set(bkk_sw, 1) else set(bkk_sw, 0) end end return 0 end)
 
 function update()
-	-- time variables
-	local passed = get(frame_time)
-	now = get(sim_time)
+  -- time variables
+  local active_logic = get(ismaster) ~= 1
+  local passed = get(frame_time)
+  now = get(sim_time)
 	
-if get(left_agd_arrest) == 1 then
-	left_agd_arrest_start = now
-end
-	
-if get(right_agd_arrest) == 1 then
-	right_agd_arrest_start = now
-end
+  if get(left_agd_arrest) == 1 then
+    left_agd_arrest_start = now
+  end
+  if get(right_agd_arrest) == 1 then
+    right_agd_arrest_start = now
+  end
 
-local active_logic = get(ismaster) ~= 1
-
-	
-if passed > 0 then
-	real_num = get(set_real_ahz)
-	real = real_num == 1
-
-	-- initial switchers values
-	if get(N1) < 70 and get(N2) < 70 and eng_check and time_counter > 0.3 and time_counter < 0.4 then
-		set(AGB_left, 0)
-		set(AGD_left, 0)
-		set(AGD_right, 0)
-		set(bkk_sw, 0)
-		set(bkk_sw_cap, 1)
-		eng_working = true
-		eng_check = false
-	end
-	
+  -- main func
+  if passed > 0 then
+    real_num = get(set_real_ahz)
+    real = real_num == 1
+    -- initial switchers values
+    if get(N1) < 70 and get(N2) < 70 and eng_check and time_counter > 0.3 and time_counter < 0.4 then
+      set(AGB_left, 0)
+      set(AGD_left, 0)
+      set(AGD_right, 0)
+      set(bkk_sw, 0)
+      set(bkk_sw_cap, 1)
+      eng_working = true
+      eng_check = false
+    end
 	-- set initial AHZ position
 	time_counter = time_counter + passed
 	if real and time_counter > 0.3 and time_counter < 0.4 and notLoaded and get(N1) < 70 and get(N2) < 70 then
@@ -572,112 +569,92 @@ if passed > 0 then
 			else
 				roll_left_big = false
 				roll_right_big = false
-			end
-		end
-
-		if roll_left_big or roll_right_big then set(roll_high, 1) else set(roll_high, 0) end
-
-		check_ahz = math.abs(roll_left_show - roll_right_show) > 7 or math.abs(roll_left_show - roll_third_show) > 7 or math.abs(roll_right_show - roll_third_show) > 7 or bkk == 0
-	else
-		roll_left_big = false
-		roll_right_big = false
-		check_ahz = false
-		check_bkk = false
-		ahz_left_fail = false
-		ahz_right_fail = false
-		ahz_third_fail = false
-		set(roll_high, 0)
-	end
-
-	-- set animation
-	--set(ag1_roll, roll_left_show)
-	--set(ag2_roll, roll_right_show)
-	
-	
-	
-
-end
-
+        end
+      end
+      if roll_left_big or roll_right_big then set(roll_high, 1) else set(roll_high, 0) end
+      check_ahz = math.abs(roll_left_show - roll_right_show) > 7 or math.abs(roll_left_show - roll_third_show) > 7 or math.abs(roll_right_show - roll_third_show) > 7 or bkk == 0
+    else
+      roll_left_big = false
+      roll_right_big = false
+      check_ahz = false
+      check_bkk = false
+      ahz_left_fail = false
+      ahz_right_fail = false
+      ahz_third_fail = false
+      set(roll_high, 0)
+    end
+    -- set animation
+    --set(ag1_roll, roll_left_show)
+    --set(ag2_roll, roll_right_show)
+  end
 end
 
 
 
 components = {
-
-	-- left AGD
-    -- attitude tape
-    tape {
-        position = { 1229, 1874, 145, 148},
-        image = get(tapeImage),
-        window = { 1.0, winHeight },
-
-        -- calculate pitch level
-        scrollY = function()
-            return (0.5 - winHeight / 2) - pitch_deg * (get(ag1_pitch) + get(ag1_pitch_rot));
-        end,
+  -- left AGD
+  -- attitude tape
+  tape {
+    position = { 1229, 1874, 145, 148},
+    image = get(tapeImage),
+    window = { 1.0, winHeight },
+    -- calculate pitch level
+    scrollY = function()
+      return (0.5 - winHeight / 2) - pitch_deg * (get(ag1_pitch) + get(ag1_pitch_rot))
+    end
+  },
+  -- arrest button
+  clickable {
+    position = { 1368, 2015, 30, 30 },
+    cursor = {
+      x = 16, 
+      y = 32, 
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
     },
-
-
-	-- arrest button
-    clickable {
-       position = { 1368, 2015, 30, 30 },
-
-       cursor = {
-            x = 16, 
-            y = 32, 
-            width = 16,
-            height = 16,
-            shape = loadImage("clickable.png")
-        },
-
-        onMouseClick = function(x, y, button)
-			set(left_agd_arrest, 1)
-            return true
-        end,
-		onMouseUp = function()
-			set(left_agd_arrest, 0)
-            return true		
-		end
-
+    onMouseClick = function(x, y, button)
+      set(left_agd_arrest, 1)
+      return true
+    end,
+    onMouseUp = function()
+      set(left_agd_arrest, 0)
+    return true		
+    end
+  },
+  -- pitch rotary
+  clickable {
+    position = { 1202, 1850, 15, 30 },
+    cursor = {
+      x = 16, 
+      y = 32, 
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
     },
-
-    -- pitch rotary
-    clickable {
-       position = { 1202, 1850, 15, 30 },
-
-       cursor = {
-            x = 16, 
-            y = 32, 
-            width = 16,
-            height = 16,
-            shape = loadImage("rotateleft.png")
-        },
-
-        onMouseClick = function(x, y, button)
-			pitch_rot_left = get(ag1_pitch_rot) - 1
-			if pitch_rot_left < -12 then pitch_rot_left = -12 end
-			set(ag1_pitch_rot, pitch_rot_left)
-            return true
-        end,
+    onMouseClick = function(x, y, button)
+      pitch_rot_left = get(ag1_pitch_rot) - 1
+      if pitch_rot_left < -12 then pitch_rot_left = -12 end
+      set(ag1_pitch_rot, pitch_rot_left)
+      return true
+    end
+  },
+  clickable {
+    position = { 1217, 1850, 15, 30 },
+    cursor = {
+      x = 16, 
+      y = 32, 
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
     },
-    clickable {
-       position = { 1217, 1850, 15, 30 },
-
-       cursor = {
-            x = 16, 
-            y = 32, 
-            width = 16,
-            height = 16,
-            shape = loadImage("rotateright.png")
-        },
-
-        onMouseClick = function(x, y, button)
-			pitch_rot_left = get(ag1_pitch_rot) + 1
-			if pitch_rot_left > 12 then pitch_rot_left = 12 end
-			set(ag1_pitch_rot, pitch_rot_left)
-            return true
-        end,
-    },
+    onMouseClick = function(x, y, button)
+      pitch_rot_left = get(ag1_pitch_rot) + 1
+      if pitch_rot_left > 12 then pitch_rot_left = 12 end
+      set(ag1_pitch_rot, pitch_rot_left)
+      return true
+    end
+  },
 	-- rotary indicator
 	rectangle {
 		position = { 1208, 1887.5, 9, 20},
@@ -703,33 +680,34 @@ components = {
 		end,
 	},
 
-	-- switcher
-    switch {
-        position = { 918, 326, 15, 15},
-        state = function()
-            return get(AGD_left) ~= 0
-        end,
-        --btnOn = get(tmb_up),
-        --btnOff = get(tmb_dn),
-        onMouseClick = function()
-            if not switcher_pushed then
-			playSample(switch_sound, 0)
-			switcher_pushed = true
-			if get(AGD_left) ~= 0 then
-                set(AGD_left, 0)
-            else
-                set(AGD_left, 1)
-				ahz_start_left = get(sim_time)
-            end
-			end
-            return true;
-        end,
-		onMouseUp = function()
-			switcher_pushed = false
-			return true
-		end,
-    },
-
+--[[
+  -- AGD LEFT switcher
+  switch {
+    position = { 918, 326, 15, 15},
+    state = function()
+      return get(AGD_left) ~= 0
+    end,
+    --btnOn = get(tmb_up),
+    --btnOff = get(tmb_dn),
+    onMouseClick = function()
+      if not switcher_pushed then
+        playSample(switch_sound, 0)
+        switcher_pushed = true
+        if get(AGD_left) ~= 0 then
+          set(AGD_left, 0)
+        else
+          set(AGD_left, 1)
+          ahz_start_left = get(sim_time)
+        end
+      end
+      return true;
+    end,
+    onMouseUp = function()
+      switcher_pushed = false
+      return true
+    end
+  },
+--]]
 	---------------------------------------
 	-- right AGD
     -- attitude tape
@@ -1016,32 +994,33 @@ components = {
 	},
 
 	-- switcher
-    switch {
-        position = { 900, 326, 15, 15},
-        state = function()
-            return get(AGB_left) ~= 0
-        end,
-        --btnOn = get(tmb_up),
-        --btnOff = get(tmb_dn),
-        onMouseClick = function()
-            if not switcher_pushed then
-			playSample(switch_sound, 0)
-			switcher_pushed = true
-			if get(AGB_left) ~= 0 then
-                set(AGB_left, 0)
-            else
-                set(AGB_left, 1)
-				ahz_start_third = get(sim_time)
-            end
-			end
-            return true;
-        end,
-		onMouseUp = function()
-			switcher_pushed = false
-			return true
-		end,
-    },
-
+--[[
+  switch {
+    position = { 900, 326, 15, 15},
+    state = function()
+      return get(AGB_left) ~= 0
+    end,
+    --btnOn = get(tmb_up),
+    --btnOff = get(tmb_dn),
+    onMouseClick = function()
+      if not switcher_pushed then
+        playSample(switch_sound, 0)
+        switcher_pushed = true
+        if get(AGB_left) ~= 0 then
+          set(AGB_left, 0)
+        else
+          set(AGB_left, 1)
+          ahz_start_third = get(sim_time)
+        end
+      end
+      return true;
+    end,
+    onMouseUp = function()
+      switcher_pushed = false
+      return true
+    end
+  },
+]]--
 	------------------------------
 	-- lamps over panel --
 	------------------------------
@@ -1097,53 +1076,52 @@ components = {
 			return check_ahz
 		end,
 	},
-
-	--------------------------
-	-- bkk switcher and cap --
-
-	-- bkk cap
-    switch {
-        position = { 0, 445, 35, 44},
-        state = function()
-            return get(bkk_sw_cap) ~= 0
-        end,
-        --btnOn = get(tmb_up),
-        --btnOff = get(tmb_dn),
-        onMouseDown = function()
-            if get(bkk_sw_cap) ~= 0 then
-                set(bkk_sw_cap, 0)
-				playSample(cap_sound, 0)
-				set(bkk_sw, 1)
-            else
-				playSample(cap_sound, 0)
-                set(bkk_sw_cap, 1)
-            end
-            return true;
-        end
-    },
-
-	-- bkk switcher
+--[[
+  --------------------------
+  -- bkk switcher and cap --
+  -- bkk cap
   switch {
-        position = { 880, 326, 15, 15},
-        state = function()
-            return get(bkk_sw) ~= 0
-        end,
-        --btnOn = get(tmb_up),
-        --btnOff = get(tmb_dn),
-        onMouseClick = function()
-            if get(bkk_sw_cap) ~= 0 then
-				if get(bkk_sw) ~= 0 then
-					set(bkk_sw, 0)
-					playSample(switch_sound, 0)
-				else
-					set(bkk_sw, 1)
-					playSample(switch_sound, 0)
-				end
-			end
-            return true;
-        end
-    },
+    position = { 0, 445, 35, 44},
+    state = function()
+      return get(bkk_sw_cap) ~= 0
+    end,
+    --btnOn = get(tmb_up),
+    --btnOff = get(tmb_dn),
+    onMouseDown = function()
+      if get(bkk_sw_cap) ~= 0 then
+        set(bkk_sw_cap, 0)
+        playSample(cap_sound, 0)
+        set(bkk_sw, 1)
+      else
+        playSample(cap_sound, 0)
+        set(bkk_sw_cap, 1)
+      end
+      return true;
+    end
+  },
 
+  -- bkk switcher
+  switch {
+    position = { 880, 326, 15, 15},
+    state = function()
+      return get(bkk_sw) ~= 0
+    end,
+    --btnOn = get(tmb_up),
+    --btnOff = get(tmb_dn),
+    onMouseClick = function()
+      if get(bkk_sw_cap) ~= 0 then
+        if get(bkk_sw) ~= 0 then
+          set(bkk_sw, 0)
+          playSample(switch_sound, 0)
+        else
+          set(bkk_sw, 1)
+          playSample(switch_sound, 0)
+        end
+      end
+      return true;
+    end
+  },
+--]]
 	-- bkk test cap
 	switch {
         position = { 0, 490, 33, 44},

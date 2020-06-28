@@ -18,6 +18,12 @@ createProp("an-24rv/gauges/nosewheel_mode_lamp", "int", 0);  -- lamp of nosewhee
 
 defineProperty("lock", globalPropertyi("sim/cockpit2/controls/nosewheel_steer_on"))
 
+registerCommandHandler(createCommand("An-24RV/Gears/nosewheel_steering_taxi", "Nosewheel steering (taxi mode)."), 0, function(p) if p == 0 and get(weel_switch) ~= -1 then set(weel_switch, -1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Gears/nosewheel_steering_land", "Nosewheel steering (landing mode)."), 0, function(p) if p == 0 and get(weel_switch) ~= 1 then set(weel_switch, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Gears/nosewheel_steering_off", "Nosewheel steering off."), 0, function(p) if p == 0 and get(weel_switch) ~= 0 then set(weel_switch, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Gears/nosewheel_steering_up", "Nosewheel steering mode switch up."), 0, function(p) if p == 0 and get(weel_switch) ~= -1 then set(weel_switch, get(weel_switch)-1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Gears/nosewheel_steering_down", "Nosewheel steering mode switch down."), 0, function(p) if p == 0 and get(weel_switch) ~= 1 then set(weel_switch, get(weel_switch)+1) end return 0 end)
+
 function update()
 	
     set(nosewheel_mode_ready_delay, 2)

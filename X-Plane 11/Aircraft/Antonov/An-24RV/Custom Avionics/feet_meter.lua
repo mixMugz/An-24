@@ -32,6 +32,10 @@ defineProperty("N1", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[0]"))
 defineProperty("N2", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[1]"))
 defineProperty("frame_time", globalPropertyf("an-24rv/time/frame_time")) -- time for frames
 
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/feet_meter_on", "Feet meter on."), 0, function(p) if p == 0 and get(feet_meter_sw) ~= 1 then set(feet_meter_sw, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/feet_meter_off", "Feet meter off."), 0, function(p) if p == 0 and get(feet_meter_sw) ~= 0 then set(feet_meter_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/feet_meter_toggle", "Feet meter toggle."), 0, function(p) if p == 0 then if get(feet_meter_sw) ~= 1 then set(feet_meter_sw, 1) else set(feet_meter_sw, 0) end end return 0 end)
+
 -- increase pressure
 pressure_add_command = findCommand("sim/instruments/ah_ref_up")
 function pressure_add_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release

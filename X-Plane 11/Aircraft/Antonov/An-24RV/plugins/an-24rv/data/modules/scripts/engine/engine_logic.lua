@@ -292,7 +292,7 @@ function update()
   end
 end
 
-function onAvionicsDone()
+function onModuleDone()
   set(override, 0) -- release engine control via plugin to let other models fly :)
   print("All throttles released...")
 end

@@ -10,16 +10,11 @@ defineProperty("wing_ht", globalPropertyi("sim/cockpit/switches/anti_ice_surf_he
 defineProperty("engine_ht", globalPropertyi("sim/cockpit/switches/anti_ice_inlet_heat"))  -- on/off engine heat. this heats only first engine :(
 defineProperty("ice_detect", globalPropertyi("sim/cockpit2/ice/ice_detect_on"))  -- on/off ice detection
 defineProperty("aoa_ht", globalPropertyi("sim/cockpit/switches/anti_ice_AOA_heat"))  -- on/off AOA heat
-
 defineProperty("thermo", globalPropertyf("sim/cockpit2/temperature/outside_air_temp_degc")) -- outside temperature
-
 defineProperty("tas", globalPropertyf("sim/flightmodel/position/true_airspeed"))  -- true auspeed in meters per sec
-
 defineProperty("ice_on_plane", globalPropertyi("sim/cockpit2/annunciators/ice"))  -- ice detected
-
 defineProperty("N1", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[0]"))   
 defineProperty("N2", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[1]"))
-
 defineProperty("ice_all_on", globalPropertyi("sim/cockpit2/ice/ice_all_on")) -- all systems ON. this heats other engines too
 
 -- ice on parts
@@ -30,9 +25,6 @@ defineProperty("prop_ice", globalPropertyf("sim/flightmodel/failures/prop_ice"))
 defineProperty("inlet_ice", globalPropertyf("sim/flightmodel/failures/inlet_ice")) -- Ratio of icing on the air inlets?
 defineProperty("window_ice", globalPropertyf("sim/flightmodel/failures/window_ice")) -- Ratio of icing on the windshield
 defineProperty("aoa_ice", globalPropertyf("sim/flightmodel/failures/aoa_ice")) -- Ratio of icing on alpha vane
-
-
-
 
 -- filures
 defineProperty("engine_ht_fail", globalPropertyi("sim/operation/failures/rel_ice_inlet_heat"))  -- engine heat fail
@@ -62,7 +54,6 @@ defineProperty("aa_main_cc", globalPropertyf("an-24rv/ice/aa_main_cc"))
 defineProperty("aa_emerg_cc", globalPropertyf("an-24rv/ice/aa_emerg_cc"))
 defineProperty("aa_115_cc", globalPropertyf("an-24rv/ice/aa_115_cc")) 
 
-
 -- for 2D
 defineProperty("wing_heat_lit_2d", globalPropertyi("an-24rv/ice/wing_heat_lit"))  -- for 2D panel
 defineProperty("engine_heat_lit_2d", globalPropertyi("an-24rv/ice/engine_heat_lit"))  -- for 2D panel
@@ -71,19 +62,14 @@ defineProperty("prop_right_lit_2d", globalPropertyi("an-24rv/ice/prop_right_lit"
 defineProperty("pitot1_lit_2d", globalPropertyi("an-24rv/ice/pitot1_lit"))  -- for 2D panel
 defineProperty("pitot2_lit_2d", globalPropertyi("an-24rv/ice/pitot2_lit"))  -- for 2D panel
 defineProperty("aoa_heat_lit_2d", globalPropertyi("an-24rv/ice/aoa_heat_lit"))  -- for 2D panel
-
 defineProperty("pitot1_test_lit_2d", globalPropertyi("an-24rv/ice/pitot1_test_lit"))  -- for 2D panel
 defineProperty("pitot2_test_lit_2d", globalPropertyi("an-24rv/ice/pitot2_test_lit"))  -- for 2D panel
 defineProperty("aoa_heat_test_lit_2d", globalPropertyi("an-24rv/ice/aoa_heat_test_lit"))  -- for 2D panel
 defineProperty("rio_heat_lit_2d", globalPropertyi("an-24rv/ice/rio_heat_lit"))  -- for 2D panel
-
 defineProperty("ice_left_eng_lit_2d", globalPropertyi("an-24rv/ice/ice_left_eng_lit"))  -- for 2D panel
 defineProperty("ice_right_eng_lit_2d", globalPropertyi("an-24rv/ice/ice_right_eng_lit"))  -- for 2D panel
-
 defineProperty("thermo_angle_2d", globalPropertyf("an-24rv/ice/thermo_angle"))  -- for 2D panel
-
 defineProperty("test_btn", globalPropertyi("an-24rv/ice/test_btn"))  -- for 2D panel
-
 
 -- time
 defineProperty("frame_time", globalPropertyf("an-24rv/time/frame_time")) -- flight time
@@ -93,12 +79,11 @@ defineProperty("green_led", loadImage("leds.dds", 20, 0, 20, 20))
 defineProperty("red_led", loadImage("leds.dds", 40, 0, 20, 20)) 
 defineProperty("needles_1", loadImage("needles.dds", 0, 0, 16, 88)) 
 defineProperty("black_cap", loadImage("covers.dds", 0, 55, 56, 56)) -- black cap image
-
 defineProperty("pos_not_work_img", loadImage("lamps.dds", 50, 60, 50, 30)) 
 defineProperty("ice_on_plane_img", loadImage("lamps.dds", 100, 60, 50, 30)) 
 
 local function bool2int(var)
-	if var then return 1 else return 0 end
+  if var then return 1 else return 0 end
 end
 
 -- interpolate values using table as reference
@@ -121,14 +106,14 @@ local function interpolate(tbl, value)
 end
 
 -- table for termo gauge
-local termo_table = {{ -500, -180},    
-				  { -60, -100 },    
-            	  {  -50, -90 },    
-           		  {  0, -45 },   
-          		  {  50, 8 },   
-          		  {  100, 55 },
-				  {  150, 97 },
-				  {  1000, 180 }}   
+local termo_table = {{ -500, -180 },    
+                    {   -60, -100 },    
+                    {   -50, -90  },    
+                    {     0, -45  },   
+                    {    50, 8    },   
+                    {   100, 55   },
+                    {   150, 97   },
+                    {  1000, 180 }}   
 
 -- lamps
 local wing_heat_lit = false
@@ -155,7 +140,6 @@ local pitot_right_fail_lit = false
 
 local plane_must_heat = false
 
-
 local test_button = false
 local test_pressed = false
 local termo_angle = -90
@@ -170,13 +154,17 @@ local eng_heat_timer = 0
 local prop_heat_counter = 0
 local pos_lamp_counter = 0
 
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/window_heat_pilot_on", "Window heat pilot on."), 0, function(p) if p == 0 and get(wind_ht_sw1) ~= 1 then set(wind_ht_sw1, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/window_heat_pilot_off", "Window heat pilot off."), 0, function(p) if p == 0 and get(wind_ht_sw1) ~= 0 then set(wind_ht_sw1, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Pilot/window_heat_pilot_toggle", "Window heat pilot toggle."), 0, function(p) if p == 0 then if get(wind_ht_sw1) ~= 1 then set(wind_ht_sw1, 1) else set(wind_ht_sw1, 0) end end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Copilot/window_heat_copilot_on", "Window heat copilot on."), 0, function(p) if p == 0 and get(wind_ht_sw2) ~= 1 then set(wind_ht_sw2, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Copilot/window_heat_copilot_off", "Window heat copilot off."), 0, function(p) if p == 0 and get(wind_ht_sw2) ~= 0 then set(wind_ht_sw2, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/Copilot/window_heat_copilot_toggle", "Window heat copilot toggle."), 0, function(p) if p == 0 then if get(wind_ht_sw2) ~= 1 then set(wind_ht_sw2, 1) else set(wind_ht_sw2, 0) end end return 0 end)
+
 -- post frame calculations
 function update()
-	
-	
-	
-	local passed = get(frame_time)
-if  passed > 0 then
+  local passed = get(frame_time)
+  if  passed > 0 then
 	-- power calculations
 	local power27 = get(bus_DC_27_volt) > 21
 	local power27_em = get(bus_DC_27_volt_emerg) > 21
