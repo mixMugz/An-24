@@ -527,8 +527,10 @@ createProp("an-24rv/prop/pitch_stop_set", "int", 0);  -- set up pitch mid stop
 -- anti-ice and air cond systems --
 -----------------------------------
 createProp("an-24rv/ice/rio_sw", "int", 0);  -- switcher for turn on ice detector
-createProp("an-24rv/ice/window_ht_sw1", "int", 0);  -- switcher for turn on window heat (pilot)
-createProp("an-24rv/ice/window_ht_sw2", "int", 0);  -- switcher for turn on window heat (copilot)
+createProp("an-24rv/ice/window_ht_psw1", "int", 0);  -- switcher for turn on window heat (pilot low)
+createProp("an-24rv/ice/window_ht_psw2", "int", 0);  -- switcher for turn on window heat (pilot high)
+createProp("an-24rv/ice/window_ht_cpsw1", "int", 0);  -- switcher for turn on window heat (copilot low)
+createProp("an-24rv/ice/window_ht_cpsw2", "int", 0);  -- switcher for turn on window heat (copilot high)
 createProp("an-24rv/ice/wing_ht_sw", "int", 0);  -- switcher for turn on wing heat
 createProp("an-24rv/ice/prop_ht_sw", "int", 0);  -- switcher for turn on prop heat
 createProp("an-24rv/ice/engine_ht_sw", "int", 0);  -- switcher for turn on engine heat
@@ -1518,11 +1520,3 @@ components = {
     position = {1514, 5, 530, 530},
   }
 }
-
---local filenew
-
---function prefslight_save()
---end
-
---function onAvionicsDone()
---end
