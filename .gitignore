@@ -3,6 +3,7 @@
 **/apt.cache
 **/state.txt
 **/SASLLog.txt
+**/wprefs.ini
 **/*.???~
 **/*.bak
 **/An-24RV/an-24rv_settings.ini

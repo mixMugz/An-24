@@ -15,6 +15,7 @@ addSearchPath(moduleDirectory.."/scripts/menu")
 addSearchPath(moduleDirectory.."/scripts/misc")
 addSearchPath(moduleDirectory.."/scripts/power")
 addSearchPath(moduleDirectory.."/scripts/kln90b")
+addSearchPath(moduleDirectory.."/scripts/gns430")
 addSearchPath(moduleDirectory.."/scripts/engine")
 addSearchPath(moduleDirectory.."/scripts/cockpit")
 addSearchPath(moduleDirectory.."/scripts/datarefs")
@@ -29,8 +30,10 @@ components = {
   datarefs_settings {},
   datarefs_cockpit {},
   datarefs_lights {},
+  datarefs_gns430 {},
   battery {},
   kln90_loader {},
+  gns430_logic {},
   cockpit_fan {},
   engine_logic {},
 }
