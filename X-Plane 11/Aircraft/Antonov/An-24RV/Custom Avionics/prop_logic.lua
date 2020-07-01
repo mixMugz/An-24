@@ -179,7 +179,7 @@ if passed > 0 then
 
 	if right_rpm > 30 then
 		-- limit pitch at beta
-		if prop1_out_beta and pitch_right <= 21 then
+		if prop2_out_beta and pitch_right <= 21 then
 			pitch_right = 21
 			set(prop_pitch_2, pitch_right - deg_coef)
 		end
