@@ -7,7 +7,7 @@ ACF_SOUNDS
 # Maksim N. Brykov <mixmugz@gmail.com>        #
 ###############################################
 
-DISABLE_LEGACY_ALERT_SOUNDS
+#DISABLE_LEGACY_ALERT_SOUNDS
 
 ##################################
 # THE INSIDE SOUND SPACE
