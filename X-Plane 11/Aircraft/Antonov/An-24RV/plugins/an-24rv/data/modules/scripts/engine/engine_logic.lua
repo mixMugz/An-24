@@ -257,7 +257,7 @@ function update()
 
     -- set result
     if not stopor_active then third_rud_last = third_rud end
-    if get(virt_rud3) < 0.05 and stop_active_ru19 then 
+    if get(virt_rud3) < 0.05 and stop_active_ru19 then
       third_rud_last = 0
       set(tro_comm_3,0)
     end

@@ -22,63 +22,53 @@ defineProperty("white_led", loadImage("leds.dds", 0, 0, 20, 20))
 defineProperty("blue_led", loadImage("leds.dds", 80, 0, 20, 20))
 defineProperty("yellow_led", loadImage("leds.dds", 60, 0, 20, 20))
 
-
-
 local out_lit = false
 local mid_lit = false
 local in_lit = false
 
 function update()
-	local mode = get(mrp_mode)
-	--print(mode)
-	if get(bus_DC_27_volt_emerg) > 21 and ((get(alt) < 5000 and mode == 0) or mode == 1) then
-		set(mrp_cc, 2)
-		set(fail, 0)
-		out_lit = get(outer_marker) > 0
-		mid_lit = get(middle_marker) > 0
-		in_lit = get(inner_marker) > 0
-	else
-		set(mrp_cc, 0)
-		set(fail, 6)
-		out_lit = false
-		mid_lit = false
-		in_lit = false
-	end
-
+  local mode = get(mrp_mode)
+  --print(mode)
+  if get(bus_DC_27_volt_emerg) > 21 and ((get(alt) < 5000 and mode == 0) or mode == 1) then
+    set(mrp_cc, 2)
+    set(fail, 0)
+    out_lit = get(outer_marker) > 0
+    mid_lit = get(middle_marker) > 0
+    in_lit = get(inner_marker) > 0
+  else
+    set(mrp_cc, 0)
+    set(fail, 6)
+    out_lit = false
+    mid_lit = false
+    in_lit = false
+  end
 end
 
-
 components = {
-
-	-- outer marker light
-	textureLit {
-		image = get(blue_led),
-		position = {641, 408, 19, 19},
-		visible = function()
-			return out_lit
-		end,
-	},
-
-	-- middle marker light
-	textureLit {
-		image = get(yellow_led),
-		position = {720, 349, 19, 19},
-		visible = function()
-			return mid_lit
-		end,
-	},
-
-	-- inner marker light
-	textureLit {
-		image = get(white_led),
-		position = {660, 408, 19, 19},
-		visible = function()
-			return in_lit
-		end,
-	},
-
-
-
+  -- outer marker light
+  textureLit {
+    image = get(blue_led),
+    position = {641, 408, 19, 19},
+    visible = function()
+      return out_lit
+    end
+  },
+  -- middle marker light
+  textureLit {
+    image = get(yellow_led),
+    position = {720, 349, 19, 19},
+    visible = function()
+      return mid_lit
+    end
+  },
+  -- inner marker light
+  textureLit {
+    image = get(white_led),
+    position = {660, 408, 19, 19},
+    visible = function()
+      return in_lit
+    end
+  }
 }
 
 
