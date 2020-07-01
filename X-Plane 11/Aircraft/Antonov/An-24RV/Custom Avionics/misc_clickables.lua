@@ -245,7 +245,6 @@ components = {
 			return true
 		end,
     },
---]]
 	-- GIK sync button
     clickable {
         position = {737, 522, 40, 23},  -- search and set right
@@ -273,7 +272,7 @@ components = {
 			return true
 		end,
     },
-
+--]]
 	-- GIK switcher
     switch {
         position = { 806, 272, 15, 15},
@@ -518,7 +517,7 @@ components = {
 			return true
 		end,
     },
---]]
+
 	-- ANO switcher
     switch {
         position = { 805, 307, 17, 17},
@@ -545,7 +544,7 @@ components = {
 			return true
 		end,
     },
-
+--]]
 	-- landing light
     clickable {
         position = { 823, 315, 17, 8},  -- search and set right

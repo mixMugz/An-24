@@ -27,15 +27,8 @@ defineProperty("N1", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[0]"))
 defineProperty("N2", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[1]"))
 
 -- GIK button
-button_command = findCommand("sim/autopilot/heading")
-function button_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
-	if 1 == phase then
-		set(GIK_button, 1)
-    else set(GIK_button, 0)
-    end
-return 0
-end
-registerCommandHandler(button_command, 0, button_handler)
+-- for all commands phase equals: 0 on press; 1 while holding; 2 on release
+registerCommandHandler(findCommand("sim/autopilot/heading"), 0, function(p) if p == 1 then set(GIK_button, 1) else set(GIK_button, 0) end return 0 end)
 
 
 local time_counter = 0

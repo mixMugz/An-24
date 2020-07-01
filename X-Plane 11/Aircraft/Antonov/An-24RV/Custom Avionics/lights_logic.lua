@@ -90,6 +90,9 @@ return 0
 end
 registerCommandHandler(taxi_light_command, 0, taxi_light_handler)
 
+registerCommandHandler(findCommand("sim/lights/nav_lights_on"), 0, function(p) if p == 0 and get(nav_light_sw) ~= 1 then set(nav_light_sw, 1) end return 0 end)
+registerCommandHandler(findCommand("sim/lights/nav_lights_off"), 0, function(p) if p == 0 and get(nav_light_sw) ~= 0 then set(nav_light_sw, 0) end return 0 end)
+registerCommandHandler(findCommand("sim/lights/nav_lights_toggle"), 0, function(p) if p == 0 then if get(nav_light_sw) == 0 then set(nav_light_sw, 1) else set(nav_light_sw, 0) end end return 0 end)
 registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_on", "Instruments light on (main)."), 0, function(p) if p == 0 and get(cockpit_panel) ~= 1 then set(cockpit_panel, 1) end return 0 end)
 registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_emerg", "Instruments light on (emergency)."), 0, function(p) if p == 0 and get(cockpit_panel) ~= -1 then set(cockpit_panel, -1) end return 0 end)
 registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_off", "Instruments light off."), 0, function(p) if p == 0 and get(cockpit_panel) ~= 0 then set(cockpit_panel, 0) end return 0 end)

@@ -44,17 +44,17 @@ function update()
 	if get(bus_DC_27_volt) > 21 then power27 = 1 else power27 = 0 end
 	
 	local passed = get(frame_time) * 0.2
-	local Ò_air = get(thermo)
+	local t_air = get(thermo)
 	local IAS = get(ias)
 	-- calculate oil temperatures
-	-- Ò_oil = Ò_oil + (C_eng * P_eng - (Ò_oil - Ò_air) * (Ñonst + CowlFlap_ratio * (RPM * PropAngle + IAS) * oil_press * C_oil)) * frame_time
+	-- t_oil = t_oil + (C_eng * P_eng - (t_oil - t_air) * (Ñonst + CowlFlap_ratio * (RPM * PropAngle + IAS) * oil_press * C_oil)) * frame_time
 	
-	Toil_1 = Toil_1 + C_eng * get(N1) * get(eng_work_1) * passed - (Toil_1 - Ò_air) * passed * (Const1 + get(flap1) * (get(N1) * (math.min(5, get(prop_pitch_1) * 0.1 + 4)) * 0.0004 + IAS * 0.0005)) * (Const2 + math.min(4, get(oil_p_1) * 0.07031) * 0.125) -- left engine
+	Toil_1 = Toil_1 + C_eng * get(N1) * get(eng_work_1) * passed - (Toil_1 - t_air) * passed * (Const1 + get(flap1) * (get(N1) * (math.min(5, get(prop_pitch_1) * 0.1 + 4)) * 0.0004 + IAS * 0.0005)) * (Const2 + math.min(4, get(oil_p_1) * 0.07031) * 0.125) -- left engine
 	
 	set(oil_temp_left, Toil_1)
 	
 
-	Toil_2 = Toil_2 + C_eng * get(N2) * get(eng_work_2) * passed - (Toil_2 - Ò_air) * passed * (Const1 + get(flap2) * (get(N2) * (math.min(5, get(prop_pitch_2) * 0.1 + 4)) * 0.0004 + IAS * 0.0005)) * (Const2 + math.min(4, get(oil_p_2) * 0.07031) * 0.125) -- right engine
+	Toil_2 = Toil_2 + C_eng * get(N2) * get(eng_work_2) * passed - (Toil_2 - t_air) * passed * (Const1 + get(flap2) * (get(N2) * (math.min(5, get(prop_pitch_2) * 0.1 + 4)) * 0.0004 + IAS * 0.0005)) * (Const2 + math.min(4, get(oil_p_2) * 0.07031) * 0.125) -- right engine
 	
 	set(oil_temp_right, Toil_2)	
 	

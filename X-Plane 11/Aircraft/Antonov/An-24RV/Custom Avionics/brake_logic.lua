@@ -52,6 +52,11 @@ local power = false
 
 -- every frame calculations
 local maximum = 0
+
+registerCommandHandler(createCommand("An-24RV/Instruments/abs_sw_on", "ABS Switch on."), 0, function(p) if p == 0 and get(abs_sw) ~= 1 then set(abs_sw, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/abs_sw_off", "ABS Switch off."), 0, function(p) if p == 0 and get(abs_sw) ~= 0 then set(abs_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/abs_sw_toggle", "ABS Switch toggle."), 0, function(p) if p == 0 then if get(abs_sw) == 0 then set(abs_sw, 1) else set(abs_sw, 0) end end return 0 end)
+
 function update()
 	passed = get(frame_time)
 	
@@ -141,64 +146,26 @@ end
 	speed2_last = get(gear_speed_2)
 end
 
-function onAvionicsDone()
-	set(pedals, 0) -- release brakes control via plugin to let other models fly :)
-	print("brakes released")
-end
-
 components = {
-
-	-- ABS switcher
-    switch {
-        position = { 974, 325, 17, 17},
-        state = function()
-            return get(abs_sw) ~= 0
-        end,
-        --btnOn = get(tmb_up),
-        --btnOff = get(tmb_dn),
-        onMouseClick = function()
-            if not switcher_pushed then
-			playSample(switch_sound, 0)
-			switcher_pushed = true
-			if get(abs_sw) ~= 0 then
-                set(abs_sw, 0)
-            else
-                set(abs_sw, 1)
-            end
-            return true;
-			end
-		end,
-        onMouseUp = function()
-			switcher_pushed = false
-			return true
-		end,
-    }, 	
-	
-	-- left gear led
-	textureLit {
-		image = get(yellow_led),
-		position = {781, 328, 19, 19},
-		visible = function()
-			return left_abs and power
-		end,
-	},
-
-	-- right gear led
-	textureLit {
-		image = get(yellow_led),
-		position = {601, 308, 19, 19},
-		visible = function()
-			return right_abs and power
-		end,
-	},
-
-
-
-
-
-
-
-
-
-
+  -- left gear led
+  textureLit {
+    image = get(yellow_led),
+    position = {781, 328, 19, 19},
+    visible = function()
+      return left_abs and power
+    end
+  },
+  -- right gear led
+  textureLit {
+    image = get(yellow_led),
+    position = {601, 308, 19, 19},
+    visible = function()
+      return right_abs and power
+    end
+  }
 }
+
+function onAvionicsDone()
+  set(pedals, 0) -- release brakes control via plugin to let other models fly :)
+  print("Brakes released...")
+end

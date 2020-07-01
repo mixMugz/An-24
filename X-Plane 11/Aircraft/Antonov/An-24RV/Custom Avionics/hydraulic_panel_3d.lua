@@ -88,6 +88,10 @@ local emerg_pump_led = false
 local flap_up_clicked = false
 local flap_down_clicked = false
 
+registerCommandHandler(createCommand("An-24RV/Instruments/emerg_pump_sw_on", "Emergency hydro pump switch on."), 0, function(p) if p == 0 and get(emerg_pump_sw) ~= 1 then set(emerg_pump_sw, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/emerg_pump_sw_off", "Emergency hydro pump switch off."), 0, function(p) if p == 0 and get(emerg_pump_sw) ~= 0 then set(emerg_pump_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Instruments/emerg_pump_sw_toggle", "Emergency hydro pump switch toggle."), 0, function(p) if p == 0 then if get(emerg_pump_sw) == 0 then set(emerg_pump_sw, 1) else set(emerg_pump_sw, 0) end end return 0 end)
+
 -- every frame calculations.
 function update()
 
@@ -295,6 +299,7 @@ components = {
 		end,
     }, 
 	
+--[[
 	-- emergency hydraulic pump switcher
 	switch {
 		position = { 955, 325, 17, 17},
@@ -320,7 +325,7 @@ components = {
 			return true
 		end,
     }, 
-	
+--]]	
 
 	-- emergency flap valve cap
     clickable {
