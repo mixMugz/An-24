@@ -78,7 +78,7 @@ defineProperty("tro_need_3", globalPropertyf("sim/flightmodel/engine/ENGN_thro_u
 
 
 local time_last = get(sim_run_time)  -- time for previous frame
-set(tro_comm_1, 0)
+-- set(tro_comm_1, 0)
 local left_eng_start_time = time_last - 100
 local right_eng_start_time = time_last - 100
 local ru19_start_time = time_last - 100
