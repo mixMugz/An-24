@@ -5,10 +5,22 @@
 defineProperty("gear1_deflect", globalPropertyf("sim/flightmodel2/gear/tire_vertical_deflection_mtr[0]"))  -- vertical deflection of front gear
 defineProperty("gear2_deflect", globalPropertyf("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]"))  -- vertical deflection of left gear
 defineProperty("gear3_deflect", globalPropertyf("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]"))  -- vertical deflection of right gear
-
 defineProperty("gear1_deploy", globalPropertyf("sim/aircraft/parts/acf_gear_deploy[0]"))  --deploy of front gear
 defineProperty("gear2_deploy", globalPropertyf("sim/aircraft/parts/acf_gear_deploy[1]"))  -- deploy of right gear
 defineProperty("gear3_deploy", globalPropertyf("sim/aircraft/parts/acf_gear_deploy[2]"))  -- deploy of left gear
+defineProperty("airspeed", globalPropertyf("sim/flightmodel/position/indicated_airspeed"))  -- knots indicated air speed
+defineProperty("flight_time", globalPropertyf("sim/time/total_running_time_sec")) -- sim time
+defineProperty("G", globalPropertyf("sim/flightmodel2/misc/gforce_normal")) -- G overload
+-- failures
+defineProperty("retract1_fail", globalPropertyi("sim/operation/failures/rel_lagear1")) -- fail of retract gear
+defineProperty("retract2_fail", globalPropertyi("sim/operation/failures/rel_lagear2")) -- fail of retract gear
+defineProperty("retract3_fail", globalPropertyi("sim/operation/failures/rel_lagear3")) -- fail of retract gear
+defineProperty("actuator_fail", globalPropertyi("sim/operation/failures/rel_gear_act")) -- actuator fail. bugs workaround
+defineProperty("rel_wing1L", globalPropertyi("sim/operation/failures/rel_wing1L"))  -- Wing separations
+defineProperty("rel_wing1R", globalPropertyi("sim/operation/failures/rel_wing1R"))  -- Wing separations
+defineProperty("cam_in_cockpit", globalPropertyi("sim/graphics/view/view_is_external"))
+defineProperty("ground", globalPropertyi("sim/flightmodel/failures/onground_any"))
+defineProperty("gear_steer", globalPropertyf("sim/aircraft/gear/acf_nw_steerdeg1")) 
 
 -- hydraulic system 
 defineProperty("hydro_press", globalPropertyf("an-24rv/hydro/main_press")) -- pressure in main system. initial 120 kg per square sm. maximum 160.
@@ -16,31 +28,9 @@ defineProperty("gear_valve", globalPropertyi("an-24rv/hydro/gear_valve")) -- pos
 defineProperty("gear_unblock", globalPropertyi("an-24rv/hydro/gear_unblock")) -- remove block from gear retraction on ground
 defineProperty("gear_rotary", globalPropertyi("an-24rv/hydro/gear_rotary")) -- position of gear valve for gydraulic calculations and animations.
 defineProperty("direction", globalPropertyi("an-24rv/hydro/direction")) -- gear request ( used for SmartCopilot )
-
--- enviroment
-defineProperty("airspeed", globalPropertyf("sim/flightmodel/position/indicated_airspeed"))  -- knots indicated air speed
 defineProperty("frame_time", globalPropertyf("an-24rv/time/frame_time")) -- time for frames
-defineProperty("flight_time", globalPropertyf("sim/time/total_running_time_sec")) -- sim time
-defineProperty("G", globalPropertyf("sim/flightmodel2/misc/gforce_normal")) -- G overload
-
--- failures
-defineProperty("retract1_fail", globalPropertyi("sim/operation/failures/rel_lagear1")) -- fail of retract gear
-defineProperty("retract2_fail", globalPropertyi("sim/operation/failures/rel_lagear2")) -- fail of retract gear
-defineProperty("retract3_fail", globalPropertyi("sim/operation/failures/rel_lagear3")) -- fail of retract gear
-defineProperty("actuator_fail", globalPropertyi("sim/operation/failures/rel_gear_act")) -- actuator fail. bugs workaround
-
-defineProperty("rel_wing1L", globalPropertyi("sim/operation/failures/rel_wing1L"))  -- Wing separations
-defineProperty("rel_wing1R", globalPropertyi("sim/operation/failures/rel_wing1R"))  -- Wing separations
-
 defineProperty("set_real_gears", globalPropertyi("an-24rv/set/real_gears")) --  gears can fail in overspeed
-defineProperty("cam_in_cockpit", globalPropertyi("sim/graphics/view/view_is_external"))
 
-
-
-
--- test
-defineProperty("gear_steer", globalPropertyf("sim/aircraft/gear/acf_nw_steerdeg1")) 
--- commands
 --local gear_command_up = createCommand("an-24rv/gear_up", "retract landing gear landing gear")
 --local gear_command_down = createCommand("an-24rv/gear_down", "extend landing gear landing gear")
 gear_command_up = findCommand("sim/flight_controls/landing_gear_up")
@@ -151,24 +141,38 @@ local GEAR_SPEED = 1.7 / 4.5 -- per second
  
 local HYDRO = 0.006
  
-local pos1 = 1 --get(gear1_deploy)  -- initial positions of gears
- 
-local pos2 = 1 --get(gear2_deploy)
- 
-local pos3 = 1 --get(gear3_deploy) 
+local pos1 = 1  -- initial positions of gears
+local pos2 = 1
+local pos3 = 1
+
+local initialized = false
+local counter = 0
 
 -- end update
 
-
-if pos1 > 0 then pos1 = 1 end
-if pos2 > 0 then pos2 = 1 end
-if pos3 > 0 then pos3 = 1 end
+--if pos1 > 0 then pos1 = 1 end
+--if pos2 > 0 then pos2 = 1 end
+--if pos3 > 0 then pos3 = 1 end
 
 --print(pos1, pos2, pos3)
 
 -- every frame calculations
 function update()
-	
+  -- time calculations
+  local passed = get(frame_time)
+
+  -- init
+  if not initialized and counter > 0.3 and counter < 0.5 and get(ground) == 0 then
+    pos1 = 0
+    pos2 = 0
+    pos3 = 0
+    initialized = true
+  elseif not initialized and counter > 0.5 then
+    initialized = true
+  elseif not initialized then
+    counter = counter + passed
+  end
+
 	local view_ext = get(cam_in_cockpit)
 	
 	--local pos1 = get(gear1_deploy)  -- update positions of gears

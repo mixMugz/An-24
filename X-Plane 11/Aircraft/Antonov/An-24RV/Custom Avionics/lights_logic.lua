@@ -58,6 +58,7 @@ defineProperty("N1", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[0]"))
 defineProperty("N2", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[1]"))
 
 -- commands
+--[[
 -- switch landing light
 lan_light_command = findCommand("sim/lights/landing_lights_toggle")
 function lan_light_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
@@ -73,7 +74,6 @@ function lan_light_handler(phase)  -- for all commands phase equals: 0 on press;
 return 0
 end
 registerCommandHandler(lan_light_command, 0, lan_light_handler)
-
 -- switch taxi light
 taxi_light_command = findCommand("sim/lights/taxi_lights_toggle")
 function taxi_light_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
@@ -89,15 +89,24 @@ function taxi_light_handler(phase)  -- for all commands phase equals: 0 on press
 return 0
 end
 registerCommandHandler(taxi_light_command, 0, taxi_light_handler)
+--]]
 
-registerCommandHandler(findCommand("sim/lights/nav_lights_on"), 0, function(p) if p == 0 and get(nav_light_sw) ~= 1 then set(nav_light_sw, 1) end return 0 end)
-registerCommandHandler(findCommand("sim/lights/nav_lights_off"), 0, function(p) if p == 0 and get(nav_light_sw) ~= 0 then set(nav_light_sw, 0) end return 0 end)
-registerCommandHandler(findCommand("sim/lights/nav_lights_toggle"), 0, function(p) if p == 0 then if get(nav_light_sw) == 0 then set(nav_light_sw, 1) else set(nav_light_sw, 0) end end return 0 end)
-registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_on", "Instruments light on (main)."), 0, function(p) if p == 0 and get(cockpit_panel) ~= 1 then set(cockpit_panel, 1) end return 0 end)
-registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_emerg", "Instruments light on (emergency)."), 0, function(p) if p == 0 and get(cockpit_panel) ~= -1 then set(cockpit_panel, -1) end return 0 end)
-registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_off", "Instruments light off."), 0, function(p) if p == 0 and get(cockpit_panel) ~= 0 then set(cockpit_panel, 0) end return 0 end)
-registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_up", "Instruments light switch up."), 0, function(p) if p == 0 and get(cockpit_panel) ~= 1 then set(cockpit_panel, get(cockpit_panel)+1) end return 0 end)
-registerCommandHandler(createCommand("An-24RV/Lights/instruments_lights_down", "Instruments light switch down."), 0, function(p) if p == 0 and get(cockpit_panel) ~= -1 then set(cockpit_panel, get(cockpit_panel)-1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/nav_lights_on", "Nav lights on."), 0, function(p) if p == 0 and get(nav_light_sw) ~= 1 then set(nav_light_sw, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/nav_lights_off", "Nav lights off."), 0, function(p) if p == 0 and get(nav_light_sw) ~= 0 then set(nav_light_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/nav_lights_toggle", "Nav lights toggle."), 0, function(p) if p == 0 then if get(nav_light_sw) == 0 then set(nav_light_sw, 1) else set(nav_light_sw, 0) end end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/inst_lights_on", "Instruments lights on (main)."), 0, function(p) if p == 0 and get(cockpit_panel) ~= 1 then set(cockpit_panel, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/inst_lights_emerg", "Instruments lights on (emergency)."), 0, function(p) if p == 0 and get(cockpit_panel) ~= -1 then set(cockpit_panel, -1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/inst_lights_off", "Instruments lights off."), 0, function(p) if p == 0 and get(cockpit_panel) ~= 0 then set(cockpit_panel, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/inst_lights_up", "Instruments lights switch up."), 0, function(p) if p == 0 and get(cockpit_panel) ~= 1 then set(cockpit_panel, get(cockpit_panel)+1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/inst_lights_down", "Instruments lights switch down."), 0, function(p) if p == 0 and get(cockpit_panel) ~= -1 then set(cockpit_panel, get(cockpit_panel)-1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/tl_lights_land", "Landing lights on."), 0, function(p) if p == 0 and get(lan_light_sw) ~= 1 then set(lan_light_sw, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/tl_lights_taxi", "Taxi lights on."), 0, function(p) if p == 0 and get(lan_light_sw) ~= -1 then set(lan_light_sw, -1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/tl_lights_off", "Taxi/Landing lights off."), 0, function(p) if p == 0 and get(lan_light_sw) ~= 0 then set(lan_light_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/tl_lights_up", "Taxi/Landing lights switch up."), 0, function(p) if p == 0 and get(lan_light_sw) ~= 1 then set(lan_light_sw, get(lan_light_sw)+1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/tl_lights_down", "Taxi/Landing lights switch down."), 0, function(p) if p == 0 and get(lan_light_sw) ~= -1 then set(lan_light_sw, get(lan_light_sw)-1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/tl_lights_ext", "Taxi/Landing lamp extend."), 0, function(p) if p == 0 and get(lan_light_open_sw) ~= 1 then set(lan_light_open_sw, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/tl_lights_ret", "Taxi/Landing lamp retract."), 0, function(p) if p == 0 and get(lan_light_open_sw) ~= 0 then set(lan_light_open_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Lights/tl_lights_toggle", "Taxi/Landing lamp toggle."), 0, function(p) if p == 0 then if get(lan_light_open_sw) == 0 then set(lan_light_open_sw, 1) else set(lan_light_open_sw, 0) end end return 0 end)
 
 local time_counter = 0
 local not_loaded = true

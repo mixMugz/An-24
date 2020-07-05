@@ -544,7 +544,6 @@ components = {
 			return true
 		end,
     },
---]]
 	-- landing light
     clickable {
         position = { 823, 315, 17, 8},  -- search and set right
@@ -599,6 +598,7 @@ components = {
 		end,
     },
 
+
 	-- landing light open switch
     switch {
         position = { 823, 250, 17, 17},
@@ -627,7 +627,7 @@ components = {
     },
 
 	-- panel light
---[[
+
     clickable {
         position = { 937, 326, 17, 8},  -- search and set right
 

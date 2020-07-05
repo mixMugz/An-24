@@ -28,8 +28,18 @@ defineProperty("oil_t_2", globalPropertyf("an-24rv/engines/oil_temp_right"))
 defineProperty("bus_DC_27_volt", globalPropertyf("an-24rv/power/bus_DC_27_volt"))
 
 
-local switch_sound = loadSample('sounds/custom/metal_switch.wav')
-local switcher_pushed = false
+--local switch_sound = loadSample('sounds/custom/metal_switch.wav')
+--local switcher_pushed = false
+
+registerCommandHandler(createCommand("An-24RV/Engine/oilr_left_auto", "Oil radiator left auto."), 0, function(p) if p == 0 and get(flap1_sw) ~= 1 then set(flap1_sw, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Engine/oilr_left_off", "Oil radiator left off."), 0, function(p) if p == 0 and get(flap1_sw) ~= 0 then set(flap1_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Engine/oilr_left_open", "Oil radiator left open."), 0, function(p) if p ~= 2 then set(flap1_sw, 2) else set(flap1_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Engine/oilr_left_close", "Oil radiator left close."), 0, function(p) if p ~= 2 then set(flap1_sw, 3) else set(flap1_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Engine/oilr_right_auto", "Oil radiator right auto."), 0, function(p) if p == 0 and get(flap2_sw) ~= 1 then set(flap2_sw, 1) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Engine/oilr_right_off", "Oil radiator right off."), 0, function(p) if p == 0 and get(flap2_sw) ~= 0 then set(flap2_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Engine/oilr_right_open", "Oil radiator right open."), 0, function(p) if p ~= 2 then set(flap2_sw, 2) else set(flap2_sw, 0) end return 0 end)
+registerCommandHandler(createCommand("An-24RV/Engine/oilr_right_close", "Oil radiator right close."), 0, function(p) if p ~= 2 then set(flap2_sw, 3) else set(flap2_sw, 0) end return 0 end)
+
 
 function update()
 
@@ -72,16 +82,14 @@ function update()
 	-- set results	
 	set(flap1_sim, flap_L)
 	set(flap2_sim, flap_R)
-	
 	set(flap3_sim, flap_R)
 	set(flap4_sim, flap_R)
 	set(flap5_sim, flap_R)
 	set(flap6_sim, flap_R)
 	set(flap7_sim, flap_R)
-
 end
 
-
+--[[
 components = {
 
 	-- left engine
@@ -251,3 +259,4 @@ components = {
 	
 
 }
+--]]
