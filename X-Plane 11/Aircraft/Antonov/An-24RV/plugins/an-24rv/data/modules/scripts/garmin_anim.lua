@@ -1,4 +1,4 @@
-﻿--[[
+--[[
 
   File: garmin_anim.lua
   -----

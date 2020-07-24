@@ -1,4 +1,4 @@
-﻿--[[
+--[[
 
   File: glbl_vars.lua
   -----

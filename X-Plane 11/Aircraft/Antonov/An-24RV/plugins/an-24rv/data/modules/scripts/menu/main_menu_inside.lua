@@ -1,4 +1,4 @@
-﻿local initialized = false
+local initialized = false
 
 local black	= {0, 0, 0, 1}
 local cyan	= {0, 1, 1, 1}

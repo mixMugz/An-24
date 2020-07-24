@@ -1,4 +1,4 @@
-﻿local initialized = false
+local initialized = false
 
 local popup = contextWindow {
   name = "Menu",
