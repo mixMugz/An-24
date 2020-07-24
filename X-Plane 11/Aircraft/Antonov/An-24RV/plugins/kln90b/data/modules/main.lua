@@ -36,53 +36,53 @@ KLN90B = contextWindow {
   maximumSize = {898*2, 296*2},
   noDecore = false,
   customDecore = true,
-  resizeMode = SASL_CW_RESIZE_RIGHT_BOTTOM, 
+  resizeMode = SASL_CW_RESIZE_RIGHT_BOTTOM,
   proportional = true,
   visible     = false,
-  savePosition = true,  
+  savePosition = true,
   saveState = true,
   components = {
     KLN90_2D {
       position = {0, 0, 898, 296}
     }
   },
-	decoration = {
-		headerHeight = 0 ,
-			
-			 main = {
-				draw = function(w, h)-- draw  window  header...
-					if hide_ui_kln == false then
-					sasl.gl.drawTexture(popout_img, w-20, h-20, 20, 20)
-					sasl.gl.drawTexture(close_img, 0, h-20, 20, 20)
-					end
-				end, 
-				
-				onMouseMove = function(x, y, w, h)
-					if y > h - 20 and y < h and KLN90B:isPoppedOut() == false then
-						hide_ui_kln = false
-					else
-						hide_ui_kln = true
-					end
-					
-				end ,
-				
-				onMouseDown = function(x, y, w, h, button)
-					if  KLN90B:isPoppedOut() == false and button == MB_LEFT then
-						if y > h - 20 then
-							if x > w - 20 then
-								KLN90B:setMode(SASL_CW_MODE_POPOUT)
-							elseif x < 20 then
-								KLN90B:setIsVisible(false)
-							end
-						end	
-						
-						
-					end
+  decoration = {
+    headerHeight = 0 ,
 
-				end ,				
-				
-			}
-	}	
+       main = {
+        draw = function(w, h)-- draw  window  header...
+          if hide_ui_kln == false then
+          sasl.gl.drawTexture(popout_img, w-20, h-20, 20, 20)
+          sasl.gl.drawTexture(close_img, 0, h-20, 20, 20)
+          end
+        end,
+
+        onMouseMove = function(x, y, w, h)
+          if y > h - 20 and y < h and KLN90B:isPoppedOut() == false then
+            hide_ui_kln = false
+          else
+            hide_ui_kln = true
+          end
+
+        end ,
+
+        onMouseDown = function(x, y, w, h, button)
+          if  KLN90B:isPoppedOut() == false and button == MB_LEFT then
+            if y > h - 20 then
+              if x > w - 20 then
+                KLN90B:setMode(SASL_CW_MODE_POPOUT)
+              elseif x < 20 then
+                KLN90B:setIsVisible(false)
+              end
+            end
+
+
+          end
+
+        end ,
+
+      }
+  }
 }
 
 MD41 = contextWindow {
@@ -94,50 +94,50 @@ MD41 = contextWindow {
     maximumSize = {411*2, 152*2},
     noDecore = false,
   customDecore = true,
-  resizeMode = SASL_CW_RESIZE_RIGHT_BOTTOM, 
+  resizeMode = SASL_CW_RESIZE_RIGHT_BOTTOM,
   proportional = true,
     visible     = false,
-	saveState = true,
+  saveState = true,
         components = {
             MD41_2D {
                 position    = {0, 0, 411, 152}
             }
           },
-	decoration = {
-		headerHeight = 0 ,
-			
-			 main = {
-				draw = function(w, h)-- draw  window  header...
-					if hide_ui_md == false then
-					sasl.gl.drawTexture(popout_img, w-20, h-20, 20, 20)
-					sasl.gl.drawTexture(close_img, 0, h-20, 20, 20)
-					end
-				end, 
-				
-				onMouseMove = function(x, y, w, h)
-					if y > h - 20 and y < h and MD41:isPoppedOut() == false then
-						hide_ui_md = false
-					else
-						hide_ui_md = true
-					end
-					
-				end ,
-				
-				onMouseDown = function(x, y, w, h, button)
-					if  MD41:isPoppedOut() == false and button == MB_LEFT then
-						if y > h - 20 then
-							if x > w - 20 then
-								MD41:setMode(SASL_CW_MODE_POPOUT)
-							elseif x < 20 then
-								MD41:setIsVisible(false)
-							end
-						end					
-					end
+  decoration = {
+    headerHeight = 0 ,
 
-				end ,				
-				
-			}
-	}	
+       main = {
+        draw = function(w, h)-- draw  window  header...
+          if hide_ui_md == false then
+          sasl.gl.drawTexture(popout_img, w-20, h-20, 20, 20)
+          sasl.gl.drawTexture(close_img, 0, h-20, 20, 20)
+          end
+        end,
+
+        onMouseMove = function(x, y, w, h)
+          if y > h - 20 and y < h and MD41:isPoppedOut() == false then
+            hide_ui_md = false
+          else
+            hide_ui_md = true
+          end
+
+        end ,
+
+        onMouseDown = function(x, y, w, h, button)
+          if  MD41:isPoppedOut() == false and button == MB_LEFT then
+            if y > h - 20 then
+              if x > w - 20 then
+                MD41:setMode(SASL_CW_MODE_POPOUT)
+              elseif x < 20 then
+                MD41:setIsVisible(false)
+              end
+            end
+          end
+
+        end ,
+
+      }
+  }
 }
 
 KLNPanel = contextWindow {
@@ -187,15 +187,15 @@ sasl.registerCommandHandler(MD41c_command, 0, MD41c_handler)
 
 menu_master = sasl.appendMenuItem (PLUGINS_MENU_ID, "KLN90B/MD41" )
 menu_main = sasl.createMenu ("", PLUGINS_MENU_ID, menu_master)
-menu_option = sasl.appendMenuItem(menu_main, "Toggle KLN90B Window", function() 
+menu_option = sasl.appendMenuItem(menu_main, "Toggle KLN90B Window", function()
                                                                         KLN90B:setIsVisible(not KLN90B:isVisible ())
                                                                         return false
                                                                         end)
-menu_option = sasl.appendMenuItem(menu_main, "Toggle MD41 Window", function() 
+menu_option = sasl.appendMenuItem(menu_main, "Toggle MD41 Window", function()
                                                                         MD41:setIsVisible(not MD41:isVisible ())
                                                                         return false
                                                                         end)
-menu_option = sasl.appendMenuItem(menu_main, "Toggle KLN popup panel", function() 
+menu_option = sasl.appendMenuItem(menu_main, "Toggle KLN popup panel", function()
                                                                         KLNPanel:setIsVisible(not KLNPanel:isVisible ())
                                                                         return false
                                                                         end)
