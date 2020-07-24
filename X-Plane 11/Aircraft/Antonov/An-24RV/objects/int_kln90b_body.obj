@@ -34180,7 +34180,7 @@ IDX 29003
 IDX 29001
 IDX 29000
 ANIM_begin
-ANIM_hide 0.000000 0.000000 an-24rv/kln_l_is_present
+ANIM_hide 0.000000 0.000000 an-24rv/set/kln_l_is_present
 ATTR_no_blend
 TRIS 0 6450
 ATTR_no_cull
@@ -34189,6 +34189,6 @@ ATTR_cull
 TRIS 6459 19368
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 an-24rv/kln_r_is_present
+ANIM_hide 0.000000 0.000000 an-24rv/set/kln_r_is_present
 TRIS 25827 25818
 ANIM_end

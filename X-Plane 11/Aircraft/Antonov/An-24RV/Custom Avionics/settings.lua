@@ -21,8 +21,8 @@ defineProperty("north_GPK", globalPropertyi("an-24rv/set/north_GPK"))  -- GPK mo
 defineProperty("real_fuel", globalPropertyi("an-24rv/set/real_fuel")) -- switch for real fuel system or FSE compability
 defineProperty("rsbn_dataset", globalPropertyi("an-24rv/rsbn/dataset"))  -- dataset, 0:CIS 1:USSR
 defineProperty("black_box", globalPropertyi("an-24rv/set/black_box"))  -- flight data recording
-defineProperty("kln_l_is_present", globalPropertyi("an-24rv/kln_l_is_present"))  -- flight data recording
-defineProperty("kln_r_is_present", globalPropertyi("an-24rv/kln_r_is_present"))  -- flight data recording
+defineProperty("kln_l_is_present", globalPropertyi("an-24rv/set/kln_l_is_present"))  -- flight data recording
+defineProperty("kln_r_is_present", globalPropertyi("an-24rv/set/kln_r_is_present"))  -- flight data recording
 --set(kln_l_is_present,0)
 defineProperty("sound_volume", globalPropertyf("an-24rv/set/sound_volume"))  -- flight data recording
 
@@ -57,7 +57,7 @@ local settings_table = {}
 	settings_table["klnlispresent"] = 1
 	settings_table["klnrispresent"] = 0
 	settings_table["hidegarmin"] = 1
-	settings_table["rudswitch"] = 1
+	settings_table["rudswitch"] = 0
 	settings_table["gpknorth"] = 1
 	settings_table["fuel"] = 1
 	settings_table["dataset"] = 1
@@ -149,12 +149,11 @@ function update()
 end
 
 components = {
-	-- background
-	textureLit {
-		image = get(background),
-		position = {0, 0, size[1], size[2]},
-
-	},
+  -- background
+  textureLit {
+    image = get(background),
+    position = {0, 0, size[1], size[2]},
+  },
 
 
    -- left throttle lever

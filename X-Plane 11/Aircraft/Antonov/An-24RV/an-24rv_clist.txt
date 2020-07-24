@@ -2,7 +2,7 @@
 ### for Checklister plugin
 ### modified for conformance with 64-bit Xchecklist plugin
 ### (c) mixmugz@gmail.com
-sw_checklist: An-24RV checklist v1.0
+sw_checklist:An-24RV checklist v1.0
 ### COLOUR DEFINES
 sw_define_colour:white:0.9,0.9,0.9
 sw_define_colour:grey:0.6,0.6,0.6
@@ -32,16 +32,30 @@ sw_itemvoid_c:\blk\░░░░░░░░░\white\███\blk\░░░░�
 sw_itemvoid_c:\blk\░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 sw_item_c:CONTINUE TO CHECKLISTS| 
 ################################################################################################################
-sw_continue:BEFORE START
+sw_continue:ПЕРЕД СТАРТОМ:an-24rv/set/language:0
+sw_continue:BEFORE START:an-24rv/set/language:1
+sw_continue:An-24RV checklist v1.0
 ################################################################################################################
 
-sw_checklist:BEFORE START:BEFORE START©
+sw_checklist:ПЕРЕД СТАРТОМ:(RUS) Перед стартом
+sw_rcolsize:20
+sw_item:Роутинк|PFPX
+sw_item:Загрузка|DO IT!
+sw_item:Навигация|SET
+sw_continue:START 1
+
+sw_checklist:--------------------:--------------------
+sw_rcolsize:0
+sw_continue:An-24RV checklist v1.0
+
+sw_checklist:BEFORE START:(ENG) Before Start
 sw_rcolsize:20
 sw_item:ROUTE|PFPX
 sw_item:LOAD|DO IT!
 sw_item:KLN90B|SET
+sw_continue:START 1
 
-sw_checklist:START 1:START 1
+sw_checklist:START 1:(ENG) Start-Up
 sw_rcolsize:20
 sw_item:PITANIE|AERODROM
 sw_item:PO-750, PO-1000|ON

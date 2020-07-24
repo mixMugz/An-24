@@ -1,42 +1,49 @@
-﻿-- Main start script
+﻿--[[
+
+  File: main.lua
+  -----
+  Main project script
+
+--]]
+
+-- Project setting
 size = {2048, 2048}
-panel2d = false
 panelWidth3d = 2048 --I don't know why, but without those lines you cannot get the coords to work right
 panelHeight3d = 2048
-sasl.options.setAircraftPanelRendering(true)
-sasl.options.setInteractivity(true)
-sasl.options.set3DRendering(true)
-sasl.options.setRenderingMode2D(SASL_RENDER_2D_MULTIPASS)
-sasl.options.setPanelRenderingMode(SASL_RENDER_PANEL_DEFAULT)
+panel2d = false
+project = "an-24rv"
 
--- Search path's for modules, sounds and all others files
+-- Set SASL3 options
+setAircraftPanelRendering(true)
+setInteractivity(true)
+set3DRendering(true)
+setRenderingMode2D(SASL_RENDER_2D_MULTIPASS)
+setPanelRenderingMode(SASL_RENDER_PANEL_DEFAULT)
+
+-- Add search path's for modules,  and all others files
 addSearchPath(moduleDirectory.."/scripts")
-addSearchPath(moduleDirectory.."/scripts/menu")
-addSearchPath(moduleDirectory.."/scripts/misc")
-addSearchPath(moduleDirectory.."/scripts/power")
-addSearchPath(moduleDirectory.."/scripts/kln90b")
-addSearchPath(moduleDirectory.."/scripts/gns430")
-addSearchPath(moduleDirectory.."/scripts/engine")
-addSearchPath(moduleDirectory.."/scripts/cockpit")
-addSearchPath(moduleDirectory.."/scripts/datarefs")
-addSearchPath(getAircraftPath().."/sounds")
-addSearchPath(getAircraftPath().."/sounds/kln90b")
+addSearchPath(moduleDirectory.."/resources")
 
+-- Include scripts
+include "glbl_func.lua"
+include "glbl_drfs.lua"
+include "glbl_vars.lua"
+
+-- Load all components
 components = {
---  main_menu {},
-  datarefs_main {},
-  datarefs_power {},
-  datarefs_engine {},
-  datarefs_settings {},
-  datarefs_cockpit {},
-  datarefs_lights {},
-  datarefs_gns430 {},
-  battery {},
-  kln90_loader {},
-  gns430_logic {},
-  cockpit_fan {},
-  engine_logic {},
+  garmin_anim      {},
+  cockpit_fan_anim {},
+  engine_logic     {},
+  klnpwr_logic     {},
 }
+
+function update()
+  -- update all global variables
+  gvar.frame_time = get(drf_main.frame_time)
+  gvar.bus_dc27 = get(drf_pwr.bus_dc27)
+  gvar.lang = get(drf_set.lang)
+  updateAll(components)
+end
 
 -- experemental
 
@@ -70,9 +77,3 @@ components = {
 --menu_action	= sasl.appendMenuItem(menu_main, "Show/hide popup", show_hide)
 -- set initial state
 --change_menu()
-
---[[
-function draw()
-  drawAll(components)
-end
---]]

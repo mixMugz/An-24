@@ -22,6 +22,9 @@ defineProperty("prop2_rpm_rads", globalPropertyf("sim/flightmodel2/engines/prop_
 defineProperty("disc_s_dim1", globalPropertyf("sim/flightmodel2/engines/prop_disc/disc_s_dim[0]"))
 defineProperty("disc_s_dim2", globalPropertyf("sim/flightmodel2/engines/prop_disc/disc_s_dim[1]"))
 
+defineProperty("disc_t_dim1", globalPropertyf("sim/flightmodel2/engines/prop_disc/disc_t_dim[0]"))
+defineProperty("disc_t_dim2", globalPropertyf("sim/flightmodel2/engines/prop_disc/disc_t_dim[1]"))
+
 defineProperty("disc_alpha_side1", globalPropertyf("sim/flightmodel2/engines/prop_disc/disc_alpha_side[0]"))
 defineProperty("disc_alpha_side2", globalPropertyf("sim/flightmodel2/engines/prop_disc/disc_alpha_side[1]"))
 
@@ -76,6 +79,14 @@ local right_prop_angle = 0
 local counter = 0
 local not_loaded = true
 
+set(disc_s_dim1, 4)
+set(disc_s_dim2, 4)
+set(disc_t_dim1, 1)
+set(disc_t_dim2, 1)
+set(disc_alpha_side1, 1)
+set(disc_alpha_side2, 1)	
+
+
 function update()
 	local passed = get(frame_time)
 	
@@ -115,10 +126,11 @@ function update()
 	
 	
 	-- test
-	set(disc_s_dim1, 1)
-	set(disc_s_dim2, 1)
-	set(disc_alpha_side1, 0.2)
-	set(disc_alpha_side2, 0.2)	
+--[[
+	set(disc_s_dim1, 4)
+	set(disc_s_dim2, 4)
+	set(disc_alpha_side1, 1)
+	set(disc_alpha_side2, 1)	
 	set(side_length_ratio1, 1)
 	set(side_length_ratio2, 1)
 	set(side_s_dim1, 1)
@@ -137,7 +149,7 @@ function update()
 	set(side_number_of_blades2, 2)
 	set(disc_width1, 0.03)  -- prop disc width
 	set(disc_width2, 0.03)
-	
+--]]	
 
 end
 

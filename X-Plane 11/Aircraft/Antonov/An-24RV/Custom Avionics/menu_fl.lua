@@ -5,6 +5,7 @@ defineProperty("white_fl", globalPropertyi("sim/graphics/misc/white_flashlight_o
 defineProperty("bg1", loadImage("menu_flbg1.png"))
 defineProperty("bg2", loadImage("menu_flbg2.png"))
 defineProperty("bg3", loadImage("menu_flbg3.png"))
+defineProperty("lang", globalPropertyi("an-24rv/set/language"))
 
 local rot_click = loadSample('sounds/custom/rot_click.wav')
 local flstate = 0

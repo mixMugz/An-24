@@ -1,4 +1,4 @@
-﻿**/.DS_Store
+**/.DS_Store
 **/Thumbs.db
 **/apt.cache
 **/state.txt
@@ -6,11 +6,13 @@
 **/wprefs.ini
 **/*.???~
 **/*.bak
+**/An-24RV/_
 **/An-24RV/an-24rv_settings.ini
 **/An-24RV/an-24rv_lamps.ini
 **/An-24RV/an-24rv_prefs.txt
+**/An-24RV/clist.txt
 **/An-24RV/KLNconfig.txt
+**/An-24RV/skunkcrafts_updater_*.*
 **/An-24RV/*.blend*
 **/An-24RV/*.acf~
 **/An-24RV/*.ac
-**/An-24RV/_
