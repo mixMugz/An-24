@@ -7,8 +7,8 @@
 **/*.???~
 **/*.bak
 **/An-24/_
-**/An-24/an-24rv_settings.ini
-**/An-24/an-24rv_lamps.ini
+**/An-24/an-24_settings.ini
+**/An-24/an-24_lamps.ini
 **/An-24/an-24rv_prefs.txt
 **/An-24/clist.txt
 **/An-24/KLNconfig.txt
