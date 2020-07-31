@@ -1,0 +1,5 @@
+# Declare files that will always have CRLF line endings on checkout.
+*.txt	text
+*.cfg	text
+*.ini	text
+*.lua	text
