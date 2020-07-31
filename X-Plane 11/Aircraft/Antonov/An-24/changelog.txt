@@ -6,10 +6,15 @@ Release notes:
 GLOBAL
 - ADDED: skunkrafts_updaters plugin support
 - CHANGED: datarefs renamed from an-24rv to an-24 (for future model compatibility)
-- WIP: Language switch support ENG/RUS
+- WIP: Language switch support EN/RU
 
 FLIGHTMODEL
-- FIXED: Stalling in approach scenario
+- FIX: Stalling in approach scenario
+
+COMMANDS
+- ADDED: Engine RUD stoper position up/down
+  + Engine RUD stoper cap
+  + RU19 RUD stoper cap
 
 MANIPULATORS
 - ADDED: New manipulators
@@ -21,19 +26,16 @@ LUA
 - CHANGED: Refactoring code
   + fan animation logic for sync with sound
 
-COMMANDS
-- ADDED: Engine RUD stoper position up/down
-  + Engine RUD stoper cap
-  + RU19 RUD stoper cap
-
 GRAPHICS
 - ADDED: Gauges glass LIT texture
-  + some liveries
 - CHANGED: Panel light color
 - FIX: Incorrect engine nose cone model
 
 SOUND
 - CHANGED: Cockpit FAN sound
+
+LIVERY
+- ADDED: some liveries
 
 ----------
 4.01.06 :: 25.07.2020
@@ -43,7 +45,7 @@ GLOBAL
 - CHANGED: Renamed some docs with UTF-8 filenames (for compatible with updater wich not support UTF-8 filenames)
   + KLN90B now separated plugin
 
-COMMANDS:
+COMMANDS
 - ADDED: Fuel gauge left (on/off/toggle)
   + Fuel gauge right (on/off/toggle)
   + Fuel flow meter (on/off/toggle)
@@ -58,10 +60,10 @@ MANIPULATORS
 - REMOVED: old panel clickzones for newly added manipulators
 
 LUA
-- CHANGED: Revorked SASL3 code
+- CHANGED: Reworked SASL3 code
 
 GRAPHICS
-- ADDED: New prop_disc (WIP)
+- ADDED: New prop_disc
 - FIX: Pedestal incorrect object model and texture mapping
 
 SOUNDS
@@ -77,16 +79,23 @@ SMARTCOPILOT
 GEARS
 - FIX: Now gears property set in approach scenario
 
-COMMANDS:
+COMMANDS
 - ADDED: Oil radiator left (auto/off/open/close)
   + Oil radiator right (auto/off/open/close)
   + Nav lights (on/off/toggle)
   + Taxi/Landing lights (taxi/land/off/switch up/switch down)
+
+MANIPULATORS
+- ADDED: New manipulators for:
+  + Oil radiator left
+  + Oil radiator right
+  + Nav lights
+  + Taxi/Landing lights
 - CHANGED: Instruments lights (main/emergency/off/switch up/switch down)
 - REMOVED: old panel clickzones for newly added manipulators
 
 GRAPHICS
-- ADDED: LIT textore for switches
+- ADDED: LIT texture for switches
 - FIX: Texture for flightdeck switches
 
 SOUNDS
@@ -96,12 +105,10 @@ SOUNDS
 4.01.04 :: 02.07.2020
 ----------
 ENGINE
-- REMOVED: Bug!!! Throttle for second engine set to zero at any start (even in approach mode)
-
-PROPS
-- CHANGED: prop_logic.lua prop1 to prop2 statement (seems BUG)
+- FIX: Throttle for second engine set to zero at any start (even in approach mode)
 
 LUA
+- CHANGED: prop_logic.lua prop1 to prop2 statement (seems BUG)
 - FIX: small fixes for:
   + ark_meter.lua
   + mrp.lua
@@ -113,9 +120,6 @@ SOUNDS
 ----------
 4.01.03 :: 01.07.2020
 ----------
-GPS
-- ADDED: Animation for GNS430 (knobs/buttons)
-
 ANTIICE
 - CHANGED: Separated all antiice switches
 
@@ -124,7 +128,7 @@ LUA
   + fake.lua removed non ASCI chars in variable names
   + gik_logic.lua fixed findCommand
 
-COMMANDS:
+COMMANDS
 - ADDED: ABS Switch (on/off/toggle)
   + Emergency hydro pump switch (on/off/toggle)
 - CHANGED: Changed commands for antiice
@@ -142,6 +146,9 @@ MANIPULATORS
 - CHANGED: separated antiice switches
 - REMOVED: old panel clickzones for newly added manipulators
 
+GRAPHICS
+- ADDED: Animation for GNS430 (knobs/buttons)
+
 SOUNDS
 - ADDED: FMOD sound for newly added manipulators
 
@@ -152,7 +159,7 @@ PREFS
 4.01.02 :: 29.06.2020
 ----------
 ENGINE
-- CHANGED: engine_logic movet to SASL3
+- CHANGED: engine_logic moved to SASL3
 - FIX: Throttles not released after change airplane
 
 COMMANDS
