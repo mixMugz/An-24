@@ -1,5 +1,5 @@
 <h4 align="center">
-  <img alt="Antonov An-24" src="readme-head.png">
+  <img alt="Antonov An-24" src="readme-head-ru.png">
 </h4>
 
 ***Что здесь происходит?*** Это репозиторий модификации самолёта Ан-24 для X-Plane 11 (64bit).
