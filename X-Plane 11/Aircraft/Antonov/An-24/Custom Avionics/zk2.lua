@@ -5,7 +5,7 @@ size = {200, 200}
 defineProperty("gyro_curse", globalPropertyf("an-24/gauges/GPK_curse"))  -- gyro curse from GIK
 --defineProperty("obs", globalPropertyf("sim/cockpit2/radios/actuators/nav1_obs_deg_mag_pilot")) -- curse for VOR1
 defineProperty("frame_time", globalPropertyf("an-24/time/frame_time")) -- time for frames
-defineProperty("flight_time", globalPropertyf("sim/time/total_running_time_sec"))  -- local time since aircraft was loaded 
+defineProperty("flight_time", globalPropertyf("sim/time/total_running_time_sec"))  -- local time since aircraft was loaded
 -- signals to autopilot
 defineProperty("ap_curse", globalPropertyf("an-24/ap/curse_zk")) -- curse for autopilot
 
@@ -20,6 +20,7 @@ defineProperty("curse_needle", loadImage("needles.dds", 218, 70, 87, 179))
 defineProperty("scale_triangle", loadImage("kppm.dds", 30, 223, 13, 23))
 defineProperty("black_cap", loadImage("covers.dds", 0, 55, 56, 56)) -- black cap image
 -- set(obs, 0)
+-- Shared Flight
 
 -- local variables
 local scale_angle = 0
@@ -28,17 +29,12 @@ local rotate_dir = 0
 local duration = 0
 --local obs = 0
 
-
 -- turn zk left
 turn_left_command = findCommand("sim/autopilot/heading_down")
 function turn_left_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
-	if phase ~= 2 then
+	if phase == 1 then
 		duration = duration + 0.1
-		if duration < 6 then
-			scale_angle = scale_angle - 0.5
-		else
-			scale_angle = scale_angle - 1.5
-		end
+		sc_angle(duration, -1)
 	else
 		duration = 0
 	end
@@ -49,13 +45,9 @@ registerCommandHandler(turn_left_command, 0, turn_left_handler)
 -- turn zk right
 turn_right_command = findCommand("sim/autopilot/heading_up")
 function turn_right_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
-	if phase ~= 2 then
+	if phase == 1 then
 		duration = duration + 0.1
-		if duration < 6 then
-			scale_angle = scale_angle + 0.5
-		else
-			scale_angle = scale_angle + 1.5
-		end
+		sc_angle(duration, 1)
 	else
 		duration = 0
 	end
@@ -63,13 +55,23 @@ function turn_right_handler(phase)  -- for all commands phase equals: 0 on press
 end
 registerCommandHandler(turn_right_command, 0, turn_right_handler)
 
+function sc_angle(dur, dir)
+	if dur < 6 then
+		scale_angle = ((scale_angle + 181 * dir) % 360) - 180
+		set(zk_scale_angle_smartcopilot, scale_angle)
+	else
+		scale_angle = ((scale_angle + 182 * dir) % 360) - 180
+		set(zk_scale_angle_smartcopilot, scale_angle)
+	end
+end
 
 -- postframe calculaions
 function update()
 	-- time calculations
 	local passed = get(frame_time)
--- time bug workaround
+  -- time bug workaround
 	if passed > 0 then
+--[[
 		if get(SC_master) ~= 1 then
 			--scale_angle = -obs
 			-- rotate scale
@@ -80,11 +82,11 @@ function update()
 		else
 			scale_angle = get(zk_scale_angle_smartcopilot)
 		end
-		
+
 		if get(SC_master) == 1 then
 			curse_angle = get(sc_curse_angle)
 		else
-			local v = get(gyro_curse) + scale_angle 
+			local v = get(gyro_curse) + scale_angle
 			local delta = v - curse_angle
 			if delta > 180 then delta = delta - 360
 			elseif delta < -180 then delta = delta + 360 end
@@ -93,7 +95,21 @@ function update()
 			elseif curse_angle < -180 then curse_angle = curse_angle + 360 end
 			set(sc_curse_angle,curse_angle)
 		end
-		
+--]]
+		scale_angle = get(zk_scale_angle_smartcopilot)
+
+		if get(SC_master) == 1 then
+			curse_angle = get(sc_curse_angle)
+		else
+			local v = get(gyro_curse) + scale_angle
+			local delta = v - curse_angle
+			if delta > 180 then delta = delta - 360
+			elseif delta < -180 then delta = delta + 360 end
+			curse_angle = curse_angle + 3 * delta * passed
+			if curse_angle > 180 then curse_angle = curse_angle - 360
+			elseif curse_angle < -180 then curse_angle = curse_angle + 360 end
+			set(sc_curse_angle,curse_angle)
+		end
 			--set curse for AP
 		set(ap_curse, curse_angle)
 	end
@@ -113,25 +129,25 @@ components = {
 		image = get(scale),
 		angle = function()
 			return scale_angle
-		end 
+		end
 	},
-	
+
 	-- curse needle
 	needle {
 		position = {15, 15, 170, 170,},
 		image = get(curse_needle),
 		angle = function()
 			return curse_angle
-		end 
-	},	
+		end
+	},
 
 	-- position triangle
 	texture {
 		position = {94, 177, 12, 23},
 		image = get(scale_triangle),
-	
+
 	},
-	
+
 	-- black cap
 	texture{
 	    position = { 79, 78, 44, 44 },
