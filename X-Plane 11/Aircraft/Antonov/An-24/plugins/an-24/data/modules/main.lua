@@ -46,6 +46,7 @@ components = {
   engine_logic     {},
   gns430_anim      {},
   klnpwr_logic     {},
+  prop_anim        {},
 }
 
 -- End loading message

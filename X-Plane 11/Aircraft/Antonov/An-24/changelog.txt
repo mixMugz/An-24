@@ -1,169 +1,238 @@
 Release notes:
 
 ----------
+4.01.08 :: 06.08.2020
+----------
+GLOBAL
+- FIX:
+  + changelog.txt some style correction and orpho errors
+
+MANIPULATORS
+- FIX:
+  + Incorrect normals for folding chair manipulator
+
+GRAPHICS
+- CHANGED:
+  + Remaped all doors in ext_fuselage (for correct livery maping)
+- FIX:
+  + Incorrect value for hide instruments lights. Now work with emergency cockpit light
+  + Incorrect texture mapping for NDB navigation knobs
+
+LIVERY
+- ADDED:
+  + Aeroflot L1960
+  + Air India (VT-ABO)
+  + LPS RA-26088 (An-26)
+  + Pskov Avia
+  + Yamal
+
+----------
 4.01.07 :: 31.07.2020
 ----------
 GLOBAL
-- ADDED: skunkrafts_updaters plugin support
-- CHANGED: datarefs renamed from an-24rv to an-24 (for future model compatibility)
-- WIP: Language switch support EN/RU
+- ADDED:
+  + skunkrafts_updaters plugin support
+- CHANGED:
+  + datarefs renamed from an-24rv to an-24 (for future model compatibility)
+- WIP:
+  + Language switch support EN/RU
 
-FLIGHTMODEL
-- FIX: Stalling in approach scenario
+FLIGHT MODEL
+- FIX:
+  + Stalling in approach scenario
 
 COMMANDS
-- ADDED: Engine RUD stoper position up/down
+- ADDED:
+  + Engine RUD stoper position up/down
   + Engine RUD stoper cap
   + RU19 RUD stoper cap
 
 MANIPULATORS
-- ADDED: New manipulators
+- ADDED:
   + RUD blocker
   + RUD limiter
   + Folding chair in cockpit
 
 LUA
-- CHANGED: Refactoring code
+- CHANGED:
+  + Refactoring code
   + fan animation logic for sync with sound
 
 GRAPHICS
-- ADDED: Gauges glass LIT texture
-- CHANGED: Panel light color
-- FIX: Incorrect engine nose cone model
+- ADDED:
+  + Gauges glass LIT texture
+- CHANGED:
+  + Panel light color
+- FIX:
+  + Incorrect engine nose cone model
 
 SOUND
-- CHANGED: Cockpit FAN sound
+- CHANGED:
+  + Cockpit FAN sound
 
 LIVERY
-- ADDED: some liveries
+- ADDED:
+  + some liveries
 
 ----------
 4.01.06 :: 25.07.2020
 ----------
 GLOBAL
-- ADDED: changelog.txt
-- CHANGED: Renamed some docs with UTF-8 filenames (for compatible with updater wich not support UTF-8 filenames)
+- ADDED:
+  + changelog.txt
+- CHANGED:
+  + Renamed some docs with UTF-8 filenames (for compatible with updater wich not support UTF-8 filenames)
   + KLN90B now separated plugin
 
 COMMANDS
-- ADDED: Fuel gauge left (on/off/toggle)
+- ADDED:
+  + Fuel gauge left (on/off/toggle)
   + Fuel gauge right (on/off/toggle)
   + Fuel flow meter (on/off/toggle)
   + Automatic fuel flow (on/off/toggle)
 
 MANIPULATORS
-- ADDED: New manipulators for:
+- ADDED:
   + Fuel gauge left
   + Fuel gauge right
   + Fuel flow meter
   + Automatic fuel flow
-- REMOVED: old panel clickzones for newly added manipulators
+- REMOVED:
+  + old panel clickzones for newly added manipulators
 
 LUA
-- CHANGED: Reworked SASL3 code
+- CHANGED:
+  + Reworked SASL3 code
 
 GRAPHICS
-- ADDED: New prop_disc
-- FIX: Pedestal incorrect object model and texture mapping
+- ADDED:
+  + New prop_disc
+- FIX:
+  + Pedestal incorrect object model and texture mapping
 
 SOUNDS
-- ADDED: FMOD sound for newly added manipulators
-- REMOVED: Duplicates altitude_alert sound from LUA script folder
+- ADDED:
+  + FMOD sound for newly added manipulators
+- REMOVED:
+  + Duplicates altitude_alert sound from LUA script folder
 
 SMARTCOPILOT
-- UPDATED: new datarefs
+- UPDATED:
+  + new datarefs
 
 ----------
 4.01.05 :: 06.07.2020
 ----------
 GEARS
-- FIX: Now gears property set in approach scenario
+- FIX:
+  + Now gears property set in approach scenario
 
 COMMANDS
-- ADDED: Oil radiator left (auto/off/open/close)
+- ADDED:
+  + Oil radiator left (auto/off/open/close)
   + Oil radiator right (auto/off/open/close)
   + Nav lights (on/off/toggle)
   + Taxi/Landing lights (taxi/land/off/switch up/switch down)
 
 MANIPULATORS
-- ADDED: New manipulators for:
+- ADDED:
   + Oil radiator left
   + Oil radiator right
   + Nav lights
   + Taxi/Landing lights
-- CHANGED: Instruments lights (main/emergency/off/switch up/switch down)
-- REMOVED: old panel clickzones for newly added manipulators
+- CHANGED:
+  + Instruments lights (main/emergency/off/switch up/switch down)
+- REMOVED:
+  + old panel clickzones for newly added manipulators
 
 GRAPHICS
-- ADDED: LIT texture for switches
-- FIX: Texture for flightdeck switches
+- ADDED:
+  + LIT texture for switches
+- FIX:
+  + Texture for flightdeck switches
 
 SOUNDS
-- ADDED: FMOD sound for newly added manipulators
+- ADDED:
+  + FMOD sound for newly added manipulators
 
 ----------
 4.01.04 :: 02.07.2020
 ----------
 ENGINE
-- FIX: Throttle for second engine set to zero at any start (even in approach mode)
+- FIX:
+  + Throttle for second engine set to zero at any start (even in approach mode)
 
 LUA
-- CHANGED: prop_logic.lua prop1 to prop2 statement (seems BUG)
-- FIX: small fixes for:
-  + ark_meter.lua
-  + mrp.lua
-  + engine_logic.lua
+- CHANGED:
+  + prop_logic.lua prop1 to prop2 statement (seems BUG)
+- FIX:
+  + ark_meter.lua small fixes
+  + mrp.lua small fixes
+  + engine_logic.lua small fixes
 
 SOUNDS
-- CHANGED: Commented DISABLE_LEGACY_ALERT_SOUNDS. Workaround for not working alarm sounds (will be fixed)
+- CHANGED:
+  + Commented DISABLE_LEGACY_ALERT_SOUNDS. Workaround for not working alarm sounds (will be fixed)
 
 ----------
 4.01.03 :: 01.07.2020
 ----------
 ANTIICE
-- CHANGED: Separated all antiice switches
+- CHANGED:
+  + Separated all antiice switches
 
 LUA
-- CHANGED: antiice.lua changed logic
+- CHANGED:
+  + antiice.lua changed logic
   + fake.lua removed non ASCI chars in variable names
   + gik_logic.lua fixed findCommand
 
 COMMANDS
-- ADDED: ABS Switch (on/off/toggle)
+- ADDED:
+  + ABS Switch (on/off/toggle)
   + Emergency hydro pump switch (on/off/toggle)
-- CHANGED: Changed commands for antiice
+- CHANGED:
+  + Changed commands for antiice
   + Window heat low pilot (on/off/toggle)
   + Window heat high pilot (on/off/toggle)
   + Window heat low copilot (on/off/toggle)
   + Window heat high copilot (on/off/toggle)
 
 MANIPULATORS
-- ADDED: New manipulators for:
+- ADDED:
   + ABS Switch
   + Emergency hydro pump switch
   + Heading button
   + Nav lights switch
-- CHANGED: separated antiice switches
-- REMOVED: old panel clickzones for newly added manipulators
+- CHANGED:
+  + separated antiice switches
+- REMOVED:
+  + old panel clickzones for newly added manipulators
 
 GRAPHICS
-- ADDED: Animation for GNS430 (knobs/buttons)
+- ADDED:
+  + Animation for GNS430 (knobs/buttons)
 
 SOUNDS
-- ADDED: FMOD sound for newly added manipulators
+- ADDED:
+  + FMOD sound for newly added manipulators
 
 PREFS
-- ADDED: an-24_ark1.ini
+- ADDED:
+  + an-24_ark1.ini
 
 ----------
 4.01.02 :: 29.06.2020
 ----------
 ENGINE
-- CHANGED: engine_logic moved to SASL3
-- FIX: Throttles not released after change airplane
+- CHANGED:
+  + engine_logic moved to SASL3
+- FIX:
+  + Throttles not released after change airplane
 
 COMMANDS
-- ADDED: Feet meter (on/off/toggle)
+- ADDED:
+  + Feet meter (on/off/toggle)
   + Instruments light (on/off/emergency/switch up/switch down)
   + Window heat pilot (on/off/toggle)
   + Window heat copilot (on/off/toggle)
@@ -171,64 +240,77 @@ COMMANDS
   + RV (on/off/toggle)
 
 MANIPULATORS
-- ADDED: New manipulators for:
+- ADDED:
   + Feet meter
   + Instruments light
   + Window heat pilot
   + Window heat co-pilot
   + Noisewheel steering
   + RV
-- REMOVED: old panel clickzones for newly added manipulators
+- REMOVED:
+  + old panel clickzones for newly added manipulators
 
 SOUNDS
-- ADDED: cap_sw sound
+- ADDED:
+  + cap_sw sound
   + FMOD sound for newly added manipulators
 
 ----------
 4.01.01 :: 27.06.2020
 ----------
 COCKPIT
-- CHANGED: cockpit now moved to 3D cockpit
+- CHANGED:
+  + cockpit now moved to 3D cockpit
 
 ENGINE
-- CHANGED: ENGN/RU19 locker logic
+- CHANGED:
+  + ENGN/RU19 locker logic
   + RU19 at 0 pos alwaays locked. Throttle not work. To unlock use locker for low mode (same to stop and close)
   + ENGN always locked at low mode. Need to use locker for 0 mode
 
 GEARS
-- CHANGED: small details moved to gear texture
+- CHANGED:
+  + small details moved to gear texture
 
 FAN
-- ADDED: 4th fan
+- ADDED:
+  + 4th fan
   + switches for all four fans
 - CHANGED: separated fans from one switch
 
 LIGHTS
-- ADDED: new instruments lights (not real)
+- ADDED:
+  + new instruments lights (not real)
   + new cockpit lighs
   + aviator flashlight in menu
   + animation and light for all lamps
 
-MANIPULATOS
-- ADDED: KPPM angle
+MANIPULATORS
+- ADDED:
+  + KPPM angle
   + lamps
   + ENGN/RU19 RUD
   + RUD locker
   + NAV1/NAV2 dial
-- REMOVED: old panel clickzones for newly added manipulators
+- REMOVED:
+  + old panel clickzones for newly added manipulators
 
 GRAPHICS
-- CHANGED: new texture for glass
+- CHANGED:
+  + new texture for glass
   + new texture for text led indication
-- CHANGED: new model for ground cable
-- FIX: removed black hole (incorrect instrument glass position) in right panel
+- CHANGED:
+  + new model for ground cable
+- FIX:
+  + removed black hole (incorrect instrument glass position) in right panel
   + aircraft shadows now looks correctly from cabin/salon
   + remap for noisy texture in wing
   + remap for noisy texture in overhead
   + remap for noisy texture in gear
 
 LIVERY
-- ADDED: Default White clean
+- ADDED:
+  + Default White clean
   + Aeroflot Red
   + Air Koryo
   + Air Koryo Old
@@ -242,32 +324,40 @@ LIVERY
 4.01.00 :: 15.06.2020
 ----------
 FLIGHT MODEL
-- CHANGED: weight and balance
+- CHANGED:
+  + weight and balance
   + gear dumping
   + gear position
 
 GPS
-- ADDED: New SASL3 KLN90b
+- ADDED:
+  + New SASL3 KLN90b
   + KLN90 for co-pilot (turn on in setting)
   + 3D GNS430
 
 BRAKES
-- CHANGED: brake pressure system + small logic changes
+- CHANGED:
+  + brake pressure system + small logic changes
 
 ENGINE
-- ADDED: RU19 start in air button (now INOP)
+- ADDED:
+  + RU19 start in air button (now INOP)
 
 GRAPHICS
-- ADDED: wall in cockpit (also for window+door+luk)
+- ADDED:
+  + wall in cockpit (also for window+door+luk)
   + completely new menu with shortcut
   + real checklist in tablet MAP
   + small yellow duck
-- CHANGED: bluebag moved to another place
-- FIX: cockpit luk retextured and aligned
+- CHANGED:
+  + bluebag moved to another place
+- FIX:
+  + cockpit luk retextured and aligned
   + some 2D panel in night now with white light
 
 SOUNDS
-- ADDED: separated external sound for each window in FMOD
+- ADDED:
+  + separated external sound for each window in FMOD
   + ground crew sound
   + APA sound
   + ambience sound
@@ -281,37 +371,49 @@ SOUNDS
   + plastic_btn sound
   + click_btn sound
   + stoper_btn sound
-- WIP: first iteration of engine sound (need to correction)
+- WIP:
+  + first iteration of engine sound (need to correction)
 
 SMARTCOPILOT
-- CHANGED: all datarefs/commands has been changed
+- CHANGED:
+  + all datarefs/commands has been changed
 
 ----------
 4.00.00 :: 21.05.2020 (initial release)
 ----------
 BRAKES
-- ADDED: turn off park brake via pressing left+right toe brake
-- FIX: left brake pedal not work propertly
+- ADDED:
+  + turn off park brake via pressing left+right toe brake
+- FIX:
+  + left brake pedal not work propertly
 
 COMMANDS
-- ADDED: hide Yoke
+- ADDED:
+  + hide Yoke
 
 MANIPULATORS
-- ADDED: yoke
+- ADDED:
+  + yoke
   + park brake
   + radar
-- REMOVED: old panel clickzones for newly added manipulators
+- REMOVED:
+  + old panel clickzones for newly added manipulators
 
 DATAREFS
-- CHANGED: completely renamed all datarefs for compatibly with SASL3
+- CHANGED:
+  + completely renamed all datarefs for compatibly with SASL3
   + nosewheel steering mode default is off
 
 GRAPHICS
-- ADDED: few new glass for instruments
-- FIX: KPPM object property
+- ADDED:
+  + few new glass for instruments
+- FIX:
+  + KPPM object property
 
 SOUNDS
-- WIP: starting recreating full FMOD bank
+- WIP:
+  + starting recreating full FMOD bank
 
 PLUGIN
-- ADDED: SASL3 plugin (for migration)
+- ADDED:
+  + SASL3 plugin (for migration)
