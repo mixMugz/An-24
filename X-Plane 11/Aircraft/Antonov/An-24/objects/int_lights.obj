@@ -1,11 +1,11 @@
 I
 800
 OBJ
-TEXTURE 
+TEXTURE
 POINT_COUNTS 0 0 0 0
 ATTR_layer_group objects 0
 ANIM_begin
-ANIM_hide 0.000000 7.500000 an-24/misc/cockpit_light_cc
+ANIM_hide 0.000000 5.900000 an-24/misc/cockpit_light_cc
 LIGHT_PARAM airplane_inst_sp 0.476776 1.053842 2.399024 1.00 1.00 0.70 1.00 0.10 -0.70 0.80 1.00 0.10
 LIGHT_PARAM airplane_inst_sp 0.411804 1.061345 2.346090 1.00 1.00 0.70 1.00 0.10 -0.70 0.80 1.00 0.10
 LIGHT_PARAM airplane_inst_sp -0.943331 0.373683 2.343784 1.00 1.00 0.70 1.00 0.08 -0.53 0.84 -0.10 0.10
