@@ -22,7 +22,7 @@ end
 
 function update()
   for i = 1, numfan do
-    local v = (gvar.bus_dc27 > 21 and get(ventsw[i]) == 1) and 1 or 0
+    local v = (gvar.bus_dc27v > 21 and get(ventsw[i]) == 1) and 1 or 0
     set(ventop[i], v)
     vspd[i] = math.clamp(0, v == 1 and vspd[i] + upspd * gvar.frame_time or vspd[i] - dnspd * gvar.frame_time, maxspd)
     set(vent[i], (get(vent[i]) + vspd[i] * gvar.frame_time) % 360)

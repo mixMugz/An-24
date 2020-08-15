@@ -19,5 +19,5 @@ end
 
 function update()
   if not initialized then init() end
-  setbool(avail, gvar.bus_dc27 > 19 or get(ground_available) == 1)
+  setbool(avail, gvar.bus_dc27v > 19 or gvar.bus_dc27ve > 19 or gvar.bus_ac36v > 35 or gvar.bus_ac115v > 110 or get(ground_available) == 1)
 end
