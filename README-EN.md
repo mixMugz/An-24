@@ -1,4 +1,4 @@
-# [РУССКАЯ ВЕРСИЯ](README.md)
+<h2 align="right">[РУССКАЯ ВЕРСИЯ](https://github.com/mixMugz/An-24)</h2>
 <h4 align="center">
   <img alt="Antonov An-24" src="readme-head-en.png">
 </h4>
