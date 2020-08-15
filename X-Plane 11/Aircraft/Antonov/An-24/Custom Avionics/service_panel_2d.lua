@@ -56,6 +56,9 @@ defineProperty("frame_time", globalPropertyf("an-24/time/frame_time")) -- time f
 defineProperty("time_sim", globalPropertyf("sim/time/total_running_time_sec"))
 --defineProperty("time_sim2", globalPropertyf("sim/time/total_running_time_sec"))
 
+local engine_park1 = globalPropertyi("an-24/covers/engine_park[0]")
+local engine_park2 = globalPropertyi("an-24/covers/engine_park[1]")
+
 local bg = {
   [0] = loadImage("ground_service_e.png", 0, 0, size[1], size[2]),
         loadImage("ground_service_r.png", 0, 0, size[1], size[2]),
@@ -100,6 +103,10 @@ function update()
 	else
 		coeff_time = 0.025/get(frame_time)
 	end
+
+	if get(left_eng_main) == 0 and get(left_eng_ext) == 0 then set(engine_park1, 1) else set(engine_park1, 0) end
+	if get(right_eng_main) == 0 and get(right_eng_ext) == 0 then set(engine_park2, 1) else set(engine_park2, 0) end
+
 	if get(N1) < 70 and get(N2) < 70 and time_counter > 0.3 and time_counter < 0.4 and not_loaded then
 			set(left_eng_main, 0)
 			set(left_eng_ext, 0)
@@ -703,7 +710,7 @@ components = {
 			set(pitot_3, 1)
 			set(grounding, 1)
 			set(gear_blocks, 1)
-	        set(cabin_hatch, 0)
+		        set(cabin_hatch, 0)
 			set(emerg_hatch1, 0)
 			set(emerg_hatch2, 0)
 			set(cargo_hatch1, 0)
