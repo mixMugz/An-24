@@ -1,4 +1,4 @@
-<div align="right">>[РУССКАЯ ВЕРСИЯ](https://github.com/mixMugz/An-24)</div>
+<div align="right">| <a href="https://github.com/mixMugz/An-24">РУССКАЯ ВЕРСИЯ</a></div>
 <h4 align="center">
   <img alt="Antonov An-24" src="readme-head-en.png">
 </h4>
