@@ -4,23 +4,39 @@ Release notes:
 4.01.08 :: 06.08.2020
 ----------
 GLOBAL
+- ADDED:
+  + Initial support for Shared Flight
+- CHANGED:
+  + doc folder renamed to manual for avitab compatibility
 - FIX:
   + changelog.txt some style correction and orpho errors
+
+PROPS
+- ADDED:
+  + In parked aircraft state, props now is static and always in 'X' position
 
 MANIPULATORS
 - FIX:
   + Incorrect normals for folding chair manipulator
 
+LUA
+- CHANGED:
+  + Few datarefs migrated to SASL3 creation
+  + Name of gvar for power datarefs
+  + KLN90B power logic. Now KLN is powered if any power line exist
+
 GRAPHICS
 - CHANGED:
   + Remaped all doors in ext_fuselage (for correct livery maping)
+  + Compass going to 3D as separated object
 - FIX:
   + Incorrect value for hide instruments lights. Now work with emergency cockpit light
   + Incorrect texture mapping for NDB navigation knobs
 
 LIVERY
 - ADDED:
-  + Aeroflot L1960
+  + Aeroflot USSR L1959
+  + Aeroflot USSR L1960
   + Air India (VT-ABO)
   + LPS RA-26088 (An-26)
   + Pskov Avia
