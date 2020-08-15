@@ -38,13 +38,9 @@ local duration = 0
 
 local rotate_dir1_left_command = createCommand("An-24/Flight/dir1_knob_rotate_left", "Dir Pilot Left Rotate")
 function rotate_dir1_left_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
-	if phase ~= 2 then
+	if phase == 1 then
 		duration = duration + 0.1
-		if duration < 6 then
-			scale_angle = scale_angle - 0.5
-		else
-			scale_angle = scale_angle - 1.5
-		end
+		sc_angle(duration, -1)
 	else
 		duration = 0
 	end
@@ -54,13 +50,9 @@ registerCommandHandler(rotate_dir1_left_command, 0, rotate_dir1_left_handler)
 
 local rotate_dir1_right_command = createCommand("An-24/Flight/dir1_knob_rotate_right", "Dir Pilot Right Rotate")
 function rotate_dir1_right_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
-	if phase ~= 2 then
+	if phase == 1 then
 		duration = duration + 0.1
-		if duration < 6 then
-			scale_angle = scale_angle + 0.5
-		else
-			scale_angle = scale_angle + 1.5
-		end
+		sc_angle(duration, 1)
 	else
 		duration = 0
 	end
@@ -70,13 +62,9 @@ registerCommandHandler(rotate_dir1_right_command, 0, rotate_dir1_right_handler)
 
 local rotate_dir2_left_command = createCommand("An-24/Flight/dir2_knob_rotate_left", "Dir Copilot Left Rotate")
 function rotate_dir2_left_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
-	if phase ~= 2 then
+	if phase == 1 then
 		duration = duration + 0.1
-		if duration < 6 then
-			scale_angle2 = scale_angle2 - 0.5
-		else
-			scale_angle2 = scale_angle2 - 1.5
-		end
+		sc_angle2(duration, -1)
 	else
 		duration = 0
 	end
@@ -86,19 +74,35 @@ registerCommandHandler(rotate_dir2_left_command, 0, rotate_dir2_left_handler)
 
 local rotate_dir2_right_command = createCommand("An-24/Flight/dir2_knob_rotate_right", "Dir Copilot Right Rotate")
 function rotate_dir2_right_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
-	if phase ~= 2 then
+	if phase == 1 then
 		duration = duration + 0.1
-		if duration < 6 then
-			scale_angle2 = scale_angle2 + 0.5
-		else
-			scale_angle2 = scale_angle2 + 1.5
-		end
+		sc_angle2(duration, 1)
 	else
 		duration = 0
 	end
 	return 0
 end
 registerCommandHandler(rotate_dir2_right_command, 0, rotate_dir2_right_handler)
+
+function sc_angle(dur, dir)
+	if dur < 6 then
+		scale_angle = ((scale_angle + 181 * dir) % 360) - 180
+		set(scale_angle1_smartcopilot, scale_angle)
+	else
+		scale_angle = ((scale_angle + 182 * dir) % 360) - 180
+		set(scale_angle1_smartcopilot, scale_angle)
+	end
+end
+
+function sc_angle2(dur, dir)
+	if dur < 6 then
+		scale_angle2 = ((scale_angle2 + 181 * dir) % 360) - 180
+		set(scale_angle2_smartcopilot, scale_angle2)
+	else
+		scale_angle2 = ((scale_angle2 + 182 * dir) % 360) - 180
+		set(scale_angle2_smartcopilot, scale_angle2)
+	end
+end
 
 -- postframe calculaions
 function update()
@@ -107,6 +111,7 @@ function update()
 	-- time bug workaround
 	if passed > 0 then
 		-- rotate scale
+--[[
 		if get(SC_master) ~= 1 then
 			scale_angle = scale_angle + (rotate_dir + get(rotate_dir1_smartcopilot)) * passed * 20
 			scale_angle2 = scale_angle2 + (rotate_dir + get(rotate_dir2_smartcopilot)) * passed * 20
@@ -120,7 +125,13 @@ function update()
 			scale_angle = get(scale_angle1_smartcopilot)
 			scale_angle2 = get(scale_angle2_smartcopilot)
 		end
-		if get(SC_master) == 1 then
+
+--]]
+
+scale_angle = get(scale_angle1_smartcopilot)
+scale_angle2 = get(scale_angle2_smartcopilot)
+
+if get(SC_master) == 1 then
 			curse_angle = get(sc_curse_angle)
 		else
 			local v = get(gyro_curse) + scale_angle

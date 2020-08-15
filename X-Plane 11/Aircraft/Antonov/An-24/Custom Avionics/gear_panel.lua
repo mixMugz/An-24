@@ -30,6 +30,7 @@ defineProperty("red_hor_led", loadImage("gear_lamps.dds", 40, 2, 9, 5))
 defineProperty("gear_led", loadImage("gear_lamps.dds", 0, 0, 36, 21))
 defineProperty("flaps_led", loadImage("gear_lamps.dds", 0, 22, 36, 21))
 
+local gear_test_button = createGlobalPropertyi("an-24/gauges/gear_test_button", 0)
 
 local btn_click = loadSample('sounds/custom/plastic_btn.wav')
 
@@ -55,6 +56,7 @@ function update()
 	-- power calc
 	if get(bus_DC_27_volt_emerg) > 21 then
 		-- front gear
+		test_button = get(gear_test_button)
 		local front_gear = get(gear1_deploy)
 		front_green_vis = front_gear > 0.99 or test_button
 		front_red_vis = front_gear < 0.01 or test_button
@@ -190,7 +192,7 @@ components = {
         },
 
        	onMouseClick = function()
-			test_button = true
+			set(gear_test_button, 1)
 			if not switcher_pushed then 
 				switcher_pushed = true
 				playSample(btn_click, 0) 
@@ -198,7 +200,7 @@ components = {
 			return true
 		end,
 		onMouseUp = function()
-			test_button = false
+			set(gear_test_button, 0)
 			switcher_pushed = false
 			playSample(btn_click, 0) 
 			return true
