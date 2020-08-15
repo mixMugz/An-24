@@ -37,7 +37,14 @@ include "glbl_drfs.lua"
 -- Set global variables
 gvar = {
   frame_time = 0,
-  bus_dc27 = 0,
+  bus_dc27v = 0,
+  bus_dc27ve = 0,
+  bus_dc27a = 0,
+  bus_dc27ae = 0,
+  bus_ac36v = 0,
+  bus_ac36a = 0,
+  bus_ac115v = 0,
+  bus_ac115a = 0,
 }
 
 -- Load all components
@@ -56,6 +63,14 @@ print("---------")
 function update()
   -- Update all global variables
   gvar.frame_time = get(drf_main.frame_time)
-  gvar.bus_dc27 = get(drf_pwr.bus_dc27)
+  gvar.bus_dc27v = get(drf_pwr.bus_dc27v)
+  gvar.bus_dc27ve = get(drf_pwr.bus_dc27ve)
+  gvar.bus_dc27a = get(drf_pwr.bus_dc27a)
+  gvar.bus_dc27ae = get(drf_pwr.bus_dc27ae)
+  gvar.bus_ac36v = get(drf_pwr.bus_ac36v)
+  gvar.bus_ac36a = get(drf_pwr.bus_ac36a)
+  gvar.bus_ac115v = get(drf_pwr.bus_ac115v)
+  gvar.bus_ac115a = get(drf_pwr.bus_ac115a)
+
   updateAll(components)
 end

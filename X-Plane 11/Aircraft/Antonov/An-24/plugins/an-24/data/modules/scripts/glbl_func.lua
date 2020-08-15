@@ -9,6 +9,7 @@
 -- Global datarefs
 function cGPi(drf, def) return createGlobalPropertyi(drf, def or 0) end
 function cGPf(drf, def) return createGlobalPropertyf(drf, def or 0) end
+function cGPia(drf, def) return createGlobalPropertyfa(drf, def or 0) end
 function cGPfa(drf, def) return createGlobalPropertyfa(drf, def or 0) end
 function gP(drf) return globalProperty(drf) end
 function gPi(drf) return globalPropertyi(drf) end

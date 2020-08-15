@@ -14,32 +14,40 @@ drf_main = {
 
 -- Settings
 drf_set = {
-  lang = cGPi(pfx.."set/language"), -- Language selector: 0 - ENG, 1 - RUS
 --  hide_gps = cGPi(pfx.."set/hide_GPS", 1), -- by default GPS is hidden
-  kln_init = cGPi(pfx.."set/kln_init"), -- KLN90B init status
-  kln90b_pri = cGPi(pfx.."set/kln90b_pri"), -- Primary KLN90B for pilot
-  kln90b_sec = cGPi(pfx.."set/kln90b_sec"), -- Secondary KLN90B for copilot
   gns430_pri = cGPi(pfx.."set/gns430_pri"), -- Primary GNS430 for pilot
   gns430_sec = cGPi(pfx.."set/gns430_sec"), -- Secondary GNS430 for copilot
+  kln90b_pri = cGPi(pfx.."set/kln90b_pri"), -- Primary KLN90B for pilot
+  kln90b_sec = cGPi(pfx.."set/kln90b_sec"), -- Secondary KLN90B for copilot
+  kln_init = cGPi(pfx.."set/kln_init"), -- KLN90B init status
+  lang = cGPi(pfx.."set/language"), -- Language selector: 0 - ENG, 1 - RUS
   switch_rud = cGPi(pfx.."set/switch_rud"), -- switch or hold RUD stopers
 }
 
 -- Power
 drf_pwr = {
-  bus_dc27 = cGPf(pfx.."power/bus_DC_27_volt", 27),
+  bus_dc27v = cGPf(pfx.."power/bus_DC_27_volt", 27),
+  bus_dc27ve = cGPf(pfx.."power/bus_DC_27_volt_emerg", 27),
+  bus_dc27a = cGPf(pfx.."power/bus_DC_27_amp"),
+  bus_dc27ae = cGPf(pfx.."power/bus_DC_27_amp_emerg"),
+  bus_ac36v = cGPf(pfx.."power/bus_AC_36_volt", 36),
+  bus_ac36a = cGPf(pfx.."power/bus_AC_36_amp"),
+  bus_ac115v = cGPf(pfx.."power/bus_AC_115_volt", 115),
+  bus_ac115a = cGPf(pfx.."power/bus_AC_115_amp"),
 }
 
 -- Engine
 drf_engn = {
-  virt_rud1 = cGPf(pfx.."misc/virt_rud1"), -- virtual rud ENGN #1
-  virt_rud2 = cGPf(pfx.."misc/virt_rud2"), -- virtual rud ENGN #2
-  virt_rud3 = cGPf(pfx.."misc/virt_rud3"), -- virtual rud RU19
+  engine_park = cGPia(pfx.."covers/engine_park", 2),
   thro_comm_1 = gP("sim/flightmodel/engine/ENGN_thro[0]"),
   thro_comm_2 = gP("sim/flightmodel/engine/ENGN_thro[1]"),
   thro_comm_3 = gP("sim/flightmodel/engine/ENGN_thro[2]"),
   thro_need_1 = gP("sim/flightmodel/engine/ENGN_thro_use[0]"),
   thro_need_2 = gP("sim/flightmodel/engine/ENGN_thro_use[1]"),
   thro_need_3 = gP("sim/flightmodel/engine/ENGN_thro_use[2]"),
+  virt_rud1 = cGPf(pfx.."misc/virt_rud1"), -- virtual rud ENGN #1
+  virt_rud2 = cGPf(pfx.."misc/virt_rud2"), -- virtual rud ENGN #2
+  virt_rud3 = cGPf(pfx.."misc/virt_rud3"), -- virtual rud RU19
 }
 
 -- Lights

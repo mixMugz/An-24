@@ -100,13 +100,6 @@ createProp("an-24/sound/fmodvol", "float", 0); -- Main volume slider
 createProp("an-24/gauges/nosewheel_mode_ready", "int", 0)
 createProp("an-24/gauges/nosewheel_mode_ready_delay", "int", 0);
 createProp("an-24/gauges/nosewheel_mode_time_to_ready", "int", 0);
-createProp("an-24/power/bus_DC_27_amp", "float", 0);
-createProp("an-24/power/bus_DC_27_volt_emerg", "float", 27);
-createProp("an-24/power/bus_DC_27_amp_emerg", "float", 0);
-createProp("an-24/power/bus_AC_36_volt", "float", 36);
-createProp("an-24/power/bus_AC_36_amp", "float", 0);
-createProp("an-24/power/bus_AC_115_volt", "float", 115);
-createProp("an-24/power/bus_AC_115_amp", "float", 0);
 -- inverters position
 createProp("an-24/power/inv_PT1000_1", "int", 1);  -- inverters
 createProp("an-24/power/inv_PT1000_2", "int", 0);
