@@ -94,11 +94,12 @@ local prop_rpm_rad = {
 set(prop_over[1], 0)
 set(prop_over[2], 0)
 
-
 local function checkpark(engn)
-  if get(prop_rpm_rad[engn]) < 0.05 and get(engine_park[engn]) == 1 then
+  if get(prop_rpm_rad[engn]) < 0.5 and get(engine_park[engn]) == 1 then
+    local angle = get(prop_angle_deg[engn])
+    if math.floor(angle) ~= 45 then angle = (angle + 0.5) % 360 else angle = 45 end
     set(prop_over[engn], 1)
-    set(prop_angle_deg[engn], 45)
+    set(prop_angle_deg[engn], angle)
   else
     set(prop_over[engn], 0)
   end

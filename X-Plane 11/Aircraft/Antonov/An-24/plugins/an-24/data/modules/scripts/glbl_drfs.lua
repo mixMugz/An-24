@@ -14,7 +14,6 @@ drf_main = {
 
 -- Settings
 drf_set = {
---  hide_gps = cGPi(pfx.."set/hide_GPS", 1), -- by default GPS is hidden
   gns430_pri = cGPi(pfx.."set/gns430_pri"), -- Primary GNS430 for pilot
   gns430_sec = cGPi(pfx.."set/gns430_sec"), -- Secondary GNS430 for copilot
   kln90b_pri = cGPi(pfx.."set/kln90b_pri"), -- Primary KLN90B for pilot
@@ -51,9 +50,9 @@ drf_engn = {
 }
 
 -- Lights
-lfdlamp = cGPfa(pfx.."lights/LFDLAMP", 10)
 cfdlamp = cGPfa(pfx.."lights/CFDLAMP", 10)
 ccfdlamp = cGPfa(pfx.."lights/CCFDLAMP", 10)
+lfdlamp = cGPfa(pfx.."lights/LFDLAMP", 10)
 rfdlamp = cGPfa(pfx.."lights/RFDLAMP", 10)
 lfdgdl = cGPfa(pfx.."lights/LFDGaugesDownLeft", 10)
 lfdgdr = cGPfa(pfx.."lights/LFDGaugesDownRight", 10)
@@ -72,31 +71,31 @@ olnl = cGPfa(pfx.."lights/overhead_lamp_navleft", 10)
 olnr = cGPfa(pfx.."lights/overhead_lamp_navright", 10)
 olrad = cGPfa(pfx.."lights/overhead_lamp_rad", 10)
 -- Lights in the cockpit
-ollm = cGPi(pfx.."lights/overhead_lamp_left_mode") -- 0 off, 1 red, 2 white
 ollb = cGPf(pfx.."lights/overhead_lamp_left_bright", 1)
-ollru = cGPf(pfx.."lights/overhead_lamp_left_rot_updown", 45)
+ollm = cGPi(pfx.."lights/overhead_lamp_left_mode") -- 0 off, 1 red, 2 white
 ollra = cGPf(pfx.."lights/overhead_lamp_left_rot_around")
-olrm = cGPi(pfx.."lights/overhead_lamp_right_mode") -- 0 off, 1 red, 2 white
+ollru = cGPf(pfx.."lights/overhead_lamp_left_rot_updown", 45)
 olrb = cGPf(pfx.."lights/overhead_lamp_right_bright", 1)
-olrru = cGPf(pfx.."lights/overhead_lamp_right_rot_updown", 45)
+olrm = cGPi(pfx.."lights/overhead_lamp_right_mode") -- 0 off, 1 red, 2 white
 olrra = cGPf(pfx.."lights/overhead_lamp_right_rot_around")
-olprm = cGPi(pfx.."lights/overhead_lamp_pilot_right_mode") -- 0 off, 1 red, 2 white
+olrru = cGPf(pfx.."lights/overhead_lamp_right_rot_updown", 45)
 olprb = cGPf(pfx.."lights/overhead_lamp_pilot_right_bright", 1)
-olprru = cGPf(pfx.."lights/overhead_lamp_pilot_right_rot_updown", 45)
+olprm = cGPi(pfx.."lights/overhead_lamp_pilot_right_mode") -- 0 off, 1 red, 2 white
 olprra = cGPf(pfx.."lights/overhead_lamp_pilot_right_rot_around")
-olplm = cGPi(pfx.."lights/overhead_lamp_pilot_left_mode") -- 0 off, 1 red, 2 white
+olprru = cGPf(pfx.."lights/overhead_lamp_pilot_right_rot_updown", 45)
 olplb = cGPf(pfx.."lights/overhead_lamp_pilot_left_bright", 1)
-olplru = cGPf(pfx.."lights/overhead_lamp_pilot_left_rot_updown", 45)
+olplm = cGPi(pfx.."lights/overhead_lamp_pilot_left_mode") -- 0 off, 1 red, 2 white
 olplra = cGPf(pfx.."lights/overhead_lamp_pilot_left_rot_around")
-olnlm = cGPi(pfx.."lights/overhead_lamp_nav_left_mode") -- 0 off, 1 red, 2 white
+olplru = cGPf(pfx.."lights/overhead_lamp_pilot_left_rot_updown", 45)
 olnlb = cGPf(pfx.."lights/overhead_lamp_nav_left_bright", 1)
-olnlru = cGPf(pfx.."lights/overhead_lamp_nav_left_rot_updown", 50)
+olnlm = cGPi(pfx.."lights/overhead_lamp_nav_left_mode") -- 0 off, 1 red, 2 white
 olnlra = cGPf(pfx.."lights/overhead_lamp_nav_left_rot_around")
-olnrm = cGPi(pfx.."lights/overhead_lamp_nav_right_mode") --0 off, 1 red, 2 white
+olnlru = cGPf(pfx.."lights/overhead_lamp_nav_left_rot_updown", 50)
 olnrb = cGPf(pfx.."lights/overhead_lamp_nav_right_bright", 1)
-olnrru = cGPf(pfx.."lights/overhead_lamp_nav_right_rot_updown", 30)
+olnrm = cGPi(pfx.."lights/overhead_lamp_nav_right_mode") --0 off, 1 red, 2 white
 olnrra = cGPf(pfx.."lights/overhead_lamp_nav_right_rot_around", 30)
-olradm = cGPi(pfx.."lights/overhead_lamp_rad_mode") -- 0 off, 1 red, 2 white
+olnrru = cGPf(pfx.."lights/overhead_lamp_nav_right_rot_updown", 30)
 olradb = cGPf(pfx.."lights/overhead_lamp_rad_bright", 1)
-olradru = cGPf(pfx.."lights/overhead_lamp_rad_rot_updown", 20)
+olradm = cGPi(pfx.."lights/overhead_lamp_rad_mode") -- 0 off, 1 red, 2 white
 olradra = cGPf(pfx.."lights/overhead_lamp_rad_rot_around", -6)
+olradru = cGPf(pfx.."lights/overhead_lamp_rad_rot_updown", 20)
