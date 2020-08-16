@@ -1,4 +1,4 @@
-<div align="right"><a href="https://github.com/mixMugz/An-24"><b>РУССКАЯ ВЕРСИЯ</b></a></div>
+>**[ПЕРЕКЛЮЧИТЬ НА РУССКИЙ](https://github.com/mixMugz/An-24)**
 
 <h4 align="center">
   <img alt="Antonov An-24" src="readme-head-en.png">

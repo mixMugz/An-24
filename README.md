@@ -1,4 +1,4 @@
->**[ENGLISH VERSION](README-EN.md)**>
+>**[SWITCH TO ENGLISH VERSION](README-EN.md)**
 
 <h4 align="center">
   <img alt="Antonov An-24" src="readme-head-ru.png">
