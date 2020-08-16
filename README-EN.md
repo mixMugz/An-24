@@ -1,4 +1,4 @@
->**[ПЕРЕКЛЮЧИТЬ НА РУССКИЙ](https://github.com/mixMugz/An-24)**
+>**[BACK TO MAIN PAGE](https://github.com/mixMugz/An-24)**
 
 <h4 align="center">
   <img alt="Antonov An-24" src="readme-head-en.png">
