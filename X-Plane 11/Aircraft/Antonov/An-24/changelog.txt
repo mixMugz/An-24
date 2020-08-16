@@ -1,7 +1,7 @@
 Release notes:
 
 ----------
-4.01.08 :: 06.08.2020
+4.01.08 :: 16.08.2020
 ----------
 GLOBAL
 - ADDED:
@@ -14,6 +14,8 @@ GLOBAL
 PROPS
 - ADDED:
   + In parked aircraft state, props now is static and always in 'X' position
+- FIX:
+  + Wrong directions of rotation props
 
 MANIPULATORS
 - FIX:
