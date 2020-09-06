@@ -1,7 +1,7 @@
 Release notes:
 
 ----------
-4.01.08 :: 16.08.2020
+4.01b08 :: 07.09.2020
 ----------
 GLOBAL
 - ADDED:
@@ -28,12 +28,17 @@ LUA
   + KLN90B power logic. Now KLN is powered if any power line exist
 
 GRAPHICS
+- ADD:
+  + Animation for RU19 engine rotation
 - CHANGED:
   + Remaped all doors in ext_fuselage (for correct livery maping)
   + Compass going to 3D as separated object
+  + Some objects reworked
+
 - FIX:
   + Incorrect value for hide instruments lights. Now work with emergency cockpit light
   + Incorrect texture mapping for NDB navigation knobs
+  + Incorrect position for engine exhaus
 
 LIVERY
 - ADDED:
@@ -45,7 +50,7 @@ LIVERY
   + Yamal
 
 ----------
-4.01.07 :: 31.07.2020
+4.01b07 :: 31.07.2020
 ----------
 GLOBAL
 - ADDED:
@@ -93,7 +98,7 @@ LIVERY
   + some liveries
 
 ----------
-4.01.06 :: 25.07.2020
+4.01b06 :: 25.07.2020
 ----------
 GLOBAL
 - ADDED:
@@ -139,7 +144,7 @@ SMARTCOPILOT
   + new datarefs
 
 ----------
-4.01.05 :: 06.07.2020
+4.01b05 :: 06.07.2020
 ----------
 GEARS
 - FIX:
@@ -174,7 +179,7 @@ SOUNDS
   + FMOD sound for newly added manipulators
 
 ----------
-4.01.04 :: 02.07.2020
+4.01b04 :: 02.07.2020
 ----------
 ENGINE
 - FIX:
@@ -193,7 +198,7 @@ SOUNDS
   + Commented DISABLE_LEGACY_ALERT_SOUNDS. Workaround for not working alarm sounds (will be fixed)
 
 ----------
-4.01.03 :: 01.07.2020
+4.01b03 :: 01.07.2020
 ----------
 ANTIICE
 - CHANGED:
@@ -240,7 +245,7 @@ PREFS
   + an-24_ark1.ini
 
 ----------
-4.01.02 :: 29.06.2020
+4.01b02 :: 29.06.2020
 ----------
 ENGINE
 - CHANGED:
@@ -339,7 +344,7 @@ LIVERY
   + Vladivostok Avia
 
 ----------
-4.01.00 :: 15.06.2020
+4.01b01 :: 15.06.2020
 ----------
 FLIGHT MODEL
 - CHANGED:
@@ -397,7 +402,7 @@ SMARTCOPILOT
   + all datarefs/commands has been changed
 
 ----------
-4.00.00 :: 21.05.2020 (initial release)
+4.00 :: 21.05.2020 (initial release)
 ----------
 BRAKES
 - ADDED:
