@@ -11,7 +11,7 @@ defineProperty("white", loadImage("flightplan.dds", 20, 15, 5, 5))
 defineProperty("fplan_subpanel", globalPropertyi("an-24/panels/fplan_subpanel"))
 
 defineProperty("GPS_name", globalPropertys("sim/cockpit2/radios/indicators/gps_nav_id"))
-defineProperty("GPS_dist", globalPropertys("sim/cockpit2/radios/indicators/gps_dme_distance_nm"))
+defineProperty("GPS_dist", globalPropertyf("sim/cockpit2/radios/indicators/gps_dme_distance_nm"))
 
 defineProperty("DME_dist", globalPropertyf("sim/cockpit2/radios/indicators/dme_dme_distance_nm"))
 defineProperty("DME_freq", globalPropertyi("sim/cockpit2/radios/actuators/dme_frequency_hz"))

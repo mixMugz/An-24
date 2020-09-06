@@ -28,7 +28,7 @@ defineProperty("sc_corr_angle", globalPropertyf("an-24/gauges/sc_corr_angle")) -
 defineProperty("sc_corr_ap_angle", globalPropertyf("an-24/gauges/sc_corr_ap_angle")) -- SmartCopilot
 
 -- initial switchers values
-defineProperty("N1", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[0]"))   
+defineProperty("N1", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[0]"))
 defineProperty("N2", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[1]"))
 
 
@@ -93,7 +93,7 @@ function update()
 	passed = get(frame_time)
 -- pre bug check
 if passed > 0 then
-	
+
 	-- initial switchers values
 	time_counter = time_counter + passed
 	if get(N1) < 70 and get(N2) < 70 and time_counter > 0.3 and time_counter < 0.4 and not_loaded then
@@ -104,9 +104,9 @@ if passed > 0 then
 
 	-- check power
 	if get(bus_DC_27_volt) > 21 and get(bus_AC_36_volt) > 30 and get(gpk_switch) > 0 and get(fail) < 6 then
-		power = 1 
+		power = 1
 	else power = 0 end
-	
+
 	-- earth rotation correction
 	local earth_rot = 0
 	if get(corr_switcher) > 0 then earth_rot = (2 * get(north_GPK) - 1) * 360 * math.sin(math.rad(get(lat))) * passed * power / 86164 end-- one astronomic day eq 86164 seconds
@@ -135,11 +135,11 @@ if passed > 0 then
 		set(sc_corr_ap_angle,corr_ap_angle)
 	end
 	--print(earth_rot, corr_ap_angle)
-	
+
 	-- set result
 	set(correct, corr_angle)
 	set(correct_ap, corr_ap_angle)
-	
+
 end
 
 end
@@ -150,19 +150,19 @@ components = {
 	-- clickable to turn left correction rotary
 	clickable {
         position = {1605, 650, 15, 30},  -- search and set right
-        
-       cursor = { 
-            x = 16, 
-            y = 32,  
-            width = 16, 
-            height = 16, 
+
+       cursor = {
+            x = 16,
+            y = 32,
+            width = 16,
+            height = 16,
             shape = loadImage("rotateleft.png")
-        },  
-        
-       	onMouseClick = function() 
-			local a = get(corr_rot) 
-			if not switcher_pushed and a > -5 then 
-				playSample(plastic_sound, 0) 
+        },
+
+       	onMouseClick = function()
+			local a = get(corr_rot)
+			if not switcher_pushed and a > -5 then
+				playSample(plastic_sound, 0)
 				a = a - 1
 			end
 			set(corr_rot, a)
@@ -176,19 +176,19 @@ components = {
 	-- clickable to turn right correction rotary
 	clickable {
         position = {1620, 650, 15, 30},  -- search and set right
-        
-       cursor = { 
-            x = 16, 
-            y = 32, 
-            width = 16, 
-            height = 16, 
+
+       cursor = {
+            x = 16,
+            y = 32,
+            width = 16,
+            height = 16,
             shape = loadImage("rotateright.png")
-        },  
-        
-       	onMouseClick = function() 
-			local a = get(corr_rot) 
-			if not switcher_pushed and a < 5 then 
-				playSample(plastic_sound, 0) 
+        },
+
+       	onMouseClick = function()
+			local a = get(corr_rot)
+			if not switcher_pushed and a < 5 then
+				playSample(plastic_sound, 0)
 				a = a + 1
 			end
 			set(corr_rot, a)
@@ -224,25 +224,25 @@ components = {
 			switcher_pushed = false
 			return true
 		end,
-    }, 
+    },
 
 
 	-- clickable to turn left latitude rotary
 	clickable {
         position = {1650, 650, 15, 30},  -- search and set right
-        
-       cursor = { 
-            x = 16, 
-            y = 32,  
-            width = 16, 
-            height = 16, 
+
+       cursor = {
+            x = 16,
+            y = 32,
+            width = 16,
+            height = 16,
             shape = loadImage("rotateleft.png")
-        },  
-        
-       	onMouseClick = function() 
+        },
+
+       	onMouseClick = function()
 			local a = get(lat)
-			if not switcher_pushed and a < 90 then 
-				playSample(rot_click, 0) 
+			if not switcher_pushed and a < 90 then
+				playSample(rot_click, 0)
 				a = a + 5
 			end
 			set(lat, a)
@@ -257,19 +257,19 @@ components = {
 	-- clickable to turn right latitude rotary
 	clickable {
         position = {1665, 650, 15, 30},  -- search and set right
-        
-       cursor = { 
-            x = 16, 
-            y = 32, 
-            width = 16, 
-            height = 16, 
+
+       cursor = {
+            x = 16,
+            y = 32,
+            width = 16,
+            height = 16,
             shape = loadImage("rotateright.png")
-        },  
-        
-       	onMouseClick = function() 
+        },
+
+       	onMouseClick = function()
 			local a = get(lat)
-			if not switcher_pushed and a > 0 then 
-				playSample(rot_click, 0) 
+			if not switcher_pushed and a > 0 then
+				playSample(rot_click, 0)
 				a = a - 5
 			end
 			set(lat, a)
