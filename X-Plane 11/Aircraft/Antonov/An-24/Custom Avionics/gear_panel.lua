@@ -56,7 +56,7 @@ function update()
 	-- power calc
 	if get(bus_DC_27_volt_emerg) > 21 then
 		-- front gear
-		test_button = get(gear_test_button)
+		test_button = get(gear_test_button) == 1
 		local front_gear = get(gear1_deploy)
 		front_green_vis = front_gear > 0.99 or test_button
 		front_red_vis = front_gear < 0.01 or test_button
