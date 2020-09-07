@@ -44,7 +44,7 @@ P _cgpt/7/_w_now 1.0
 P _cgpt/7/_w_test 0.0
 P _cgpt/7/_z_ref 0.0
 P _cgpt/count 8
-P _door/0/_ang_now 11.932723999
+P _door/0/_ang_now 0.0
 P _door/0/_ext_ang 0.0
 P _door/0/_ret_ang 70.0
 P _door/0/_type 3
@@ -52,7 +52,7 @@ P _door/0/_xyz/0 -14.400005341
 P _door/0/_xyz/1 0.459998399
 P _door/0/_xyz/2 30.799999237
 P _door/0/_xyz/count 3
-P _door/1/_ang_now 11.932723999
+P _door/1/_ang_now 0.0
 P _door/1/_ext_ang 0.0
 P _door/1/_ret_ang 70.0
 P _door/1/_type 3
@@ -70,7 +70,7 @@ P _door/16/_type 0
 P _door/17/_type 0
 P _door/18/_type 0
 P _door/19/_type 0
-P _door/2/_ang_now 11.932723999
+P _door/2/_ang_now 0.0
 P _door/2/_ext_ang 0.0
 P _door/2/_ret_ang 70.0
 P _door/2/_type 3
@@ -78,7 +78,7 @@ P _door/2/_xyz/0 11.699995041
 P _door/2/_xyz/1 0.459998369
 P _door/2/_xyz/2 30.799999237
 P _door/2/_xyz/count 3
-P _door/3/_ang_now 11.932723999
+P _door/3/_ang_now 0.0
 P _door/3/_ext_ang 0.0
 P _door/3/_ret_ang 70.0
 P _door/3/_type 3
@@ -86,7 +86,7 @@ P _door/3/_xyz/0 14.399990082
 P _door/3/_xyz/1 0.459998429
 P _door/3/_xyz/2 30.799999237
 P _door/3/_xyz/count 3
-P _door/4/_ang_now 7.046745300
+P _door/4/_ang_now -10.0
 P _door/4/_ext_ang -10.0
 P _door/4/_ret_ang 90.0
 P _door/4/_type 3
@@ -94,7 +94,7 @@ P _door/4/_xyz/0 -1.099999666
 P _door/4/_xyz/1 -3.199999809
 P _door/4/_xyz/2 6.0
 P _door/4/_xyz/count 3
-P _door/5/_ang_now 7.046745300
+P _door/5/_ang_now -10.0
 P _door/5/_ext_ang -10.0
 P _door/5/_ret_ang 90.0
 P _door/5/_type 3
@@ -153,10 +153,10 @@ P _gear/0/_latN 0.0
 P _gear/0/_latR 0.0
 P _gear/0/_leg_len 3.900000095
 P _gear/0/_lonE 1.0
-P _gear/0/_lonN 8.051025391
+P _gear/0/_lonN 72.465965271
 P _gear/0/_lonR 86.0
 P _gear/0/_scon 53254.976562500
-P _gear/0/_stat_def 0.067517526
+P _gear/0/_stat_def 0.067517519
 P _gear/0/_steerdeg_hispeed 45.0
 P _gear/0/_steerdeg_lospeed 45.0
 P _gear/0/_strut_comp 0.0
@@ -187,10 +187,10 @@ P _gear/1/_latN 0.0
 P _gear/1/_latR 0.0
 P _gear/1/_leg_len 6.900000095
 P _gear/1/_lonE 4.0
-P _gear/1/_lonN 11.051025391
+P _gear/1/_lonN 75.465965271
 P _gear/1/_lonR 89.0
 P _gear/1/_scon 53254.976562500
-P _gear/1/_stat_def 0.431941003
+P _gear/1/_stat_def 0.431941062
 P _gear/1/_steerdeg_hispeed 0.0
 P _gear/1/_steerdeg_lospeed 0.0
 P _gear/1/_strut_comp 0.0
@@ -221,10 +221,10 @@ P _gear/2/_latN 0.0
 P _gear/2/_latR 0.0
 P _gear/2/_leg_len 6.900000095
 P _gear/2/_lonE 4.0
-P _gear/2/_lonN 11.051025391
+P _gear/2/_lonN 75.465965271
 P _gear/2/_lonR 89.0
 P _gear/2/_scon 53254.976562500
-P _gear/2/_stat_def 0.431941003
+P _gear/2/_stat_def 0.431941062
 P _gear/2/_steerdeg_hispeed 0.0
 P _gear/2/_steerdeg_lospeed 0.0
 P _gear/2/_strut_comp 0.0
@@ -58845,7 +58845,7 @@ P acf/_nom_bat_volt 24.0
 P acf/_nom_fuelP 900.0
 P acf/_nom_gen_volt 28.500000000
 P acf/_nom_oilP 80.0
-P acf/_notes Modifications: Nick Parshukov, Maksim Brykov (mixMugz) and community.
+P acf/_notes Modifications: Nick Parshukov, Maksim Brykov (mixMugz) and community
 P acf/_num_batteries 3
 P acf/_num_braking_wheels 0.0
 P acf/_num_buses 1
@@ -59396,7 +59396,7 @@ P acf/_vect_power_for 1.0
 P acf/_vect_rate 15.0
 P acf/_vectarmY 0.0
 P acf/_vectarmZ 0.0
-P acf/_version v4.01b08
+P acf/_version v4.01b09
 P acf/_vvi_but_adjusts_pitch 0
 P acf/_warn_airliner 0
 P acf/_warn_alt_app_100 0
