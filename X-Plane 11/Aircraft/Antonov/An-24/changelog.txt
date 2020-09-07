@@ -3,13 +3,10 @@ Release notes:
 ----------
 4.01b09 :: 08.09.2020
 ----------
-GLOBAL
-- ADDED:
-  + Pilots for external view
-
 GRAPHICS
 - ADDED:
   + iPad model for future avitab integration
+  + Pilots for external view
 - FIX:
   + GNS430 knob position
   + GNS430 manipulators reworked
