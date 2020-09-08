@@ -99,3 +99,8 @@ olradb = cGPf(pfx.."lights/overhead_lamp_rad_bright", 1)
 olradm = cGPi(pfx.."lights/overhead_lamp_rad_mode") -- 0 off, 1 red, 2 white
 olradra = cGPf(pfx.."lights/overhead_lamp_rad_rot_around", -6)
 olradru = cGPf(pfx.."lights/overhead_lamp_rad_rot_updown", 20)
+
+-- Animations
+drf_anim = {
+  crew = cGPi(pfx.."anim/crew"),
+}
