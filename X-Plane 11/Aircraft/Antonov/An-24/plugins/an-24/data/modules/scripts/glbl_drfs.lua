@@ -20,6 +20,7 @@ drf_set = {
   kln90b_sec = cGPi(pfx.."set/kln90b_sec"), -- Secondary KLN90B for copilot
   kln_init = cGPi(pfx.."set/kln_init"), -- KLN90B init status
   lang = cGPi(pfx.."set/language"), -- Language selector: 0 - ENG, 1 - RUS
+  reflect = cGPi(pfx.."set/reflections", 1), -- Inside reflections: 0 - disable, 1 - enable (default)
   switch_rud = cGPi(pfx.."set/switch_rud"), -- switch or hold RUD stopers
 }
 
