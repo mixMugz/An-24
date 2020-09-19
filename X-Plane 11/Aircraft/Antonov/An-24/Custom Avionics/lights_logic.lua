@@ -193,7 +193,7 @@ if passed > 0 and passed < 0.1 then
 	 
 	if lan_sw ~= 0 then angle = -9 - 90 * (-get(sim_lan_light_slider) + 1) + lan_sw * 1.5 end
 	
-	if angle < -30 then lan_brt = 0 taxi_brt = 0 end
+	--if angle < -30 then lan_brt = 0 taxi_brt = 0 end
 	--print(lan_brt)
 	if lan_brt > 0 then 
 		set(sim_lan_light_sw, 1) 

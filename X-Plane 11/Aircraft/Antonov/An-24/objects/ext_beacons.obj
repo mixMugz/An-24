@@ -2,8 +2,8 @@ I
 800
 OBJ
 
-TEXTURE nav_lites.dds
-TEXTURE_LIT nav_lites_lit.dds
+TEXTURE ext_nav_lites.dds
+TEXTURE_LIT ext_nav_lites_lit.dds
 
 POINT_COUNTS 234 0 0 420
 VT 0.000000 2.823303 20.017807 0.000000 0.998764 -0.049652 0.413605 0.222900
