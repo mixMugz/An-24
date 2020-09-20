@@ -160,8 +160,8 @@ function update()
     end
   end
   -- Switches and button sounds
-  switch_sound_function(beacon_up,1)
-  switch_sound_function(beacon_down,2)
+--  switch_sound_function(beacon_up,1)
+--  switch_sound_function(beacon_down,2)
   switch_sound_function(msrp_switch,3)
   switch_sound_function(testmsrp,4)
   switch_sound_function(nosmokingswitchonoff,5)
