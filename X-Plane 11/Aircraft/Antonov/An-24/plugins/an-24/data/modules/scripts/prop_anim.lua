@@ -6,11 +6,25 @@
 
 --]]
 
+local park_pos = gPi(pfx.."set/park_position")
+local park_angle = {
+  [0] = {
+    [45]  = true,
+    [135] = true,
+    [225] = true,
+    [315] = true,
+  },
+  [1] = {
+    [0]   = true,
+    [90]  = true,
+    [180] = true,
+    [270] = true,
+  }
+}
 local engine_park = {
   gP(pfx.."covers/engine_park[0]"),
   gP(pfx.."covers/engine_park[1]"),
 }
-
 local prop_over = {
   gP("sim/flightmodel2/engines/prop_disc/override[0]"),
   gP("sim/flightmodel2/engines/prop_disc/override[1]"),
@@ -97,7 +111,8 @@ set(prop_over[2], 0)
 local function checkpark(engn)
   if get(prop_rpm_rad[engn]) < 0.5 and get(engine_park[engn]) == 1 then
     local angle = get(prop_angle_deg[engn])
-    if math.floor(angle) ~= 45 then angle = (angle + 0.5) % 360 else angle = 45 end
+    local ppos = get(park_pos)
+    if not park_angle[ppos][math.floor(angle)] then angle = (angle + 0.5) % 360 else angle = math.floor(angle) end
     set(prop_over[engn], 1)
     set(prop_angle_deg[engn], angle)
   else
