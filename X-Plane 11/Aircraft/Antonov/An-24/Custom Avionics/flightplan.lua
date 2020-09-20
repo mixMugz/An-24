@@ -1,22 +1,16 @@
 size = {710, 507}
-
-defineProperty("bg", loadImage("flightplan.dds", 5, 3, size[1], size[2]))
-defineProperty("stroked1", loadImage("flightplan.dds", 733, 85, 291, 13))
-defineProperty("stroked2", loadImage("flightplan.dds", 733, 98, 291, 13))
-defineProperty("stroked3", loadImage("flightplan.dds", 733, 111, 291, 13))
-defineProperty("deselected", loadImage("flightplan.dds", 756, 473, 22, 22))
-defineProperty("APselected", loadImage("flightplan.dds", 135, 473, 22, 22))
-defineProperty("white", loadImage("flightplan.dds", 20, 15, 5, 5))
-
+defineProperty("stroked1", loadImage("flightplan_e.dds", 733, 85, 291, 13))
+defineProperty("stroked2", loadImage("flightplan_e.dds", 733, 98, 291, 13))
+defineProperty("stroked3", loadImage("flightplan_e.dds", 733, 111, 291, 13))
+defineProperty("deselected", loadImage("flightplan_e.dds", 756, 473, 22, 22))
+defineProperty("APselected", loadImage("flightplan_e.dds", 135, 473, 22, 22))
+defineProperty("white", loadImage("flightplan_e.dds", 20, 15, 5, 5))
 defineProperty("fplan_subpanel", globalPropertyi("an-24/panels/fplan_subpanel"))
-
 defineProperty("GPS_name", globalPropertys("sim/cockpit2/radios/indicators/gps_nav_id"))
 defineProperty("GPS_dist", globalPropertyf("sim/cockpit2/radios/indicators/gps_dme_distance_nm"))
-
 defineProperty("DME_dist", globalPropertyf("sim/cockpit2/radios/indicators/dme_dme_distance_nm"))
 defineProperty("DME_freq", globalPropertyi("sim/cockpit2/radios/actuators/dme_frequency_hz"))
 defineProperty("DME_DME", globalPropertyi("sim/cockpit2/radios/indicators/dme_has_dme"))
-
 defineProperty("nav1_freq", globalPropertyi("sim/cockpit2/radios/actuators/nav1_frequency_hz"))
 defineProperty("nav1_course", globalPropertyf("sim/cockpit2/radios/actuators/nav1_obs_deg_mag_pilot"))
 defineProperty("nav1_flag", globalPropertyf("sim/cockpit2/radios/indicators/nav1_flag_from_to_pilot"))
@@ -25,7 +19,6 @@ defineProperty("nav1_DME", globalPropertyf("sim/cockpit2/radios/indicators/nav1_
 defineProperty("nav2_DME", globalPropertyf("sim/cockpit2/radios/indicators/nav2_has_dme"))
 defineProperty("nav1_bear", globalPropertyi("sim/cockpit2/radios/indicators/nav1_bearing_deg_mag"))
 defineProperty("nav2_bear", globalPropertyi("sim/cockpit2/radios/indicators/nav2_bearing_deg_mag"))
-
 defineProperty("adf1_bear", globalPropertyi("sim/cockpit2/radios/indicators/adf1_bearing_deg_mag"))
 defineProperty("adf2_bear", globalPropertyi("sim/cockpit2/radios/indicators/adf2_bearing_deg_mag"))
 defineProperty("adf1_meter", globalPropertyf("an-24/ark/ark1_signal"))
@@ -37,24 +30,18 @@ defineProperty("gyro_curse", globalPropertyf("an-24/gauges/GPK_curse"))  -- gyro
 defineProperty("deg1", globalPropertyf("sim/flightmodel/position/psi"))
 defineProperty("deg2", globalPropertyf("sim/flightmodel/position/hpath"))
 defineProperty("GPS_course", globalPropertyf("sim/cockpit2/radios/indicators/gps_relative_bearing_deg"))
-
 defineProperty("DME_sw", globalPropertyi("an-24/gauges/dme_on"))  -- power switcher
-defineProperty("curs_mp1_sw", globalPropertyi("an-24/gauges/curs_mp1_sw")) 
-defineProperty("curs_mp2_sw", globalPropertyi("an-24/gauges/curs_mp2_sw")) 
+defineProperty("curs_mp1_sw", globalPropertyi("an-24/gauges/curs_mp1_sw"))
+defineProperty("curs_mp2_sw", globalPropertyi("an-24/gauges/curs_mp2_sw"))
 defineProperty("ark_vor", globalPropertyf("an-24/gauges/ark_vor")) -- switcher ARK/VOR
 defineProperty("alt3", globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_copilot"))
 defineProperty("ap_kv", globalPropertyi("an-24/ap/ap_kv"))  -- button for altitude hold
-
-
 defineProperty("adf1_freq", globalPropertyi("an-24/ark/ark1_need_freq"))
 defineProperty("nav2_freq", globalPropertyi("sim/cockpit2/radios/actuators/nav2_frequency_hz"))
 defineProperty("nav2_course", globalPropertyf("sim/cockpit2/radios/actuators/nav2_obs_deg_mag_pilot"))
 defineProperty("adf2_freq", globalPropertyi("an-24/ark/ark2_need_freq"))
 defineProperty("nav_select", globalPropertyi("an-24/gauges/nav_select"))
-
 defineProperty("datedays", globalPropertyi("sim/time/local_date_days"))
-
-
 defineProperty("kln90b_pri", globalPropertyi("an-24/set/kln90b_pri"))
 defineProperty("gns430_pri", globalPropertyi("an-24/set/gns430_pri"))
 defineProperty("dst1", globalPropertyf("an-24/nas1/N_needle"))
@@ -68,16 +55,19 @@ defineProperty("DISS", globalPropertyf("an-24/nas1/DISS"))
 defineProperty("winddelta", globalPropertyf("an-24/nas1/windangle"))
 defineProperty("windspeed", globalPropertyf("an-24/nas1/windspeed"))
 defineProperty("rls_power_cc", globalPropertyf("an-24/rls/rls_power_cc"))
-
 defineProperty("act_winddelta", globalPropertyf("sim/weather/wind_direction_degt"))
 defineProperty("act_windspeed", globalPropertyf("sim/weather/wind_speed_kt"))
-
 defineProperty("lattest", globalPropertyf("sim/flightmodel/position/latitude"))
 defineProperty("lontest", globalPropertyf("sim/flightmodel/position/longitude"))
-
 defineProperty("agl", globalPropertyf("sim/flightmodel/position/y_agl"))
-
 --defineProperty("magpsi", globalPropertyf("sim/flightmodel/position/magpsi"))
+
+local language = globalPropertyi("an-24/set/language")
+local lang = 0
+local bg = {
+  [0] = loadImage("flightplan_e.dds", 5, 3, size[1], size[2]),
+        loadImage("flightplan_r.dds", 5, 3, size[1], size[2]),
+}
 
 clearcomm = findCommand("sim/FMS/clear")
 aptcomm = findCommand("sim/FMS/type_apt")
@@ -122,30 +112,21 @@ n7comm = findCommand("sim/FMS/key_7")
 n8comm = findCommand("sim/FMS/key_8")
 n9comm = findCommand("sim/FMS/key_9")
 
-
-
 local font = loadFont('flightplan.fnt')
 local font2 = loadFont('handwriting.fnt')
-
 local handle_nas = 1
 local handle_fplan = 1
 local handle_radio = 1
 local handle_gps = 1
-
 local wait = 0
 local page = 0
-
-
 local handle_ap = 2
-
-
 local active = 1
 local active2 = 0
 local active3 = 0
 local notes1 = ""
 local nextfreq2 = 0
 local pagetext = ""
-
 local totaldist = 0
 local totaldist2 = 0
 local setkppm = 0
@@ -153,19 +134,13 @@ local setdme = 0
 local setradio = 0
 local setadf1 = 0
 local setadf2 = 0
-
 local num = 0
 local days = get(datedays) + 1
 local datetext = ""
 local disttext = ""
 local table1 = {}
 local month = 1
-
-
-
-
 local writemode = 1
-
 local line1 = ""
 local line2 = ""
 local line3 = ""
@@ -186,7 +161,6 @@ local notLoaded = false
 local diff2 = 0
 local slip = 0
 local alt2 = 0
-
 local currtype = 99
 local currcourse = 0
 local currdist = 0
@@ -194,18 +168,13 @@ local prev = 0
 local nasdist = 0
 local nasN = 0
 local nasE = 0
-
 local diff = 0
 local modes = "VFR"
-
 local DME_possible1 = 0
 local DME_possible2 = 0
-
-
 local prevtype = 0
 local prevdist = 0
 local prevcourse = 0
-
 local nexttype = 0
 local nextdist = 0
 local nextcourse = 0
@@ -213,7 +182,6 @@ local prevfreq = 0
 local nextfreq = 0
 local currident = 0
 local somecourse = 0
-
 local magtable = {}
 magtable[1] = { -152.3,-147.3,-142.3,-137.3,-132.3,-127.3,-122.3,-117.3,-112.3,-107.3,-102.3, -97.3, -92.3, -87.3, -82.3, -77.3, -72.3, -67.3, -62.3, -57.3, -52.3, -47.3, -42.3, -37.3, -32.3, -27.3, -22.3, -17.3, -12.3,  -7.3,  -2.3,   2.7,   7.7,  12.7,  17.7,  22.7,  27.7,  32.7,  37.7,  42.7,  47.7,  52.7,  57.7,  62.7,  67.7,  72.7,  77.7,  82.7,  87.7,  92.7,  97.7, 102.7, 107.7, 112.7, 117.7, 122.7, 127.7, 132.7, 137.7, 142.7, 147.7, 152.7, 157.7, 162.7, 167.7, 172.7, 177.7,-177.3,-172.3,-167.3,-162.3,-157.3,-152.3}
 magtable[2] = { -145.1,-139.4,-133.7,-128.2,-122.7,-117.3,-112.0,-106.8,-101.7, -96.6, -91.7, -86.8, -82.0, -77.3, -72.6, -68.0, -63.5, -59.0, -54.5, -50.1, -45.7, -41.3, -37.0, -32.6, -28.3, -24.0, -19.7, -15.5, -11.2,  -6.9,  -2.6,   1.7,   6.0,  10.3,  14.7,  19.0,  23.4,  27.9,  32.3,  36.8,  41.4,  45.9,  50.6,  55.2,  59.9,  64.7,  69.5,  74.3,  79.3,  84.2,  89.3,  94.4,  99.6, 104.8, 110.1, 115.5, 121.0, 126.5, 132.1, 137.8, 143.6, 149.4, 155.3, 161.2, 167.2, 173.2, 179.2,-174.8,-168.8,-162.8,-156.8,-151.0,-145.1}
@@ -253,31 +221,27 @@ magtable[35] = {  -12.4, -16.4, -20.5, -24.7, -29.0, -33.3, -37.7, -42.2, -46.6,
 magtable[36] = {  -40.7, -44.8, -49.5, -54.9, -61.1, -68.2, -76.7, -87.0, -99.9,-116.4,-137.1,-160.2, 177.9, 159.6, 145.2, 133.7, 124.0, 115.7, 108.3, 101.5,  95.1,  89.1,  83.4,  77.9,  72.5,  67.2,  62.1,  57.0,  52.0,  47.1,  42.2,  37.4,  32.7,  28.0,  23.3,  18.7,  14.2,   9.6,   5.2,   0.8,  -3.6,  -7.9, -12.1, -16.2, -20.3, -24.3, -28.1, -31.8, -35.4, -38.8, -42.0, -45.0, -47.6, -49.9, -51.8, -53.2, -53.9, -53.9, -53.1, -51.4, -48.8, -45.5, -41.8, -38.1, -34.8, -32.4, -30.9, -30.4, -30.9, -32.3, -34.4, -37.2, -40.7}
 magtable[37] = { -152.0,-157.0,-162.0,-167.0,-172.0,-177.0, 178.0, 173.0, 168.0, 163.0, 158.0, 153.0, 148.0, 143.0, 138.0, 133.0, 128.0, 123.0, 118.0, 113.0, 108.0, 103.0,  98.0,  93.0,  88.0,  83.0,  78.0,  73.0,  68.0,  63.0,  58.0,  53.0,  48.0,  43.0,  38.0,  33.0,  28.0,  23.0,  18.0,  13.0,   8.0,   3.0,  -2.0,  -7.0, -12.0, -17.0, -22.0, -27.0, -32.0, -37.0, -42.0, -47.0, -52.0, -57.0, -62.0, -67.0, -72.0, -77.0, -82.0, -87.0, -92.0, -97.0,-102.0,-107.0,-112.0,-117.0,-122.0,-127.0,-132.0,-137.0,-142.0,-147.0,-152.0}
 
-
-
 -- handle keyboad input
 function onKeyDown(comp, char, key)
---input flightplan name
-if char == 8 then
-local g = string.find(input, ' NOT FOUND')
-if g then
-input = string.sub(input, 1, g)
+  --input flightplan name
+  if char == 8 then
+    local g = string.find(input, ' NOT FOUND')
+    if g then
+      input = string.sub(input, 1, g)
+    end
+    input = string.sub(input, 1, -2)
+  elseif char == 13 then
+    notLoaded = true
+  else
+    input = string.format("%s%s",input, string.char(char))
+  end
+  --print('key down', char, key)
+  return true
 end
-input = string.sub(input, 1, -2)
-elseif char == 13 then
-notLoaded = true
-else 
-input = string.format("%s%s",input, string.char(char))
-end
- --print('key down', char, key)
- return true
-end
-
 -- handle keyboad input
 function onKeyUp(comp, char, key)
-return true
+  return true
 end
-
 
 function readplan()
 local filename = string.format("%s%s%s","Output/FMS plans/", input, ".fms")
@@ -314,103 +278,88 @@ month = 1
 local a = 0
 local b = 0
 local magvar = 0
-
 -- if file exist - read it and fill the variables with new values
 if file then
 while true do
-	local line = file:read("*line")
-	if line == nil then break end
-	a = string.find(line, '%d')
-	if a ~= nil then
-		types = tonumber(string.sub(line, a, a+1))
-		a = string.find(line, '[%a%d]', a+2)
+  local line = file:read("*line")
+  if line == nil then break end
+  a = string.find(line, '%d')
+  if a ~= nil then
+    types = tonumber(string.sub(line, a, a+1))
+    a = string.find(line, '[%a%d]', a+2)
 
-		if a ~= nil and types ~= 0 then
-		b = string.find(line, " ", a+1)
-		if b ~= nil then
+    if a ~= nil and types ~= 0 then
+    b = string.find(line, " ", a+1)
+    if b ~= nil then
 
-			ident = string.sub(line, a, b-1)
+      ident = string.sub(line, a, b-1)
 
-				a = string.find(line, '%d', b)
-							if a ~= nil then
-				b = string.find(line, " ", a+1)
-				alt = tonumber(string.sub(line, a, b-1))
-				a = string.find(line, '%d', b)
-				if string.sub(line, a-1, a-1) == "-" then
-				a = a-1
-				end
-				b = string.find(line, " ", a+1)
-				lat1 = tonumber(string.sub(line, a, b-1)) * math.pi / 180 
+        a = string.find(line, '%d', b)
+              if a ~= nil then
+        b = string.find(line, " ", a+1)
+        alt = tonumber(string.sub(line, a, b-1))
+        a = string.find(line, '%d', b)
+        if string.sub(line, a-1, a-1) == "-" then
+        a = a-1
+        end
+        b = string.find(line, " ", a+1)
+        lat1 = tonumber(string.sub(line, a, b-1)) * math.pi / 180
 
-				a = string.find(line, '%d', b)
-				if string.sub(line, a-1, a-1) == "-" then
-				a = a-1
-				end
-				lon1 = tonumber(string.sub(line, a, -1)) * math.pi / -180 
-				--all data has been read, now we calculate a bit
-				num = num + 1
-				if lat2 ~= 0 then
+        a = string.find(line, '%d', b)
+        if string.sub(line, a-1, a-1) == "-" then
+        a = a-1
+        end
+        lon1 = tonumber(string.sub(line, a, -1)) * math.pi / -180
+        --all data has been read, now we calculate a bit
+        num = num + 1
+        if lat2 ~= 0 then
 --magnetic variation!
 local lo_lat = math.floor(lat2 * 180 / math.pi / 5) * 5
 local lo_lon = math.floor(lon2 * -180 / math.pi / 5) * 5
-
-
 local lat_index = ( lo_lat + 90 ) / 5 + 1
 local lon_index = ( lo_lon + 180 ) / 5 + 1
-
-		  
 local var1 = magtable[lat_index  ][lon_index  ]
 local var2 = magtable[lat_index+1][lon_index  ]
 local var3 = magtable[lat_index  ][lon_index+1]
 local var4 = magtable[lat_index+1][lon_index+1]
-
 local var12 = ((lat2 * 180 / math.pi - lo_lat)*(var2-var1))/(lo_lat + 5 - lo_lat) + var1
 local var34 = ((lat2 * 180 / math.pi - lo_lat)*(var4-var3))/(lo_lat + 5 - lo_lat) + var3
 magvar = ((lon2 * -180 / math.pi - lo_lon)*(var34-var12))/(lo_lon + 5 - lo_lon) + var12
 --print(var1, var2, var3, var4, lo_lat, lo_lon, magvar)
-
-
-				dist = (2 * math.asin(math.sqrt((math.sin((lat1 - lat2) / 2)) ^ 2 + math.cos(lat1) * math.cos(lat2) * (math.sin((lon1 - lon2) / 2)) ^ 2)))
-				course1 = math.mod(math.atan2(math.sin(lon2 - lon1) * math.cos(lat1), math.cos(lat2) * math.sin(lat1) - math.sin(lat2) * math.cos(lat1) * math.cos(lon2 - lon1)), 2 * math.pi)
-
+        dist = (2 * math.asin(math.sqrt((math.sin((lat1 - lat2) / 2)) ^ 2 + math.cos(lat1) * math.cos(lat2) * (math.sin((lon1 - lon2) / 2)) ^ 2)))
+        course1 = math.mod(math.atan2(math.sin(lon2 - lon1) * math.cos(lat1), math.cos(lat2) * math.sin(lat1) - math.sin(lat2) * math.cos(lat1) * math.cos(lon2 - lon1)), 2 * math.pi)
 if course1 < 0 then
 course1 = course1 + 2 * math.pi
 end
-				diff = (course1 - course2) * 180 / math.pi
-				
-				
-				
-				
-				end
-				totaldist = totaldist + dist * 10.8 / math.pi * 1852
+        diff = (course1 - course2) * 180 / math.pi
+        end
+        totaldist = totaldist + dist * 10.8 / math.pi * 1852
 
-				dist = string.format("%." .. (1 or 0) .. "f", dist * 10.8 / math.pi * 1852)
-							--this function gives the string always the same length!
-	length = string.len(dist)
-	while length < 5 do
-		dist = string.format("%s%s", " ", dist)
-		length = length + 1
+        dist = string.format("%." .. (1 or 0) .. "f", dist * 10.8 / math.pi * 1852)
+              --this function gives the string always the same length!
+  length = string.len(dist)
+  while length < 5 do
+    dist = string.format("%s%s", " ", dist)
+    length = length + 1
 end
-	
-	
 while length < 9 do
-		dist = string.format("%s%s",dist, " ")
-		length = length + 1
+    dist = string.format("%s%s",dist, " ")
+    length = length + 1
 end
 course = course1 * 180 / math.pi + magvar
-if course > 360 then 
-course = course -360 
+if course > 360 then
+course = course -360
 elseif course < 0 then
 course = course + 360
 end
 course = string.format("%." .. (0 or 0) .. "f", course)
-		course = string.format("%03s",course)
-			length = string.len(course)
+    course = string.format("%03s",course)
+      length = string.len(course)
 while length < 7 do
-		course = string.format("%s%s",course, " ")
-		length = length + 1
+    course = string.format("%s%s",course, " ")
+    length = length + 1
 end
-	
+
 lat = lat1 * 180 / math.pi
 
 if string.find(lat, "-") == 1 then
@@ -424,10 +373,10 @@ lat = string.format ("%s%s", "S", lat)
 else
 lat = string.format ("%s%s", "N", lat)
 end
-	length = string.len(lat)
+  length = string.len(lat)
 while length < 11 do
-		lat = string.format("%s%s",lat, " ")
-		length = length + 1
+    lat = string.format("%s%s",lat, " ")
+    length = length + 1
 end
 lon = lon1 * 180 / math.pi
 if string.find(lon, "-") == 1 then
@@ -441,7 +390,7 @@ lon = string.format ("%s%s", "E", lon)
 else
 lon = string.format ("%s%s", "W", lon)
 end
-	
+
 if diff > 180 then
 diff = diff - 360
 elseif diff  < -180 then
@@ -452,43 +401,43 @@ start = 0
 nas_c = 0
 nas_b = 0
 else
-				--calculate NAS (Bank:15, TAS:450)
+        --calculate NAS (Bank:15, TAS:450)
 
-start = ( (125) ^ 2 / ( 9.81 * math.tan ( math.pi / 12 ) ) ) * math.tan ( math.abs(diff) * math.pi / 180 / 2) 
+start = ( (125) ^ 2 / ( 9.81 * math.tan ( math.pi / 12 ) ) ) * math.tan ( math.abs(diff) * math.pi / 180 / 2)
 nas_c = -start * math.cos (math.abs(diff) * math.pi / 180)
 nas_b = -start * math.sin(-diff * math.pi / 180)
 --print(diff, start, nas_c, nas_b)
-				end
-				--for a VOR or NDB, we need to frequency
-				freq = ""
-				if types == 2 or types == 3 then
+        end
+        --for a VOR or NDB, we need to frequency
+        freq = ""
+        if types == 2 or types == 3 then
 
-				local file = io.open("Resources/default data/earth_nav.dat", "r")
+        local file = io.open("Resources/default data/earth_nav.dat", "r")
 
 if file then
 
 while true do
-	local line2 = file:read("*line")
+  local line2 = file:read("*line")
 
-	if line2 == nil then break end
-	local c = 0
+  if line2 == nil then break end
+  local c = 0
 c = string.find(line2, ident)
-		if c == 54 then
-			if tonumber(string.sub(line2, 1, 1)) == types then
-				local lat3 = tonumber(string.sub(line2, 3, 14)) * math.pi / 180 
-				local lon3 = tonumber(string.sub(line2, 16, 28)) * math.pi / -180 
-				local dist3 = (2 * math.asin(math.sqrt((math.sin((lat1 - lat3) / 2)) ^ 2 + math.cos(lat1) * math.cos(lat3) * (math.sin((lon1 - lon3) / 2)) ^ 2)))
-				dist3 = dist3 * 10.8 / math.pi * 1852
-					--		print(line2, dist3)
+    if c == 54 then
+      if tonumber(string.sub(line2, 1, 1)) == types then
+        local lat3 = tonumber(string.sub(line2, 3, 14)) * math.pi / 180
+        local lon3 = tonumber(string.sub(line2, 16, 28)) * math.pi / -180
+        local dist3 = (2 * math.asin(math.sqrt((math.sin((lat1 - lat3) / 2)) ^ 2 + math.cos(lat1) * math.cos(lat3) * (math.sin((lon1 - lon3) / 2)) ^ 2)))
+        dist3 = dist3 * 10.8 / math.pi * 1852
+          --		print(line2, dist3)
 
-				if dist3 < 10 then
-								freq = string.sub(line2, 37, 41)
-								if types == 3 then
-								freq = string.format("%s.%s", string.sub(freq, 1, 3), string.sub(freq, 4, 5))
+        if dist3 < 10 then
+                freq = string.sub(line2, 37, 41)
+                if types == 3 then
+                freq = string.format("%s.%s", string.sub(freq, 1, 3), string.sub(freq, 4, 5))
 --								local d = 0
 --								d = string.find(line2, "DME")
---if d ~= nil then 
---has_DME = 1 
+--if d ~= nil then
+--has_DME = 1
 --else
 --								d = string.find(line2, "VORTAC")
 --end
@@ -498,40 +447,40 @@ end
 end
 end
 
-	--			a = string.find(line, '%d', b)
+  --			a = string.find(line, '%d', b)
 end
 file:close()
 else print ("Can't read nav.dat!")
 end
 
-				end
-				if ( types == 2 or types == 3 ) and freq == "" then
-				types = 11
-				end
-				
-							length = string.len(freq)
+        end
+        if ( types == 2 or types == 3 ) and freq == "" then
+        types = 11
+        end
+
+              length = string.len(freq)
 while length < 10 do
-		freq = string.format("%s%s",freq, " ")
-		length = length + 1
+    freq = string.format("%s%s",freq, " ")
+    length = length + 1
 end
-			length = string.len(ident)
+      length = string.len(ident)
 while length < 6 do
-		ident = string.format("%s%s",ident, " ")
-		length = length + 1
+    ident = string.format("%s%s",ident, " ")
+    length = length + 1
 end
-				tableline = { types, ident, freq, course, dist, lat, lon, start, nas_c, nas_b}
+        tableline = { types, ident, freq, course, dist, lat, lon, start, nas_c, nas_b}
 --				print( types, ident, freq, course, dist, lat, lon, start, nas_c, nas_b)
-				table.insert(table1,tableline)
-				if alt > alt2 then
-				alt2 = alt
-				end
-				lat2 = lat1
-				lon2 = lon1
-				course2 = course1
-				end
-			end
-		end
-	end
+        table.insert(table1,tableline)
+        if alt > alt2 then
+        alt2 = alt
+        end
+        lat2 = lat1
+        lon2 = lon1
+        course2 = course1
+        end
+      end
+    end
+  end
 end
 
 
@@ -545,10 +494,10 @@ datetext = string.format("%s.%s", days, month)
 totaldist2 = totaldist
 local ETE = string.format("%01d:%02d",  math.floor(totaldist / 450), ((totaldist / 450) - math.floor(totaldist / 450)) * 60)
 disttext = string.format("%." .. (1 or 0) .. "f", totaldist)
-	length = string.len(disttext)
+  length = string.len(disttext)
 while length < 7 do
-		disttext = string.format("%s%s", " ", disttext)
-		length = length + 1
+    disttext = string.format("%s%s", " ", disttext)
+    length = length + 1
 end
 disttext = string.format("%s           %s", disttext, ETE)
 file:close()
@@ -647,16 +596,15 @@ end
 
 --###############################################################################################
 
-
 function update()
-if notLoaded then
-notLoaded = false
-	readplan()
-end
-
---information for Boris
---################################ CONSTRUCTION AHEAD
-if active2 ~= active then
+  lang = get(language)
+  if notLoaded then
+    notLoaded = false
+    readplan()
+  end
+  --information for Boris
+  --################################ CONSTRUCTION AHEAD
+  if active2 ~= active then
 
 
 local currline = table1[active]
@@ -726,10 +674,10 @@ if prevtype == 2 or prevtype == 3 then break end
 prevdist = prevdist + tonumber(prevline[5])
 prevcourse = tonumber(prevline[4])
 diff = prevcourse - currcourse
-if diff < -180 then 
-diff = diff + 360 
-elseif diff > 180 then 
-diff = diff - 360 
+if diff < -180 then
+diff = diff + 360
+elseif diff > 180 then
+diff = diff - 360
 end
 if diff > 1 or diff < -1 then
 DME_possible1 = 0
@@ -760,10 +708,10 @@ local searchline = table1[searchback]
 nextdist = nextdist + tonumber(searchline[5])
 nextcourse = tonumber(searchline[4])
 diff = nextcourse - currcourse
-if diff < -180 then 
-diff = diff + 360 
-elseif diff > 180 then 
-diff = diff - 360 
+if diff < -180 then
+diff = diff + 360
+elseif diff > 180 then
+diff = diff - 360
 end
 if ( diff > 1 or diff < -1 ) and searchback ~= nextactive then
 DME_possible2 = 0
@@ -846,7 +794,7 @@ end
 elseif DME_possible2 == 1 and get(DME_DME) == 1 and get(DME_freq) == nextfreq * 100 and currtype ~= 1 and wait == 0 then
 modes = "DME"
 --diff = get(DME_dist) * 1.852 + nasdist / 1000 + get(agl) / 1000 - way_dist
-diff = math.sqrt((get(DME_dist) * 1.852) ^ 2 - ( get(agl) / 1000 ) ^ 2 ) - nasdist / 1000 - nextdist  
+diff = math.sqrt((get(DME_dist) * 1.852) ^ 2 - ( get(agl) / 1000 ) ^ 2 ) - nasdist / 1000 - nextdist
 if diff2 == 0 then
 diff2 = diff
 end
@@ -1050,7 +998,7 @@ end
 end
 end
 
---Boris handles the radios 
+--Boris handles the radios
 if handle_radio == 1 and get(agl) > 20 then
 if nextfreq ~= nextfreq2 then
 nextfreq2 = nextfreq
@@ -1219,9 +1167,9 @@ local correction = 0
 --set(gyro_curse, get(magpsi))
 
 if get(dst2) < - 1.5 then
-correction = get(gyro_curse) - currcourse + get(deg2) - get(deg1) - 30 
+correction = get(gyro_curse) - currcourse + get(deg2) - get(deg1) - 30
 elseif get(dst2) > 1.5  then
-correction = get(gyro_curse) - currcourse + get(deg2) - get(deg1) + 30 
+correction = get(gyro_curse) - currcourse + get(deg2) - get(deg1) + 30
 else
 correction = get(gyro_curse) - currcourse + get(deg2) - get(deg1) + get(dst2) * 20
 end
@@ -1253,663 +1201,668 @@ end
 end
 
 
-	
+
 components = {
-	textureLit {
-		image = get(bg),
-		position = {0, 0, size[1], size[2]},
-
-	},
+  textureLit {
+    image = bg[0],
+    position = {0, 0, size[1], size[2]},
+    visible = function() return lang == 0; end,
+  },
+  textureLit {
+    image = bg[1],
+    position = {0, 0, size[1], size[2]},
+    visible = function() return lang == 1; end,
+  },
 --stroke
-	clickable {
-		position = {30, 395, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 1 and active <= page * 15 + 2 and active >= page * 15 + 1
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 2 then active = page * 15 + 1
-		else active = page * 15 + 2 end
-		wait = 10
-		return true
-		end 
-	},	
+  clickable {
+    position = {30, 395, 70, 20 },
 
-	textureLit {
-		image = get(stroked1),
-		position = {30, 395, 650, 20},
-		visible = function()
-		return active > page * 15 + 1
-		end,
-		},
-	clickable {
-		position = {30, 375, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 2 and active <= page * 15 + 3 and active >= page * 15 + 2
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 3 then active = page * 15 + 2
-		else active = page * 15 + 3 end
-		wait = 10
-		return true
-		end 
-	},	
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 1 and active <= page * 15 + 2 and active >= page * 15 + 1
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 2 then active = page * 15 + 1
+    else active = page * 15 + 2 end
+    wait = 10
+    return true
+    end
+  },
 
-	textureLit {
-		image = get(stroked2),
-		position = {30, 375, 650, 20},
-		visible = function()
-		return active > page * 15 + 2
-		end,
-		},
-	clickable {
-		position = {30, 355, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 3 and active <= page * 15 + 4 and active >= page * 15 + 3
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 4 then active = page * 15 + 3
-		else active = page * 15 + 4 end
-		wait = 10
-		return true
-		end 
-	},	
+  textureLit {
+    image = get(stroked1),
+    position = {30, 395, 650, 20},
+    visible = function()
+    return active > page * 15 + 1
+    end,
+    },
+  clickable {
+    position = {30, 375, 70, 20 },
 
-	textureLit {
-		image = get(stroked3),
-		position = {30, 355, 650, 20},
-		visible = function()
-		return active > page * 15 + 3
-		end,
-		},
-	clickable {
-		position = {30, 335, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 4 and active <= page * 15 + 5 and active >= page * 15 + 4
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 5 then active = page * 15 + 4
-		else active = page * 15 + 5 end
-		wait = 10
-		return true
-		end 
-	},	
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 2 and active <= page * 15 + 3 and active >= page * 15 + 2
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 3 then active = page * 15 + 2
+    else active = page * 15 + 3 end
+    wait = 10
+    return true
+    end
+  },
 
-	textureLit {
-		image = get(stroked1),
-		position = {30, 335, 650, 20},
-		visible = function()
-		return active > page * 15 + 4
-		end,
-		},
-		clickable {
-		position = {30, 315, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 5 and active <= page * 15 + 6 and active >= page * 15 + 5
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 6 then active = page * 15 + 5
-		else active = page * 15 + 6 end
-		wait = 10
-		return true
-		end 
-	},	
+  textureLit {
+    image = get(stroked2),
+    position = {30, 375, 650, 20},
+    visible = function()
+    return active > page * 15 + 2
+    end,
+    },
+  clickable {
+    position = {30, 355, 70, 20 },
 
-	textureLit {
-		image = get(stroked2),
-		position = {30, 315, 650, 20},
-		visible = function()
-		return active > page * 15 + 5
-		end,
-		},
-			clickable {
-		position = {30, 295, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 6 and active <= page * 15 + 7 and active >= page * 15 + 6
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 7 then active = page * 15 + 6
-		else active = page * 15 + 7 end
-		wait = 10
-		return true
-		end 
-	},	
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 3 and active <= page * 15 + 4 and active >= page * 15 + 3
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 4 then active = page * 15 + 3
+    else active = page * 15 + 4 end
+    wait = 10
+    return true
+    end
+  },
 
-	textureLit {
-		image = get(stroked3),
-		position = {30, 295, 650, 20},
-		visible = function()
-		return active > page * 15 + 6
-		end,
-		},
-	clickable {
-		position = {30, 275, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 7 and active <= page * 15 + 8 and active >= page * 15 + 7
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 8 then active = page * 15 + 7
-		else active = page * 15 + 8 end
-		wait = 10
-		return true
-		end 
-	},	
+  textureLit {
+    image = get(stroked3),
+    position = {30, 355, 650, 20},
+    visible = function()
+    return active > page * 15 + 3
+    end,
+    },
+  clickable {
+    position = {30, 335, 70, 20 },
 
-	textureLit {
-		image = get(stroked1),
-		position = {30, 275, 650, 20},
-		visible = function()
-		return active > page * 15 + 7
-		end,
-		},
-	clickable {
-		position = {30, 255, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 8 and active <= page * 15 + 9 and active >= page * 15 + 8
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 9 then active = page * 15 + 8
-		else active = page * 15 + 9 end
-		wait = 10
-		return true
-		end 
-	},	
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 4 and active <= page * 15 + 5 and active >= page * 15 + 4
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 5 then active = page * 15 + 4
+    else active = page * 15 + 5 end
+    wait = 10
+    return true
+    end
+  },
 
-	textureLit {
-		image = get(stroked2),
-		position = {30, 255, 650, 20},
-		visible = function()
-		return active > page * 15 + 8
-		end,
-		},
-	clickable {
-		position = {30, 235, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 9 and active <= page * 15 + 10 and active >= page * 15 + 9
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 10 then active = page * 15 + 9
-		else active = page * 15 + 10 end
-		wait = 10
-		return true
-		end 
-	},	
+  textureLit {
+    image = get(stroked1),
+    position = {30, 335, 650, 20},
+    visible = function()
+    return active > page * 15 + 4
+    end,
+    },
+    clickable {
+    position = {30, 315, 70, 20 },
 
-	textureLit {
-		image = get(stroked3),
-		position = {30, 235, 650, 20},
-		visible = function()
-		return active > page * 15 + 9
-		end,
-		},
-	clickable {
-		position = {30, 215, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 10 and active <= page * 15 + 11 and active >= page * 15 + 10
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 11 then active = page * 15 + 10
-		else active = page * 15 + 11 end
-		wait = 10
-		return true
-		end 
-	},	
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 5 and active <= page * 15 + 6 and active >= page * 15 + 5
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 6 then active = page * 15 + 5
+    else active = page * 15 + 6 end
+    wait = 10
+    return true
+    end
+  },
 
-	textureLit {
-		image = get(stroked1),
-		position = {30, 215, 650, 20},
-		visible = function()
-		return active > page * 15 + 10
-		end,
-		},
-	clickable {
-		position = {30, 195, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 11 and active <= page * 15 + 12 and active >= page * 15 + 11
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 12 then active = page * 15 + 11
-		else active = page * 15 + 12 end
-		wait = 10
-		return true
-		end 
-	},	
+  textureLit {
+    image = get(stroked2),
+    position = {30, 315, 650, 20},
+    visible = function()
+    return active > page * 15 + 5
+    end,
+    },
+      clickable {
+    position = {30, 295, 70, 20 },
 
-	textureLit {
-		image = get(stroked2),
-		position = {30, 195, 650, 20},
-		visible = function()
-		return active > page * 15 + 11
-		end,
-		},
-		clickable {
-		position = {30, 175, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 12 and active <= page * 15 + 13 and active >= page * 15 + 12
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 13 then active = page * 15 + 12
-		else active = page * 15 + 13 end
-		wait = 10
-		return true
-		end 
-	},	
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 6 and active <= page * 15 + 7 and active >= page * 15 + 6
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 7 then active = page * 15 + 6
+    else active = page * 15 + 7 end
+    wait = 10
+    return true
+    end
+  },
 
-	textureLit {
-		image = get(stroked3),
-		position = {30, 175, 650, 20},
-		visible = function()
-		return active > page * 15 + 12
-		end,
-		},
-	clickable {
-		position = {30, 155, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 13 and active <= page * 15 + 14 and active >= page * 15 + 13
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 14 then active = page * 15 + 13
-		else active = page * 15 + 14 end
-		wait = 10
-		return true
-		end 
-	},	
+  textureLit {
+    image = get(stroked3),
+    position = {30, 295, 650, 20},
+    visible = function()
+    return active > page * 15 + 6
+    end,
+    },
+  clickable {
+    position = {30, 275, 70, 20 },
 
-	textureLit {
-		image = get(stroked1),
-		position = {30, 155, 650, 20},
-		visible = function()
-		return active > page * 15 + 13
-		end,
-		},
-		clickable {
-		position = {30, 135, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 14 and active <= page * 15 + 15 and active >= page * 15 + 14
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 15 then active = page * 15 + 14
-		else active = page * 15 + 15 end
-		wait = 10
-		return true
-		end 
-	},	
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 7 and active <= page * 15 + 8 and active >= page * 15 + 7
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 8 then active = page * 15 + 7
+    else active = page * 15 + 8 end
+    wait = 10
+    return true
+    end
+  },
 
-	textureLit {
-		image = get(stroked2),
-		position = {30, 135, 650, 20},
-		visible = function()
-		return active > page * 15 + 14
-		end,
-		},
-	clickable {
-		position = {30, 115, 70, 20 },
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return num >= page * 15 + 15 and active <= page * 15 + 16 and active >= page * 15 + 15
-		end,
-		onMouseClick = function()
-		if active == page * 15 + 16 then active = page * 15 + 15
-		else active = page * 15 + 16 end
-		wait = 10
-		return true
-		end 
-	},	
+  textureLit {
+    image = get(stroked1),
+    position = {30, 275, 650, 20},
+    visible = function()
+    return active > page * 15 + 7
+    end,
+    },
+  clickable {
+    position = {30, 255, 70, 20 },
 
-	textureLit {
-		image = get(stroked3),
-		position = {30, 115, 650, 20},
-		visible = function()
-		return active > page * 15 + 15
-		end,
-		},
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 8 and active <= page * 15 + 9 and active >= page * 15 + 8
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 9 then active = page * 15 + 8
+    else active = page * 15 + 9 end
+    wait = 10
+    return true
+    end
+  },
 
-		clickable {
-		position = {130, 15, 22, 22},
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		onMouseClick = function()
-		if handle_fplan == 1 then handle_fplan = 0
-		else handle_fplan = 1 end
-		return true
-		end 
-	},	
+  textureLit {
+    image = get(stroked2),
+    position = {30, 255, 650, 20},
+    visible = function()
+    return active > page * 15 + 8
+    end,
+    },
+  clickable {
+    position = {30, 235, 70, 20 },
 
-	textureLit {
-		image = get(deselected),
-		position = {130, 15, 22, 22},
-		visible = function()
-		return handle_fplan == 0
-		end,
-		},		
-	
-		clickable {
-		position = {241, 15, 22, 22},
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		onMouseClick = function()
-		if handle_radio == 1 then handle_radio = 0
-		else 
-		setradio = 1
-		handle_radio = 1 
-		end
-		return true
-		end 
-	},	
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 9 and active <= page * 15 + 10 and active >= page * 15 + 9
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 10 then active = page * 15 + 9
+    else active = page * 15 + 10 end
+    wait = 10
+    return true
+    end
+  },
 
-	textureLit {
-		image = get(deselected),
-		position = {241, 15, 22, 22},
-		visible = function()
-		return handle_radio == 0
-		end,
-		},	
-			clickable {
-		position = {332, 15, 22, 22},
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
+  textureLit {
+    image = get(stroked3),
+    position = {30, 235, 650, 20},
+    visible = function()
+    return active > page * 15 + 9
+    end,
+    },
+  clickable {
+    position = {30, 215, 70, 20 },
 
-		onMouseClick = function()
-		if handle_nas == 1 then handle_nas = 0
-		else handle_nas = 1 end
-		return true
-		end 
-	},	
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 10 and active <= page * 15 + 11 and active >= page * 15 + 10
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 11 then active = page * 15 + 10
+    else active = page * 15 + 11 end
+    wait = 10
+    return true
+    end
+  },
 
-	textureLit {
-		image = get(deselected),
-		position = {332, 15, 22, 22},
-		visible = function()
-		return handle_nas == 0
-		end,
-		},	
-		
-		clickable {
-		position = {428, 15, 22, 22},
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return get(gns430_pri) == 1 or get(kln90b_pri) == 1
-		end,
-		onMouseClick = function()
-		if handle_gps == 1 then handle_gps = 0
-		else handle_gps = 1 end
-		return true
-		end 
-	},	
+  textureLit {
+    image = get(stroked1),
+    position = {30, 215, 650, 20},
+    visible = function()
+    return active > page * 15 + 10
+    end,
+    },
+  clickable {
+    position = {30, 195, 70, 20 },
 
-	textureLit {
-		image = get(deselected),
-		position = {428, 15, 22, 22},
-		visible = function()
-		return handle_gps == 0
-		end,
-		},		
-				textureLit {
-		image = get(white),
-		position = {390, 15, 72, 23},
-		visible = function()
-		return get(gns430_pri) == 0 and get(kln90b_pri) == 0
-		end,
-		},	
-		
-		
-				textureLit {
-		image = get(APselected),
-		position = {500, 15, 22, 22},
-		visible = function()
-		return handle_ap ~= 2
-		end,
-		},	
-		
-		textureLit {
-		image = get(deselected),
-		position = {500, 15, 22, 22},
-		visible = function()
-		return handle_ap == 0
-		end,
-		},	
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 11 and active <= page * 15 + 12 and active >= page * 15 + 11
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 12 then active = page * 15 + 11
+    else active = page * 15 + 12 end
+    wait = 10
+    return true
+    end
+  },
 
-				clickable {
-		position = {500, 15, 22, 22},
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		visible = function()
-		return handle_ap ~= 2
-		end,
-		onMouseClick = function()
-		if handle_ap == 1 then handle_ap = 0
-		else handle_ap = 1 end
-		return true
-		end 
-	},		
+  textureLit {
+    image = get(stroked2),
+    position = {30, 195, 650, 20},
+    visible = function()
+    return active > page * 15 + 11
+    end,
+    },
+    clickable {
+    position = {30, 175, 70, 20 },
 
-						clickable {
-		position = {615, 18, 14, 14},
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
-		visible = function()
-		return page ~= 0
-		end,
-		onMouseClick = function()
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 12 and active <= page * 15 + 13 and active >= page * 15 + 12
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 13 then active = page * 15 + 12
+    else active = page * 15 + 13 end
+    wait = 10
+    return true
+    end
+  },
+
+  textureLit {
+    image = get(stroked3),
+    position = {30, 175, 650, 20},
+    visible = function()
+    return active > page * 15 + 12
+    end,
+    },
+  clickable {
+    position = {30, 155, 70, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 13 and active <= page * 15 + 14 and active >= page * 15 + 13
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 14 then active = page * 15 + 13
+    else active = page * 15 + 14 end
+    wait = 10
+    return true
+    end
+  },
+
+  textureLit {
+    image = get(stroked1),
+    position = {30, 155, 650, 20},
+    visible = function()
+    return active > page * 15 + 13
+    end,
+    },
+    clickable {
+    position = {30, 135, 70, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 14 and active <= page * 15 + 15 and active >= page * 15 + 14
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 15 then active = page * 15 + 14
+    else active = page * 15 + 15 end
+    wait = 10
+    return true
+    end
+  },
+
+  textureLit {
+    image = get(stroked2),
+    position = {30, 135, 650, 20},
+    visible = function()
+    return active > page * 15 + 14
+    end,
+    },
+  clickable {
+    position = {30, 115, 70, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return num >= page * 15 + 15 and active <= page * 15 + 16 and active >= page * 15 + 15
+    end,
+    onMouseClick = function()
+    if active == page * 15 + 16 then active = page * 15 + 15
+    else active = page * 15 + 16 end
+    wait = 10
+    return true
+    end
+  },
+
+  textureLit {
+    image = get(stroked3),
+    position = {30, 115, 650, 20},
+    visible = function()
+    return active > page * 15 + 15
+    end,
+    },
+
+    clickable {
+    position = {130, 15, 22, 22},
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    onMouseClick = function()
+    if handle_fplan == 1 then handle_fplan = 0
+    else handle_fplan = 1 end
+    return true
+    end
+  },
+
+  textureLit {
+    image = get(deselected),
+    position = {130, 15, 22, 22},
+    visible = function()
+    return handle_fplan == 0
+    end,
+    },
+
+    clickable {
+    position = {241, 15, 22, 22},
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    onMouseClick = function()
+    if handle_radio == 1 then handle_radio = 0
+    else
+    setradio = 1
+    handle_radio = 1
+    end
+    return true
+    end
+  },
+
+  textureLit {
+    image = get(deselected),
+    position = {241, 15, 22, 22},
+    visible = function()
+    return handle_radio == 0
+    end,
+    },
+      clickable {
+    position = {332, 15, 22, 22},
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+
+    onMouseClick = function()
+    if handle_nas == 1 then handle_nas = 0
+    else handle_nas = 1 end
+    return true
+    end
+  },
+
+  textureLit {
+    image = get(deselected),
+    position = {332, 15, 22, 22},
+    visible = function()
+    return handle_nas == 0
+    end,
+    },
+
+    clickable {
+    position = {428, 15, 22, 22},
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return get(gns430_pri) == 1 or get(kln90b_pri) == 1
+    end,
+    onMouseClick = function()
+    if handle_gps == 1 then handle_gps = 0
+    else handle_gps = 1 end
+    return true
+    end
+  },
+
+  textureLit {
+    image = get(deselected),
+    position = {428, 15, 22, 22},
+    visible = function()
+    return handle_gps == 0
+    end,
+    },
+        textureLit {
+    image = get(white),
+    position = {390, 15, 72, 23},
+    visible = function()
+    return get(gns430_pri) == 0 and get(kln90b_pri) == 0
+    end,
+    },
+
+
+        textureLit {
+    image = get(APselected),
+    position = {500, 15, 22, 22},
+    visible = function()
+    return handle_ap ~= 2
+    end,
+    },
+
+    textureLit {
+    image = get(deselected),
+    position = {500, 15, 22, 22},
+    visible = function()
+    return handle_ap == 0
+    end,
+    },
+
+        clickable {
+    position = {500, 15, 22, 22},
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+    visible = function()
+    return handle_ap ~= 2
+    end,
+    onMouseClick = function()
+    if handle_ap == 1 then handle_ap = 0
+    else handle_ap = 1 end
+    return true
+    end
+  },
+
+            clickable {
+    position = {615, 18, 14, 14},
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
+    visible = function()
+    return page ~= 0
+    end,
+    onMouseClick = function()
 page = page - 1
 display()
-		return true
-		end 
-	},	
-		textureLit {
-		image = get(white),
-		position = {615, 18, 14, 14},
-		visible = function()
-		return page == 0
-		end,
-		},	
-	
-							clickable {
-		position = {680, 18, 14, 14},
-	
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
-		visible = function()
-		return page < math.floor((num - 1) / 15)
-		end,
-		onMouseClick = function()
+    return true
+    end
+  },
+    textureLit {
+    image = get(white),
+    position = {615, 18, 14, 14},
+    visible = function()
+    return page == 0
+    end,
+    },
+
+              clickable {
+    position = {680, 18, 14, 14},
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
+    visible = function()
+    return page < math.floor((num - 1) / 15)
+    end,
+    onMouseClick = function()
 page = page + 1
 display()
-		return true
-		end 
-	},		
-			textureLit {
-		image = get(white),
-		position = {680, 18, 14, 14},
-		visible = function()
-		return page >= math.floor((num - 1) / 15)
-		end,
-		},		
-		
-		textureLit {
-		image = get(stroked3),
-		position = {78, 462, 150, 9},
-		visible = function()
-		return focused["value"]
-		end,
-		},		
-	-- clickable area for closing main menu
-	clickable {
-		position = { size[1]-20, size[2]-20, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		
-		onMouseClick = function()
-		set(fplan_subpanel, 0 )
-		return true
-		end
-	},	
+    return true
+    end
+  },
+      textureLit {
+    image = get(white),
+    position = {680, 18, 14, 14},
+    visible = function()
+    return page >= math.floor((num - 1) / 15)
+    end,
+    },
+
+    textureLit {
+    image = get(stroked3),
+    position = {78, 462, 150, 9},
+    visible = function()
+    return focused["value"]
+    end,
+    },
+  -- clickable area for closing main menu
+  clickable {
+    position = { size[1]-20, size[2]-20, 20, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+
+    onMouseClick = function()
+    set(fplan_subpanel, 0 )
+    return true
+    end
+  },
 }
 
 
