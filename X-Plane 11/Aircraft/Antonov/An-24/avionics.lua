@@ -976,7 +976,7 @@ info_panel = subpanel {
 }
 -- add options subpanel
 options = subpanel {
-  position = {60, 100, 562 * coef, 512 * coef},
+  position = {60, 100, 560 * coef, 610 * coef},
   noBackground = true,
   noClose = true,
   movable = true,
@@ -986,10 +986,10 @@ options = subpanel {
   name = "options",
   components = {
     settings {
-      position = {0, 0, 562 * coef, 512 * coef}
+      position = {0, 0, 560 * coef, 610 * coef}
     },
     textureLit {
-      position = {(562 - 16) * coef, (512 - 16) * coef, 16 * coef, 16 * coef},
+      position = {(560 - 16) * coef, (610 - 16) * coef, 16 * coef, 16 * coef},
       image = get(closeImage)
     }
   }
