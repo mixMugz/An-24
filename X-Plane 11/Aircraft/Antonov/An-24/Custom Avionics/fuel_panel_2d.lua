@@ -75,7 +75,6 @@ local background = {
   [0] = loadImage("fuel_panel_2d_e.dds", 0, 0, 512, 725),
         loadImage("fuel_panel_2d_r.dds", 0, 0, 512, 725),
 }
-local lang = 0
 
 local function bool2int(var)
   if var then return 1 else return 0 end
@@ -93,8 +92,6 @@ local left_filter_lit = false
 local right_filter_lit = false
 -- post frame calculations
 function update()
-  lang = get(language)
-
   q_left_angle = get(fuel_quant1_angle)
   q_right_angle = get(fuel_quant2_angle)
 
@@ -129,16 +126,11 @@ end
 components = {
   -- background
   texture {
-    image = background[0],
+    image = function()
+      return background[get(language)]
+    end,
     position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 0; end,
   },
-  texture {
-    image = background[1],
-    position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 1; end,
-  },
-
   ---------------------
   -- needle gauges --
   ---------------------

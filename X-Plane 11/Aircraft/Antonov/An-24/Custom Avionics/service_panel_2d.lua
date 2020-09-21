@@ -42,13 +42,13 @@ defineProperty("pax_ladder_stat", globalPropertyf("sim/flightmodel2/misc/custom_
 defineProperty("service_subpanel", globalPropertyi("an-24/panels/service_subpanel"))
 
 -- images
---defineProperty("background", loadImage("ground_service.dds", 0, 0, size[1], size[2])) 
+--defineProperty("background", loadImage("ground_service.dds", 0, 0, size[1], size[2]))
 defineProperty("yellow", loadImage("ground_service_e.png", 128, 487, 22, 22))
-defineProperty("green", loadImage("ground_service_e.png", 362, 487, 22, 22)) 
-defineProperty("empty", loadImage("ground_service_e.png", 0, 0, 1, 1)) 
+defineProperty("green", loadImage("ground_service_e.png", 362, 487, 22, 22))
+defineProperty("empty", loadImage("ground_service_e.png", 0, 0, 1, 1))
 
 -- initial switchers values
-defineProperty("N1", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[0]"))   
+defineProperty("N1", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[0]"))
 defineProperty("N2", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[1]"))
 defineProperty("frame_time", globalPropertyf("an-24/time/frame_time")) -- time for frames
 
@@ -65,7 +65,6 @@ local bg = {
 }
 
 local language = globalPropertyi("an-24/set/language")
-local lang = 0
 
 local last_time = 0
 local cur_time = 0
@@ -94,212 +93,207 @@ local fps_act=0
 
 
 function update()
-        lang = get(language)
-	-- initial switchers values
-	time_counter = time_counter + get(frame_time)
-	fps_act=1/get(frame_time)
-	if  fps_act > 26 then
-		coeff_time = 1
-	else
-		coeff_time = 0.025/get(frame_time)
-	end
+  -- initial switchers values
+  time_counter = time_counter + get(frame_time)
+  fps_act=1/get(frame_time)
+  if  fps_act > 26 then
+    coeff_time = 1
+  else
+    coeff_time = 0.025/get(frame_time)
+  end
 
-	if get(left_eng_main) == 0 and get(left_eng_ext) == 0 then set(engine_park1, 1) else set(engine_park1, 0) end
-	if get(right_eng_main) == 0 and get(right_eng_ext) == 0 then set(engine_park2, 1) else set(engine_park2, 0) end
+  if get(left_eng_main) == 0 and get(left_eng_ext) == 0 then set(engine_park1, 1) else set(engine_park1, 0) end
+  if get(right_eng_main) == 0 and get(right_eng_ext) == 0 then set(engine_park2, 1) else set(engine_park2, 0) end
 
-	if get(N1) < 70 and get(N2) < 70 and time_counter > 0.3 and time_counter < 0.4 and not_loaded then
-			set(left_eng_main, 0)
-			set(left_eng_ext, 0)
-			set(right_eng_main, 0)
-			set(right_eng_ext, 0)
-			set(ru19_eng_ext, 0)
-			set(antiice_left, 0)
-			set(antiice_right, 0)
-			set(rockets, 0)
-			set(pitot_1, 0)
-			set(pitot_2, 0)
-			set(pitot_3, 0)
-			set(grounding, 0)
-			set(gear_blocks, 0)
-			not_loaded = false
-	end
-	
-	
-	
-	local press = get(cabin_press) * 0.07030696  -- pressure in kg/cm2
-	door_can_open = press < 0.2
-	local ground_speed = get(GS)
-	acf_is_moving = ground_speed > 0.2
-	
-	if acf_is_moving then
-		set(grounding, 1)
-		set(gear_blocks, 1)
-		set(ground_available, 0)
-		gnd_av_img = get(empty)
-	end
-	
-	-- cabin hatch status lights
-	local cabin_hatch_status = get(cabin_hatch_stat)
-	if cabin_hatch_status < 0.05 then cabin_hatch_img = get(green)
-	elseif cabin_hatch_status > 0.95 then cabin_hatch_img = get(empty)
-	else cabin_hatch_img = get(yellow) end
-	
-	-- emerg hatch 1 status lights
-	local emerg_hatch1_status = get(emerg_hatch1_stat)
-	if emerg_hatch1_status < 0.05 then emerg_hatch1_img = get(green)
-	elseif emerg_hatch1_status > 0.95 then emerg_hatch1_img = get(empty)
-	else emerg_hatch1_img = get(yellow) end
-	
-	-- emerg hatch 2 status lights
-	local emerg_hatch2_status = get(emerg_hatch2_stat)
-	if emerg_hatch2_status < 0.05 then emerg_hatch2_img = get(green)
-	elseif emerg_hatch2_status > 0.95 then emerg_hatch2_img = get(empty)
-	else emerg_hatch2_img = get(yellow) end	
-	
-	-- cargo hatch 1 status lights
-	local cargo_hatch1_status = get(cargo_hatch1_stat)
-	if cargo_hatch1_status < 0.05 then cargo_hatch1_img = get(green)
-	elseif cargo_hatch1_status > 0.95 then cargo_hatch1_img = get(empty)
-	else cargo_hatch1_img = get(yellow) end
-	
-	-- cargo hatch 2 status lights
-	local cargo_hatch2_status = get(cargo_hatch2_stat)
-	if cargo_hatch2_status < 0.05 then cargo_hatch2_img = get(green)
-	elseif cargo_hatch2_status > 0.95 then cargo_hatch2_img = get(empty)
-	else cargo_hatch2_img = get(yellow) end		
-	
-	-- pax door status lights
-	local pax_door_status = get(pax_door_stat)
-	if pax_door_status < 0.05 then pax_door_img = get(green)
-	elseif pax_door_status > 0.95 then pax_door_img = get(empty)
-	else pax_door_img = get(yellow) end	
+  if get(N1) < 70 and get(N2) < 70 and time_counter > 0.3 and time_counter < 0.4 and not_loaded then
+      set(left_eng_main, 0)
+      set(left_eng_ext, 0)
+      set(right_eng_main, 0)
+      set(right_eng_ext, 0)
+      set(ru19_eng_ext, 0)
+      set(antiice_left, 0)
+      set(antiice_right, 0)
+      set(rockets, 0)
+      set(pitot_1, 0)
+      set(pitot_2, 0)
+      set(pitot_3, 0)
+      set(grounding, 0)
+      set(gear_blocks, 0)
+      not_loaded = false
+  end
 
-	-- pax ladder status lights
-	local pax_ladder_status = get(pax_ladder_stat)
-	if pax_ladder_status < 0.05 then pax_ladder_img = get(green)
-	elseif pax_ladder_status > 0.95 then pax_ladder_img = get(empty)
-	else pax_ladder_img = get(yellow) end		
-	
 
-		   
-			    if get(ground_available) == 4 then
-			    if checksound == 0 then checksound = 1 gnd_av_img = get(yellow) cur_time2 = get(time_sim) + 8 * coeff_time set(ground_sound,4) end
-				if get(time_sim) > cur_time2 then set(ground_available, 2) checksound = 0 end 
-				end
-				
-				if get(ground_available) == 5 then
-				if checksound == 0 then gnd_av_img = get(yellow) cur_time2 = get(time_sim) + 8 * coeff_time set(ground_sound,5) checksound = 1 end
-				if get(time_sim) > cur_time2 then	set(ground_available, 3) checksound = 0 end
-				end
-	
-	    --Zapusk APA
-                if get(ground_available) == 2 then 
-					if check == 0 then
-						last_time = get(time_sim)
-						cur_time = last_time + 8 * coeff_time
-						check= 1
-					end
-					if get(time_sim) > cur_time then
-						set(ground_available, 1)
-						check=0
-						gnd_av_img = get(green)
-					end
-				end
-	    -- Stop APA			
+
+  local press = get(cabin_press) * 0.07030696  -- pressure in kg/cm2
+  door_can_open = press < 0.2
+  local ground_speed = get(GS)
+  acf_is_moving = ground_speed > 0.2
+
+  if acf_is_moving then
+    set(grounding, 1)
+    set(gear_blocks, 1)
+    set(ground_available, 0)
+    gnd_av_img = get(empty)
+  end
+
+  -- cabin hatch status lights
+  local cabin_hatch_status = get(cabin_hatch_stat)
+  if cabin_hatch_status < 0.05 then cabin_hatch_img = get(green)
+  elseif cabin_hatch_status > 0.95 then cabin_hatch_img = get(empty)
+  else cabin_hatch_img = get(yellow) end
+
+  -- emerg hatch 1 status lights
+  local emerg_hatch1_status = get(emerg_hatch1_stat)
+  if emerg_hatch1_status < 0.05 then emerg_hatch1_img = get(green)
+  elseif emerg_hatch1_status > 0.95 then emerg_hatch1_img = get(empty)
+  else emerg_hatch1_img = get(yellow) end
+
+  -- emerg hatch 2 status lights
+  local emerg_hatch2_status = get(emerg_hatch2_stat)
+  if emerg_hatch2_status < 0.05 then emerg_hatch2_img = get(green)
+  elseif emerg_hatch2_status > 0.95 then emerg_hatch2_img = get(empty)
+  else emerg_hatch2_img = get(yellow) end
+
+  -- cargo hatch 1 status lights
+  local cargo_hatch1_status = get(cargo_hatch1_stat)
+  if cargo_hatch1_status < 0.05 then cargo_hatch1_img = get(green)
+  elseif cargo_hatch1_status > 0.95 then cargo_hatch1_img = get(empty)
+  else cargo_hatch1_img = get(yellow) end
+
+  -- cargo hatch 2 status lights
+  local cargo_hatch2_status = get(cargo_hatch2_stat)
+  if cargo_hatch2_status < 0.05 then cargo_hatch2_img = get(green)
+  elseif cargo_hatch2_status > 0.95 then cargo_hatch2_img = get(empty)
+  else cargo_hatch2_img = get(yellow) end
+
+  -- pax door status lights
+  local pax_door_status = get(pax_door_stat)
+  if pax_door_status < 0.05 then pax_door_img = get(green)
+  elseif pax_door_status > 0.95 then pax_door_img = get(empty)
+  else pax_door_img = get(yellow) end
+
+  -- pax ladder status lights
+  local pax_ladder_status = get(pax_ladder_stat)
+  if pax_ladder_status < 0.05 then pax_ladder_img = get(green)
+  elseif pax_ladder_status > 0.95 then pax_ladder_img = get(empty)
+  else pax_ladder_img = get(yellow) end
+
+
+
+          if get(ground_available) == 4 then
+          if checksound == 0 then checksound = 1 gnd_av_img = get(yellow) cur_time2 = get(time_sim) + 8 * coeff_time set(ground_sound,4) end
+        if get(time_sim) > cur_time2 then set(ground_available, 2) checksound = 0 end
+        end
+
+        if get(ground_available) == 5 then
+        if checksound == 0 then gnd_av_img = get(yellow) cur_time2 = get(time_sim) + 8 * coeff_time set(ground_sound,5) checksound = 1 end
+        if get(time_sim) > cur_time2 then	set(ground_available, 3) checksound = 0 end
+        end
+
+      --Zapusk APA
+                if get(ground_available) == 2 then
+          if check == 0 then
+            last_time = get(time_sim)
+            cur_time = last_time + 8 * coeff_time
+            check= 1
+          end
+          if get(time_sim) > cur_time then
+            set(ground_available, 1)
+            check=0
+            gnd_av_img = get(green)
+          end
+        end
+      -- Stop APA
                 if get(ground_available) == 3 then
                 if check == 0 then last_time = get(time_sim) cur_time = last_time + 11 * coeff_time check= 1 end
-				if get(time_sim) > cur_time then set(ground_available, 0) check=0 gnd_av_img = get(empty) end
+        if get(time_sim) > cur_time then set(ground_available, 0) check=0 gnd_av_img = get(empty) end
                 end
 end
 
 components = {
-	
-	-- background image
-	rectangle_ctr {
-		position = {0, 0, size[1], size[2]},
-		color = {0.3,0.3,0.3,0.5},
-	},
-  textureLit {
-    image = bg[0],
+
+  -- background image
+  rectangle_ctr {
     position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 0; end,
+    color = {0.3,0.3,0.3,0.5},
   },
   textureLit {
-    image = bg[1],
+    image = function()
+      return bg[get(language)]
+    end,
     position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 1; end,
   },
-	
-	-- cabin hatch
-	textureLit {
+
+  -- cabin hatch
+  textureLit {
 --		position = { 240, 428, 30, 30 },
-		position = { 240, 422, 30, 30 },
-		image = function()
-			return cabin_hatch_img
-		end,
-	},
-	
-	-- emerg hatch 1
-	textureLit {
-		position = { 205, 338, 30, 30 },
-		image = function()
-			return emerg_hatch1_img
-		end,
-	},	
-	
-	-- emerg hatch 2
-	textureLit {
-		position = { 275, 220, 30, 30 },
-		image = function()
-			return emerg_hatch2_img
-		end,
-	},	
-	
-	-- cargo hatch 1
-	textureLit {
-		position = { 277, 350, 30, 30 },
-		image = function()
-			return cargo_hatch1_img
-		end,
-	},	
-	
-	-- cargo hatch 2
-	textureLit {
-		position = { 273, 110, 30, 30 },
-		image = function()
-			return cargo_hatch2_img
-		end,
-	},		
-	
-	-- pax door
-	textureLit {
-		position = { 205, 170, 30, 30 },
-		image = function()
-			return pax_door_img
-		end,
-	},		
-	
-	-- pax ladder
-	textureLit {
-		position = { 205, 140, 30, 30 },
-		image = function()
-			return pax_ladder_img
-		end,
-	},	
-	
-	textureLit {
-		position = { 315, 330, 30, 30 },
-		image = function()
-			return gnd_av_img
-		end,
-	},		
-	
-	
-	
-	------------------
-	-- switchers --
-	------------------
-	
+    position = { 240, 422, 30, 30 },
+    image = function()
+      return cabin_hatch_img
+    end,
+  },
+
+  -- emerg hatch 1
+  textureLit {
+    position = { 205, 338, 30, 30 },
+    image = function()
+      return emerg_hatch1_img
+    end,
+  },
+
+  -- emerg hatch 2
+  textureLit {
+    position = { 275, 220, 30, 30 },
+    image = function()
+      return emerg_hatch2_img
+    end,
+  },
+
+  -- cargo hatch 1
+  textureLit {
+    position = { 277, 350, 30, 30 },
+    image = function()
+      return cargo_hatch1_img
+    end,
+  },
+
+  -- cargo hatch 2
+  textureLit {
+    position = { 273, 110, 30, 30 },
+    image = function()
+      return cargo_hatch2_img
+    end,
+  },
+
+  -- pax door
+  textureLit {
+    position = { 205, 170, 30, 30 },
+    image = function()
+      return pax_door_img
+    end,
+  },
+
+  -- pax ladder
+  textureLit {
+    position = { 205, 140, 30, 30 },
+    image = function()
+      return pax_ladder_img
+    end,
+  },
+
+  textureLit {
+    position = { 315, 330, 30, 30 },
+    image = function()
+      return gnd_av_img
+    end,
+  },
+
+
+
+  ------------------
+  -- switchers --
+  ------------------
+
     -- left engine cap
     switchLit {
         position = { 145, 370, 30, 30 },
@@ -309,11 +303,11 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(left_eng_main) ~= 0 then
-				set(left_eng_main, 0)
-			else
-				set(left_eng_main, 1)
-			end
+      if get(left_eng_main) ~= 0 then
+        set(left_eng_main, 0)
+      else
+        set(left_eng_main, 1)
+      end
             return true;
         end
     },
@@ -327,11 +321,11 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(left_eng_ext) ~= 0 then
-				set(left_eng_ext, 0)
-			else
-				set(left_eng_ext, 1)
-			end
+      if get(left_eng_ext) ~= 0 then
+        set(left_eng_ext, 0)
+      else
+        set(left_eng_ext, 1)
+      end
             return true;
         end
     },
@@ -345,11 +339,11 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(right_eng_main) ~= 0 then
-				set(right_eng_main, 0)
-			else
-				set(right_eng_main, 1)
-			end
+      if get(right_eng_main) ~= 0 then
+        set(right_eng_main, 0)
+      else
+        set(right_eng_main, 1)
+      end
             return true;
         end
     },
@@ -363,15 +357,15 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(right_eng_ext) ~= 0 then
-				set(right_eng_ext, 0)
-			else
-				set(right_eng_ext, 1)
-			end
+      if get(right_eng_ext) ~= 0 then
+        set(right_eng_ext, 0)
+      else
+        set(right_eng_ext, 1)
+      end
             return true;
         end
     },
-	
+
     -- RU-19 ext cap
     switchLit {
         position = { 328, 205, 30, 30 },
@@ -381,16 +375,16 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(ru19_eng_ext) ~= 0 then
-				set(ru19_eng_ext, 0)
-			else
-				set(ru19_eng_ext, 1)
-			end
+      if get(ru19_eng_ext) ~= 0 then
+        set(ru19_eng_ext, 0)
+      else
+        set(ru19_eng_ext, 1)
+      end
             return true;
         end
-    },	
-	
-	-- anti-ice left
+    },
+
+  -- anti-ice left
     switchLit {
         position = { 220, 475, 30, 30 },
         state = function()
@@ -399,16 +393,16 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(antiice_left) ~= 0 then
-				set(antiice_left, 0)
-			else
-				set(antiice_left, 1)
-			end
+      if get(antiice_left) ~= 0 then
+        set(antiice_left, 0)
+      else
+        set(antiice_left, 1)
+      end
             return true;
         end
-    },	
-	
-	-- anti-ice right
+    },
+
+  -- anti-ice right
     switchLit {
         position = { 260, 475, 30, 30 },
         state = function()
@@ -417,16 +411,16 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(antiice_right) ~= 0 then
-				set(antiice_right, 0)
-			else
-				set(antiice_right, 1)
-			end
+      if get(antiice_right) ~= 0 then
+        set(antiice_right, 0)
+      else
+        set(antiice_right, 1)
+      end
             return true;
         end
-    },	
-		
-	-- Rockets cap
+    },
+
+  -- Rockets cap
     switchLit {
         position = { 273, 441, 30, 30 },
         state = function()
@@ -435,16 +429,16 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(rockets) ~= 0 then
-				set(rockets, 0)
-			else
-				set(rockets, 1)
-			end
+      if get(rockets) ~= 0 then
+        set(rockets, 0)
+      else
+        set(rockets, 1)
+      end
             return true;
         end
-    },		
+    },
 
-	-- pitot 1 cap
+  -- pitot 1 cap
     switchLit {
         position = { 210, 441, 30, 30 },
         state = function()
@@ -453,16 +447,16 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(pitot_1) ~= 0 then
-				set(pitot_1, 0)
-			else
-				set(pitot_1, 1)
-			end
+      if get(pitot_1) ~= 0 then
+        set(pitot_1, 0)
+      else
+        set(pitot_1, 1)
+      end
             return true;
         end
-    },	
+    },
 
-	-- pitot 2 cap
+  -- pitot 2 cap
     switchLit {
         position = { 205, 405, 30, 30 },
         state = function()
@@ -471,16 +465,16 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(pitot_2) ~= 0 then
-				set(pitot_2, 0)
-			else
-				set(pitot_2, 1)
-			end
+      if get(pitot_2) ~= 0 then
+        set(pitot_2, 0)
+      else
+        set(pitot_2, 1)
+      end
             return true;
         end
     },
 
-	-- pitot 3 cap
+  -- pitot 3 cap
     switchLit {
         position = { 277, 405, 30, 30 },
         state = function()
@@ -489,16 +483,16 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(pitot_3) ~= 0 then
-				set(pitot_3, 0)
-			else
-				set(pitot_3, 1)
-			end
+      if get(pitot_3) ~= 0 then
+        set(pitot_3, 0)
+      else
+        set(pitot_3, 1)
+      end
             return true;
         end
-    },	
-	
-	-- grounding wire
+    },
+
+  -- grounding wire
     switchLit {
         position = { 260, 40, 30, 30 },
         state = function()
@@ -507,15 +501,15 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(grounding) ~= 0 then
-				set(grounding, 0)
-			else
-				set(grounding, 1)
-			end
+      if get(grounding) ~= 0 then
+        set(grounding, 0)
+      else
+        set(grounding, 1)
+      end
             return true;
         end
-    },	
-		
+    },
+
     -- gear blocks
     switchLit {
         position = { 145, 308, 30, 30 },
@@ -525,15 +519,15 @@ components = {
         btnOn = get(green),
         --btnOff = get(tmb_dn),
         onMouseClick = function()
-			if get(gear_blocks) ~= 0 and not acf_is_moving then
-				set(gear_blocks, 0)
-			else
-				set(gear_blocks, 1)
-			end
+      if get(gear_blocks) ~= 0 and not acf_is_moving then
+        set(gear_blocks, 0)
+      else
+        set(gear_blocks, 1)
+      end
             return true;
         end
-    },	
-	
+    },
+
     -- ground power
     switchLit {
         position = { 315, 330, 30, 30 },
@@ -541,22 +535,22 @@ components = {
             return get(ground_available) ~= 0
         end,
         --btnOn = get(green),
-		onMouseClick = function()
-				if get(ground_available) == 0 then
-			    set(ground_available, 4)
-				end
-				
-				if get(ground_available) == 1 then
-				set(ground_available, 5)
-				end
+    onMouseClick = function()
+        if get(ground_available) == 0 then
+          set(ground_available, 4)
+        end
+
+        if get(ground_available) == 1 then
+        set(ground_available, 5)
+        end
             return true;
         end
-    },	
+    },
 
 
 
 
---	
+--
     -- cabin hatch
     switchLit {
         position = { 240, 430, 30, 30 },
@@ -566,15 +560,15 @@ components = {
         --btnOn = get(green),
         --btnOff = get(green),
         onMouseClick = function()
-			if get(cabin_hatch) ~= 0 then
-				set(cabin_hatch, 0)
-			else
-				if door_can_open then set(cabin_hatch, 1) end
-			end
+      if get(cabin_hatch) ~= 0 then
+        set(cabin_hatch, 0)
+      else
+        if door_can_open then set(cabin_hatch, 1) end
+      end
             return true;
         end
-    },	
-	
+    },
+
     -- emerg hatch 1
     switchLit {
         position = { 205, 338, 30, 30 },
@@ -584,15 +578,15 @@ components = {
         --btnOn = get(green),
         --btnOff = get(green),
         onMouseClick = function()
-			if get(emerg_hatch1) ~= 0 then
-				set(emerg_hatch1, 0)
-			else
-				if door_can_open then set(emerg_hatch1, 1) end
-			end
+      if get(emerg_hatch1) ~= 0 then
+        set(emerg_hatch1, 0)
+      else
+        if door_can_open then set(emerg_hatch1, 1) end
+      end
             return true;
         end
-    },	
-	
+    },
+
     -- emerg hatch 2
     switchLit {
         position = { 275, 220, 30, 30 },
@@ -602,15 +596,15 @@ components = {
         --btnOn = get(green),
         --btnOff = get(green),
         onMouseClick = function()
-			if get(emerg_hatch2) ~= 0 then
-				set(emerg_hatch2, 0)
-			else
-				if door_can_open then set(emerg_hatch2, 1) end
-			end
+      if get(emerg_hatch2) ~= 0 then
+        set(emerg_hatch2, 0)
+      else
+        if door_can_open then set(emerg_hatch2, 1) end
+      end
             return true;
         end
-    },		
-	
+    },
+
     -- cargo hatch 1
     switchLit {
         position = { 277, 350, 30, 30 },
@@ -620,15 +614,15 @@ components = {
         --btnOn = get(green),
         --btnOff = get(green),
         onMouseClick = function()
-			if get(cargo_hatch1) ~= 0 then
-				set(cargo_hatch1, 0)
-			else
-				if door_can_open then set(cargo_hatch1, 1) end
-			end
+      if get(cargo_hatch1) ~= 0 then
+        set(cargo_hatch1, 0)
+      else
+        if door_can_open then set(cargo_hatch1, 1) end
+      end
             return true;
         end
-    },		
-	
+    },
+
     -- cargo hatch 2
     switchLit {
         position = { 273, 110, 30, 30 },
@@ -638,15 +632,15 @@ components = {
         --btnOn = get(green),
         --btnOff = get(green),
         onMouseClick = function()
-			if get(cargo_hatch2) ~= 0 then
-				set(cargo_hatch2, 0)
-			else
-				if door_can_open then set(cargo_hatch2, 1) end
-			end
+      if get(cargo_hatch2) ~= 0 then
+        set(cargo_hatch2, 0)
+      else
+        if door_can_open then set(cargo_hatch2, 1) end
+      end
             return true;
         end
-    },		
-	
+    },
+
     -- pax door
     switchLit {
         position = { 205, 170, 30, 30 },
@@ -656,15 +650,15 @@ components = {
         --btnOn = get(green),
         --btnOff = get(green),
         onMouseClick = function()
-			if get(pax_door) ~= 0 then
-				if get(pax_ladder) == 0 then set(pax_door, 0) end
-			else
-				if door_can_open then set(pax_door, 1) end
-			end
+      if get(pax_door) ~= 0 then
+        if get(pax_ladder) == 0 then set(pax_door, 0) end
+      else
+        if door_can_open then set(pax_door, 1) end
+      end
             return true;
         end
-    },		
-	
+    },
+
     -- pax ladder
     switchLit {
         position = { 205, 140, 30, 30 },
@@ -674,97 +668,97 @@ components = {
         --btnOn = get(green),
         --btnOff = get(green),
         onMouseClick = function()
-			if get(pax_ladder) ~= 0 then
-				set(pax_ladder, 0)
-			else
-				if get(pax_door) == 1 then set(pax_ladder, 1) end
-			end
+      if get(pax_ladder) ~= 0 then
+        set(pax_ladder, 0)
+      else
+        if get(pax_door) == 1 then set(pax_ladder, 1) end
+      end
             return true;
         end
-    },		
-	
+    },
 
-	-- quick prepare button
+
+  -- quick prepare button
     clickable {
         position = {350, 0, 100, 40},  -- search and set right
-        
-       cursor = { 
-            x = 16, 
-            y = 32, 
-            width = 16, 
-            height = 16, 
-            shape = loadImage("clickable.png")
-        },  
-        
-       	onMouseClick = function() 
-			set(left_eng_main, 1)
-			set(left_eng_ext, 1)
-			set(right_eng_main, 1)
-			set(right_eng_ext, 1)
-			set(ru19_eng_ext, 1)
-			set(antiice_left, 1)
-			set(antiice_right, 1)
-			set(rockets, 1)
-			set(pitot_1, 1)
-			set(pitot_2, 1)
-			set(pitot_3, 1)
-			set(grounding, 1)
-			set(gear_blocks, 1)
-		        set(cabin_hatch, 0)
-			set(emerg_hatch1, 0)
-			set(emerg_hatch2, 0)
-			set(cargo_hatch1, 0)
-			set(cargo_hatch2, 0)
-			set(pax_door, 0)
-			set(pax_ladder, 0)
-		end
-    }, 
 
-	-- quick pack button
+       cursor = {
+            x = 16,
+            y = 32,
+            width = 16,
+            height = 16,
+            shape = loadImage("clickable.png")
+        },
+
+         onMouseClick = function()
+      set(left_eng_main, 1)
+      set(left_eng_ext, 1)
+      set(right_eng_main, 1)
+      set(right_eng_ext, 1)
+      set(ru19_eng_ext, 1)
+      set(antiice_left, 1)
+      set(antiice_right, 1)
+      set(rockets, 1)
+      set(pitot_1, 1)
+      set(pitot_2, 1)
+      set(pitot_3, 1)
+      set(grounding, 1)
+      set(gear_blocks, 1)
+            set(cabin_hatch, 0)
+      set(emerg_hatch1, 0)
+      set(emerg_hatch2, 0)
+      set(cargo_hatch1, 0)
+      set(cargo_hatch2, 0)
+      set(pax_door, 0)
+      set(pax_ladder, 0)
+    end
+    },
+
+  -- quick pack button
     clickable {
         position = {60, 0, 100, 40},  -- search and set right
-        
-       cursor = { 
-            x = 16, 
-            y = 32, 
-            width = 16, 
-            height = 16, 
+
+       cursor = {
+            x = 16,
+            y = 32,
+            width = 16,
+            height = 16,
             shape = loadImage("clickable.png")
-        },  
-        
-       	onMouseClick = function() 
-			set(left_eng_main, 0)
-			set(left_eng_ext, 0)
-			set(right_eng_main, 0)
-			set(right_eng_ext, 0)
-			set(ru19_eng_ext, 0)
-			set(antiice_left, 0)
-			set(antiice_right, 0)
-			set(rockets, 0)
-			set(pitot_1, 0)
-			set(pitot_2, 0)
-			set(pitot_3, 0)
-			set(grounding, 0)
-			set(gear_blocks, 0)
-			
-		end
-    }, 
-	
-	
-	
+        },
+
+         onMouseClick = function()
+      set(left_eng_main, 0)
+      set(left_eng_ext, 0)
+      set(right_eng_main, 0)
+      set(right_eng_ext, 0)
+      set(ru19_eng_ext, 0)
+      set(antiice_left, 0)
+      set(antiice_right, 0)
+      set(rockets, 0)
+      set(pitot_1, 0)
+      set(pitot_2, 0)
+      set(pitot_3, 0)
+      set(grounding, 0)
+      set(gear_blocks, 0)
+
+    end
+    },
+
+
+
 
    -- clickable area for closing main menu
       clickable {
          position = { size[1]-20, size[2]-20, 20, 20 },
-        
-         cursor = { 
-              x = 16, 
-              y = 32, 
-              width = 16, 
-              height = 16, 
+
+         cursor = {
+              x = 16,
+              y = 32,
+              width = 16,
+              height = 16,
               shape = loadImage("clickable.png")
-          },  
-        
+          },
+
           onMouseClick = function()
           set(service_subpanel, 0 )
           return true

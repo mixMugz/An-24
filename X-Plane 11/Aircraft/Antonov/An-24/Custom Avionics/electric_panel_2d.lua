@@ -104,7 +104,6 @@ defineProperty("main_tmb_ctr_close", loadImage("electro_panel_2d_e.dds", 359, 87
 defineProperty("main_tmb_dn_close", loadImage("electro_panel_2d_e.dds", 307, 877, 50, 103))
 
 local language = globalPropertyi("an-24/set/language")
-local lang = 0
 local background = {
   [0] = loadImage("electro_panel_2d_e.dds", 0, 0, 512, 870),
         loadImage("electro_panel_2d_r.dds", 0, 0, 512, 870),
@@ -189,7 +188,6 @@ local emerg36_ON_led = false
 
 -- overall calculations per frame
 function update()
-  lang = get(language)
   GO_left_amp = interpolate(GO_amps_table, get(go1_amp))  -- calculate angle for GO left ampermeter needle
   GO_right_amp = interpolate(GO_amps_table, get(go2_amp))  -- calculate angle for GO right ampermeter needle
   STG_left_amp = get(stg1_amp) * 220 / 1000 - 100  -- calculate angle for STG left ampermeter needle
@@ -264,16 +262,11 @@ end
 components = {
   -- background
   texture {
-    image = background[0],
+    image = function()
+      return background[get(language)]
+    end,
     position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 0; end,
   },
-  texture {
-    image = background[1],
-    position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 1; end,
-  },
-
   -----------------------
   -- panel lights --
   -----------------------

@@ -33,7 +33,6 @@ defineProperty("size_4", loadImage("map_cover_e.dds", 379, 185, 32, 13))
 --defineProperty("closeImage", loadImage("close.dds"))  -- altimeter handler image
 
 local language = globalPropertyi("an-24/set/language")
-local lang = 0
 local cover = {
   [0] = loadImage("map_cover_e.dds", 0, 0, 350, 365),
         loadImage("map_cover_r.dds", 0, 0, 350, 365),
@@ -76,7 +75,6 @@ local X = 0
 local Y = 0
 
 function update()
-  lang = get(language)
     -- calculate window sizes
     winWidth = (512) / w[curent_map] / scale
     winHeight = (512) / h[curent_map] / scale
@@ -139,14 +137,10 @@ components = {
 
 -- cover texture
 textureLit {
-  image = cover[0],
+  image = function()
+    return cover[get(language)]
+  end,
   position = {-5, -5, 540, 540},
-  visible = function() return lang == 0; end,
-},
-textureLit {
-  image = cover[1],
-  position = {-5, -5, 540, 540},
-  visible = function() return lang == 1; end,
 },
 -- number of map texture
       textureLit {

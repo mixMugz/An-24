@@ -29,7 +29,6 @@ local bg = {
 local language = globalPropertyi("an-24/set/language")
 local extview = globalPropertyi("sim/graphics/view/view_is_external")
 local crew = globalPropertyi("an-24/anim/crew")
-local lang = 0
 
 -- interpolate values using table as reference
 local function interpolate(tbl, value)
@@ -161,7 +160,6 @@ function set_flags()
 end
 
 function update()
-  lang = get(language)
   -- recalculate masses
   prepared_plane_weight = empty_plane_weight + rutkit_weight
   used_fuel = interpolate(distance_tbl, flight_distance + reserv_distance)
@@ -261,14 +259,10 @@ components = {
 
   -- background
   textureLit {
-    image = bg[0],
+    image = function()
+      return bg[get(language)]
+    end,
     position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 0; end,
-  },
-  textureLit {
-    image = bg[1],
-    position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 1; end,
   },
 
   -----------------

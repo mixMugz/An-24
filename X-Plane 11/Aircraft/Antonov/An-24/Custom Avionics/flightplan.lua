@@ -63,7 +63,6 @@ defineProperty("agl", globalPropertyf("sim/flightmodel/position/y_agl"))
 --defineProperty("magpsi", globalPropertyf("sim/flightmodel/position/magpsi"))
 
 local language = globalPropertyi("an-24/set/language")
-local lang = 0
 local bg = {
   [0] = loadImage("flightplan_e.dds", 5, 3, size[1], size[2]),
         loadImage("flightplan_r.dds", 5, 3, size[1], size[2]),
@@ -597,7 +596,6 @@ end
 --###############################################################################################
 
 function update()
-  lang = get(language)
   if notLoaded then
     notLoaded = false
     readplan()
@@ -1204,14 +1202,10 @@ end
 
 components = {
   textureLit {
-    image = bg[0],
+    image = function()
+      return bg[get(language)]
+    end,
     position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 0; end,
-  },
-  textureLit {
-    image = bg[1],
-    position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 1; end,
   },
 --stroke
   clickable {

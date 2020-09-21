@@ -32,7 +32,6 @@ local real_hl = globalPropertyi("an-24/set/real_headlight")
 local reflections = globalPropertyi("an-24/set/reflections")
 local language = globalPropertyi("an-24/set/language")
 
-local lang = 0
 local last_vol = 1000
 local notLoaded = true
 
@@ -159,7 +158,6 @@ function file_save()
 end
 
 function update()
-  lang = get(language)
 
   if notLoaded then
     file_read()
@@ -168,7 +166,7 @@ function update()
 
   if get(frame_time) == 0 then setMasterGain(0) else setMasterGain(get(sound_volume)) end
 
-  if lang == 0 then
+  if get(language) == 0 then
     set(kill_en, 0)
     set(kill_ru, 1)
   else
@@ -180,14 +178,10 @@ end
 components = {
   -- background EN
   textureLit {
-    image = bg[0],
+    image = function()
+      return bg[get(language)]
+    end,
     position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 0; end,
-  },
-  textureLit {
-    image = bg[1],
-    position = {0, 0, size[1], size[2]},
-    visible = function() return lang == 1; end,
   },
   lever{
     position = { 515, 60, 40, 290},
