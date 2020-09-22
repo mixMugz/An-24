@@ -1,33 +1,19 @@
 size = {1024, 557}
 
-defineProperty("bg", loadImage("NAS1.dds", 0, 0, 1024, 557))
-
-defineProperty("northneedle", loadImage("NAS1.dds", 32, 863, 17, 141)) 
-defineProperty("eastneedle", loadImage("NAS1.dds", 48, 863, 17, 141)) 
 defineProperty("curse_needle", loadImage("needles.dds", 218, 70, 87, 179))
-defineProperty("needle_1", loadImage("NAS1.dds", 463, 783, 23, 237))
-defineProperty("needle_2", loadImage("NAS1.dds", 403, 839, 28, 177))
-
-defineProperty("northoverlay", loadImage("NAS1.dds", 0, 562, 35, 35))
-defineProperty("eastoverlay", loadImage("NAS1.dds", 0, 598, 35, 35))
-defineProperty("overlay", loadImage("NAS1.dds", 0, 634, 35, 35))
-defineProperty("windoverlay", loadImage("NAS1.dds", 142, 608, 90, 116))
-defineProperty("windoverlay2", loadImage("NAS1.dds", 0, 762, 42, 42))
-
-defineProperty("delta_needle", loadImage("NAS1.dds", 205, 830, 25, 146))
+defineProperty("needle_1", loadImage("nas1_e.dds", 463, 783, 23, 237))
+defineProperty("needle_2", loadImage("nas1_e.dds", 403, 839, 28, 177))
+defineProperty("overlay", loadImage("nas1_e.dds", 0, 634, 35, 35))
+defineProperty("delta_needle", loadImage("nas1_e.dds", 205, 830, 25, 146))
 defineProperty("map_needle", loadImage("kppm.dds", -0.5, 0.5, 196, 196))
-
-defineProperty("speed_needle", loadImage("NAS1.dds", 252, 830, 11, 56))
-
-defineProperty("yellow", loadImage("NAS1.dds", 0, 691, 263, 17))
-defineProperty("large_scale", loadImage("NAS1.dds", 896, 558, 128, 128))
-defineProperty("checker", loadImage("NAS1.dds", 791, 597, 40, 16))
-
+defineProperty("speed_needle", loadImage("nas1_e.dds", 252, 830, 11, 56))
+defineProperty("yellow", loadImage("nas1_e.dds", 0, 691, 263, 17))
+defineProperty("large_scale", loadImage("nas1_e.dds", 896, 558, 128, 128))
+defineProperty("checker", loadImage("nas1_e.dds", 791, 597, 40, 16))
 defineProperty("rotary", loadImage("rot_switch.dds"))
 defineProperty("digitsImage", loadImage("white_digit_strip.png", 0, 0, 16, 196))
-defineProperty("green_led", loadImage("leds.dds", 20, 0, 20, 20)) 
-defineProperty("red_led", loadImage("leds.dds", 40, 0, 20, 20)) 
-
+defineProperty("green_led", loadImage("leds.dds", 20, 0, 20, 20))
+defineProperty("red_led", loadImage("leds.dds", 40, 0, 20, 20))
 defineProperty("tmb_up", loadImage("tumbler_up.dds"))
 defineProperty("tmb_dn", loadImage("tumbler_down.dds"))
 
@@ -38,18 +24,12 @@ defineProperty("GS", globalPropertyf("sim/flightmodel/position/groundspeed"))
 defineProperty("pitch", globalPropertyf("sim/flightmodel/position/theta"))
 defineProperty("roll", globalPropertyf("sim/flightmodel/position/phi"))
 defineProperty("waves", globalPropertyf("sim/weather/wave_amplitude"))
-
-
 defineProperty("rls_power_cc", globalPropertyf("an-24/rls/rls_power_cc"))
-
-
 defineProperty("GPK_course", globalPropertyf("an-24/gauges/GPK_curse"))
 defineProperty("elevation", globalPropertyf("sim/flightmodel/position/elevation"))
 defineProperty("height", globalPropertyf("sim/flightmodel/position/y_agl"))
-
-defineProperty("bus_DC_27_volt", globalPropertyf("an-24/power/bus_DC_27_volt_emerg")) 
-defineProperty("bus_AC_115_volt", globalPropertyf("an-24/power/bus_AC_115_volt")) 
-
+defineProperty("bus_DC_27_volt", globalPropertyf("an-24/power/bus_DC_27_volt_emerg"))
+defineProperty("bus_AC_115_volt", globalPropertyf("an-24/power/bus_AC_115_volt"))
 defineProperty("run_time", globalPropertyf("sim/time/total_running_time_sec"))
 defineProperty("nas1_subpanel", globalPropertyi("an-24/panels/nas1_subpanel"))
 defineProperty("nas1_cc", globalPropertyf("an-24/nas1/nas1_cc"))
@@ -63,7 +43,36 @@ defineProperty("water", globalPropertyf("an-24/nas1/water"))
 defineProperty("DISS", globalPropertyf("an-24/nas1/DISS"))
 defineProperty("winddelta", globalPropertyf("an-24/nas1/windangle"))
 defineProperty("windspeed", globalPropertyf("an-24/nas1/windspeed"))
+local language = globalPropertyi("an-24/set/language")
 
+local northneedle = {
+  [0] = loadImage("nas1_e.dds", 32, 863, 17, 141),
+        loadImage("nas1_r.dds", 32, 863, 17, 141),
+}
+local eastneedle = {
+  [0] = loadImage("nas1_e.dds", 48, 863, 17, 141),
+        loadImage("nas1_r.dds", 48, 863, 17, 141),
+}
+local northoverlay = {
+  [0] = loadImage("nas1_e.dds", 0, 562, 35, 35),
+        loadImage("nas1_r.dds", 0, 562, 35, 35),
+}
+local eastoverlay = {
+  [0] = loadImage("nas1_e.dds", 0, 598, 35, 35),
+        loadImage("nas1_r.dds", 0, 598, 35, 35),
+}
+local windoverlay = {
+  [0] = loadImage("nas1_e.dds", 142, 608, 90, 116),
+        loadImage("nas1_r.dds", 142, 608, 90, 116),
+}
+local windoverlay2 = {
+  [0] = loadImage("nas1_e.dds", 0, 762, 42, 42),
+        loadImage("nas1_r.dds", 0, 762, 42, 42),
+}
+local bg = {
+  [0] = loadImage("nas1_e.dds", 0, 0, 1024, 557),
+        loadImage("nas1_r.dds", 0, 0, 1024, 557),
+}
 
 --local get(dst1) = 0
 --local get(dst2) = 0
@@ -173,7 +182,7 @@ elseif get(mode1) == 3 then
 power2 = 3
 else power2 = 0 end
 end
-else 
+else
 power1 = 0
 power2 = 0
 end
@@ -225,8 +234,8 @@ speed = 0
 slip = 0
 end
 
-if slip < -180 then 
-slip = slip + 360 
+if slip < -180 then
+slip = slip + 360
 elseif slip > 180 then
 slip = slip - 360
 end
@@ -255,857 +264,871 @@ end
 end
 
 components = {
-	needle {
-		position = { 873, 440, 60, 60 },
-		image = get(large_scale),
-		angle = function() 
-		return get(dst1) / -13.8889
-		end,
-		visible = true
-	},
-	texture {
-		image = get(overlay),
-		position = {854, 144, 60, 36},
-		visible = true
-	},
-	texture {
-		image = get(checker),
-		position = {859, 149, 40, 16},
-		visible = function()
-		return memory == 1
-		end,
-	},
-	texture {
-		position = {0, 0, 1024, 557},
-		image = get(bg),
-		visible = true
-	},
+  needle {
+    position = { 873, 440, 60, 60 },
+    image = get(large_scale),
+    angle = function()
+    return get(dst1) / -13.8889
+    end,
+    visible = true
+  },
+  texture {
+    image = get(overlay),
+    position = {854, 144, 60, 36},
+    visible = true
+  },
+  texture {
+    image = get(checker),
+    position = {859, 149, 40, 16},
+    visible = function()
+    return memory == 1
+    end,
+  },
+  texture {
+    position = {0, 0, 1024, 557},
+    image = function()
+      return bg[get(language)]
+    end,
+    visible = true
+  },
 
-	switch {
-		position = { 114, 261, 20, 80},
-		state = function()
-		return get(counter) ~= 0
-		end,
-		btnOn = get(tmb_up),
-		btnOff = get(tmb_dn),
-		onMouseClick = function()
-		if get(counter) ~= 0 then
-		set(counter, 0)
-		else
-		set(counter, 1)
-		end
-		return true;
-		end
-	},
-	switch {
-		position = { 892, 261, 20, 80},
-		state = function()
-		return get(DISS) ~= 0
-		end,
-		btnOn = get(tmb_up),
-		btnOff = get(tmb_dn),
-		onMouseClick = function()
-		if get(DISS) ~= 0 then
-		set(DISS, 0)
-		else
-		set(DISS, 1)
-		end
-		return true;
-		end
-	},
-	--map angle
-	needle {
-		position = { 16, 357, 168, 168 },
-		image = get(curse_needle),
-		angle = function() 
-		return get(map_angle)
-		end,
-		visible = true
-	}, 
-	texture {
-		position = {82, 421, 35, 35},
-		image = get(overlay),
-		visible = true
-	},
-	clickable {
-		position = {178, 430, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+  switch {
+    position = { 114, 261, 20, 80},
+    state = function()
+    return get(counter) ~= 0
+    end,
+    btnOn = get(tmb_up),
+    btnOff = get(tmb_dn),
+    onMouseClick = function()
+    if get(counter) ~= 0 then
+    set(counter, 0)
+    else
+    set(counter, 1)
+    end
+    return true;
+    end
+  },
+  switch {
+    position = { 892, 261, 20, 80},
+    state = function()
+    return get(DISS) ~= 0
+    end,
+    btnOn = get(tmb_up),
+    btnOff = get(tmb_dn),
+    onMouseClick = function()
+    if get(DISS) ~= 0 then
+    set(DISS, 0)
+    else
+    set(DISS, 1)
+    end
+    return true;
+    end
+  },
+  --map angle
+  needle {
+    position = { 16, 357, 168, 168 },
+    image = get(curse_needle),
+    angle = function()
+    return get(map_angle)
+    end,
+    visible = true
+  },
+  texture {
+    position = {82, 421, 35, 35},
+    image = get(overlay),
+    visible = true
+  },
+  clickable {
+    position = {178, 430, 20, 20 },
 
-		onMouseClick = function()
-		set(map_angle, get(map_angle) - 2)
-		return true
-		end  
-	},
-	clickable {
-		position = {202, 430, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
 
-		onMouseClick = function()
-		set(map_angle, get(map_angle) + 2)
-		return true
-		end  
-	},
-	--big needle north
-	needle {
-		position = { 233, 293, 237, 237 },
-		image = get(needle_1),
-		angle = function() 
-		return get(dst1) / 0.0027778
-		end,
-		visible = true
-	},  
-	needle {
-		position = { 285, 343, 136, 136 },
-		image = get(needle_2),
-		angle = function() 
-		return get(dst1) / 0.27778
-		end,
-		visible = true
-	}, 
-	clickable {
-		position = {464, 400, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    onMouseClick = function()
+    set(map_angle, get(map_angle) - 2)
+    return true
+    end
+  },
+  clickable {
+    position = {202, 430, 20, 20 },
 
-		onMouseClick = function()
-		set(dst1, get(dst1) - 0.010)
-		return true
-		end  
-	},	
-	clickable {
-		position = {488, 400, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
 
-		onMouseClick = function()
-		set(dst1, get(dst1) + 0.010)
-		return true
-		end  
-	},
-	clickable {
-		position = {476, 422, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    onMouseClick = function()
+    set(map_angle, get(map_angle) + 2)
+    return true
+    end
+  },
+  --big needle north
+  needle {
+    position = { 233, 293, 237, 237 },
+    image = get(needle_1),
+    angle = function()
+    return get(dst1) / 0.0027778
+    end,
+    visible = true
+  },
+  needle {
+    position = { 285, 343, 136, 136 },
+    image = get(needle_2),
+    angle = function()
+    return get(dst1) / 0.27778
+    end,
+    visible = true
+  },
+  clickable {
+    position = {464, 400, 20, 20 },
 
-		onMouseClick = function()
-		set(dst1, get(dst1) + 1)
-		return true
-		end  
-	},
-	clickable {
-		position = {476, 378, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
 
-		onMouseClick = function()
-		set(dst1, get(dst1) - 1)
-		return true
-		end  
-	},
-	texture {
-		position = {334, 393, 35, 35},
-		image = get(northoverlay),
-		visible = true
-	},
-	--big needle east
+    onMouseClick = function()
+    set(dst1, get(dst1) - 0.010)
+    return true
+    end
+  },
+  clickable {
+    position = {488, 400, 20, 20 },
 
-	needle {
-		position = { 518, 293, 237, 237 },
-		image = get(needle_1),
-		angle = function() 
-		return get(dst2) / 0.0027778
-		end,
-		visible = true
-	},
-	needle {
-		position = { 570, 343, 136, 136 },
-		image = get(needle_2),
-		angle = function() 
-		return get(dst2) / 0.27778
-		end,
-		visible = true
-	},  
-	clickable {
-		position = {750, 400, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
 
-		onMouseClick = function()
-		set(dst2, get(dst2) - 0.010)
-		return true
-		end  
-	},	
-	clickable {
-		position = {774, 400, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    onMouseClick = function()
+    set(dst1, get(dst1) + 0.010)
+    return true
+    end
+  },
+  clickable {
+    position = {476, 422, 20, 20 },
 
-		onMouseClick = function()
-		set(dst2, get(dst2) + 0.010)
-		return true
-		end  
-	},
-	clickable {
-		position = {762, 422, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
 
-		onMouseClick = function()
-		set(dst2, get(dst2) + 1)
-		return true
-		end  
-	},
-	clickable {
-		position = {762, 378, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    onMouseClick = function()
+    set(dst1, get(dst1) + 1)
+    return true
+    end
+  },
+  clickable {
+    position = {476, 378, 20, 20 },
 
-		onMouseClick = function()
-		set(dst2, get(dst2) - 1)
-		return true
-		end  
-	},
-	texture {
-		position = {620, 393, 35, 35},
-		image = get(eastoverlay),
-		visible = true
-	},
-	--combined
-	needle {
-		position = { 819, 356, 168, 168 },
-		image = get(eastneedle),
-		angle = function() 
-		return get(dst2) / 2.7778
-		end,
-		visible = true
-	}, 
-	needle {
-		position = { 819, 356, 168, 168 },
-		image = get(northneedle),
-		angle = function() 
-		return get(dst1) / 2.7778
-		end,
-		visible = true
-	},  
-	texture {
-		position = {886, 421, 35, 35},
-		image = get(overlay),
-		visible = true
-	},
-	clickable {
-		position = {982, 443, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
 
-		onMouseClick = function()
-		set(dst1, get(dst1) - 10)
-		return true
-		end  
-	},
-	clickable {
-		position = {1006, 443, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    onMouseClick = function()
+    set(dst1, get(dst1) - 1)
+    return true
+    end
+  },
+  texture {
+    position = {334, 393, 35, 35},
+    image = function()
+      return northoverlay[get(language)]
+    end,
+    visible = true
+  },
+  --big needle east
 
-		onMouseClick = function()
-		set(dst1, get(dst1) + 10)
-		return true
-		end  
-	},
-	clickable {
-		position = {982, 419, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+  needle {
+    position = { 518, 293, 237, 237 },
+    image = get(needle_1),
+    angle = function()
+    return get(dst2) / 0.0027778
+    end,
+    visible = true
+  },
+  needle {
+    position = { 570, 343, 136, 136 },
+    image = get(needle_2),
+    angle = function()
+    return get(dst2) / 0.27778
+    end,
+    visible = true
+  },
+  clickable {
+    position = {750, 400, 20, 20 },
 
-		onMouseClick = function()
-		set(dst2, get(dst2) - 10)
-		return true
-		end  
-	},
-	clickable {
-		position = {1006, 419, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
 
-		onMouseClick = function()
-		set(dst2, get(dst2) + 10)
-		return true
-		end  
-	},
-	--TAS and slip
-	digitstape {
-		position = { 850, 53, 56, 17},
-		image = digitsImage;
-		digits = 4;
-		allowNonRound = false;
-		showLeadingZeros = true;
-		--	fractional = 0;
-		showSign = false;
-		value = function()
-		return speed * 3.6
-		end;
-		visible = true
-	},
-	needle {
-		position = { 796, 35, 168, 168 },
-		image = get(curse_needle),
-		angle = function() 
-		return slipneedle
-		end,
-		visible = true
-	}, 
-	texture {
-		position = {861, 101, 35, 35},
-		image = get(overlay),
-		visible = true
-	},
-	--wind
-	needle {
-		position = { 549, 34, 168, 168 },
-		image = get(map_needle),
-		angle = function() 
-		return -get(map_angle)
-		end,
-		visible = true
-	},
-	needle {
-		position = { 560, 46, 146, 146 },
-		image = get(delta_needle),
-		angle = function() 
-		return get(winddelta)
-		end,
-		visible = true
-	}, 	
-	texture {
-		position = {587, 74, 90, 116},
-		image = get(windoverlay),
-		visible = true
-	},
-	needle {
-		position = { 603, 91, 56, 56 },
-		image = get(speed_needle),
-		angle = function() 
-		return get(windspeed) * 360 / 175 - 50
-		end,
-		visible = true
-	}, 
-	texture {
-		position = {609, 98, 42, 42},
-		image = get(windoverlay2),
-		visible = true
-	},
-	--set windangle
-	clickable {
-		position = {710, 106, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    onMouseClick = function()
+    set(dst2, get(dst2) - 0.010)
+    return true
+    end
+  },
+  clickable {
+    position = {774, 400, 20, 20 },
 
-		onMouseClick = function()
-		set(winddelta, get(winddelta) - 2)
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
 
-		return true
-		end  
-	},
-	clickable {
-		position = {734, 106, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    onMouseClick = function()
+    set(dst2, get(dst2) + 0.010)
+    return true
+    end
+  },
+  clickable {
+    position = {762, 422, 20, 20 },
 
-		onMouseClick = function()
-		set(winddelta, get(winddelta) + 2)
-		return true
-		end  
-	},
-	--set get(windspeed)
-	clickable {
-		position = {610, 99, 20, 40 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
 
-		onMouseClick = function()
-				set(windspeed, get(windspeed) - 5)
-		return true
-		end  
-	},
-	clickable {
-		position = {634, 99, 20, 40 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    onMouseClick = function()
+    set(dst2, get(dst2) + 1)
+    return true
+    end
+  },
+  clickable {
+    position = {762, 378, 20, 20 },
 
-		onMouseClick = function()
-				set(windspeed, get(windspeed) + 5)
-		return true
-		end  
-	},
-	--Mode panel
-	needle {
-		position = {71, 5, 120, 120},
-		image = get(rotary),
-		angle = function()
-		return get(mode1) * 40 - 60
-		end
-	},	
-	clickable {
-		position = {18, 25, 110, 110 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
 
-		onMouseClick = function()
-		set(mode1, get(mode1) - 1)
+    onMouseClick = function()
+    set(dst2, get(dst2) - 1)
+    return true
+    end
+  },
+  texture {
+    position = {620, 393, 35, 35},
+    image = function()
+      return eastoverlay[get(language)]
+    end,
+    visible = true
+  },
+  --combined
+  needle {
+    position = { 819, 356, 168, 168 },
+    image = function()
+      return eastneedle[get(language)]
+    end,
+    angle = function()
+    return get(dst2) / 2.7778
+    end,
+    visible = true
+  },
+  needle {
+    position = { 819, 356, 168, 168 },
+    image = function()
+      return northneedle[get(language)]
+    end,
+    angle = function()
+    return get(dst1) / 2.7778
+    end,
+    visible = true
+  },
+  texture {
+    position = {886, 421, 35, 35},
+    image = get(overlay),
+    visible = true
+  },
+  clickable {
+    position = {982, 443, 20, 20 },
 
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
 
-		return true
-		end  
-	},	
-	clickable {
-		position = {132, 25, 110, 110 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    onMouseClick = function()
+    set(dst1, get(dst1) - 10)
+    return true
+    end
+  },
+  clickable {
+    position = {1006, 443, 20, 20 },
 
-		onMouseClick = function()
-		set(mode1, get(mode1) + 1)
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
 
-		return true
-		end  
-	},	
-	needle {
-		position = {305, 5, 120, 120},
-		image = get(rotary),
-		angle = function()
-		return get(mode2) * 40 - 60
-		end
-	},	
-	clickable {
-		position = {253, 25, 110, 110 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    onMouseClick = function()
+    set(dst1, get(dst1) + 10)
+    return true
+    end
+  },
+  clickable {
+    position = {982, 419, 20, 20 },
 
-		onMouseClick = function()
-		set(mode2, get(mode2) - 1)
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
 
-		return true
-		end  
-	},	
-	clickable {
-		position = {368, 25, 110, 110 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    onMouseClick = function()
+    set(dst2, get(dst2) - 10)
+    return true
+    end
+  },
+  clickable {
+    position = {1006, 419, 20, 20 },
 
-		onMouseClick = function()
-		set(mode2, get(mode2) + 1)
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
+
+    onMouseClick = function()
+    set(dst2, get(dst2) + 10)
+    return true
+    end
+  },
+  --TAS and slip
+  digitstape {
+    position = { 850, 53, 56, 17},
+    image = digitsImage;
+    digits = 4;
+    allowNonRound = false;
+    showLeadingZeros = true;
+    --	fractional = 0;
+    showSign = false;
+    value = function()
+    return speed * 3.6
+    end;
+    visible = true
+  },
+  needle {
+    position = { 796, 35, 168, 168 },
+    image = get(curse_needle),
+    angle = function()
+    return slipneedle
+    end,
+    visible = true
+  },
+  texture {
+    position = {861, 101, 35, 35},
+    image = get(overlay),
+    visible = true
+  },
+  --wind
+  needle {
+    position = { 549, 34, 168, 168 },
+    image = get(map_needle),
+    angle = function()
+    return -get(map_angle)
+    end,
+    visible = true
+  },
+  needle {
+    position = { 560, 46, 146, 146 },
+    image = get(delta_needle),
+    angle = function()
+    return get(winddelta)
+    end,
+    visible = true
+  },
+  texture {
+    position = {587, 74, 90, 116},
+    image = function()
+      return windoverlay[get(language)]
+    end,
+    visible = true
+  },
+  needle {
+    position = { 603, 91, 56, 56 },
+    image = get(speed_needle),
+    angle = function()
+    return get(windspeed) * 360 / 175 - 50
+    end,
+    visible = true
+  },
+  texture {
+    position = {609, 98, 42, 42},
+    image = function()
+      return windoverlay2[get(language)]
+    end,
+    visible = true
+  },
+  --set windangle
+  clickable {
+    position = {710, 106, 20, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
+
+    onMouseClick = function()
+    set(winddelta, get(winddelta) - 2)
+
+    return true
+    end
+  },
+  clickable {
+    position = {734, 106, 20, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
+
+    onMouseClick = function()
+    set(winddelta, get(winddelta) + 2)
+    return true
+    end
+  },
+  --set get(windspeed)
+  clickable {
+    position = {610, 99, 20, 40 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
+
+    onMouseClick = function()
+        set(windspeed, get(windspeed) - 5)
+    return true
+    end
+  },
+  clickable {
+    position = {634, 99, 20, 40 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
+
+    onMouseClick = function()
+        set(windspeed, get(windspeed) + 5)
+    return true
+    end
+  },
+  --Mode panel
+  needle {
+    position = {71, 5, 120, 120},
+    image = get(rotary),
+    angle = function()
+    return get(mode1) * 40 - 60
+    end
+  },
+  clickable {
+    position = {18, 25, 110, 110 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
+
+    onMouseClick = function()
+    set(mode1, get(mode1) - 1)
 
 
-		return true
-		end  
-	},	
-	textureLit {
-		image = get(green_led),
-		position = {45, 188, 32, 32},
-		visible = function()
-		return get(mode1) > 0 and power2 > 0
-		end,
-	},
-	textureLit {
-		image = get(red_led),
-		position = {444, 188, 32, 32},
-		visible = function()
-		return get(mode1) == 3 and power2 > 0
-		end,
-	},
-	--preset map angle
-	clickable {
-		position = {82, 421, 35, 35},
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
+    return true
+    end
+  },
+  clickable {
+    position = {132, 25, 110, 110 },
 
-		onMouseClick = function()
-		set(map_angle, presetangle)
-		return true
-		end  
-	},
-	digitstape {
-		position = { 82, 534, 42, 17},
-		image = digitsImage;
-		digits = 3;
-		allowNonRound = false;
-		showLeadingZeros = true;
-		--	fractional = 0;
-		showSign = false;
-		value = function()
-		return presetangle
-		end;
-		visible = function()
-		if presetangle == 0 then return false
-		else return true end
-		end
-	},
-	clickable {
-		position = {82, 534, 42, 17 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
 
-		onMouseClick = function()
-		presetangle = 0
-		return true
-		end  
-	},	
-	clickable {
-		position = {16, 500, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    onMouseClick = function()
+    set(mode1, get(mode1) + 1)
 
-		onMouseClick = function()
-		presetangle = presetangle - 1
-		return true
-		end  
-	},	
-	clickable {
-		position = {165, 500, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    return true
+    end
+  },
+  needle {
+    position = {305, 5, 120, 120},
+    image = get(rotary),
+    angle = function()
+    return get(mode2) * 40 - 60
+    end
+  },
+  clickable {
+    position = {253, 25, 110, 110 },
 
-		onMouseClick = function()
-		presetangle = presetangle + 1
-		return true
-		end  
-	},	
-	
-	--preset get(dst1)
-	clickable {
-		position = {334, 393, 35, 35},
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
 
-		onMouseClick = function()
-				set(dst1, preset1)
-		return true
-		end  
-	},
-	digitstape {
-		position = { 334, 534, 56, 17},
-		image = digitsImage;
-		digits = 4;
-		allowNonRound = false;
-		showLeadingZeros = true;
-		fractional = 1;
-		showSign = true;
-		value = function()
-		return preset1
-		end;
-		visible = function()
-		if preset1 == 0  then return false
-		else return true end
-		end
-	},
-	clickable {
-		position = {334, 534, 56, 17 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
+    onMouseClick = function()
+    set(mode2, get(mode2) - 1)
 
-		onMouseClick = function()
-		preset1 = 0
-		return true
-		end  
-	},	
-	clickable {
-		position = {240, 494, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    return true
+    end
+  },
+  clickable {
+    position = {368, 25, 110, 110 },
 
-		onMouseClick = function()
-		preset1 = preset1 - 0.1
-		return true
-		end  
-	},	
-	clickable {
-		position = {442, 494, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
 
-		onMouseClick = function()
-		preset1 = preset1 + 0.1
-		return true
-		end  
-	},	
-	--preset get(dst2)
-	clickable {
-		position = {620, 393, 35, 35},
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
+    onMouseClick = function()
+    set(mode2, get(mode2) + 1)
 
-		onMouseClick = function()
-						set(dst2, preset2)
 
-		return true
-		end  
-	},
-	digitstape {
-		position = { 620, 534, 56, 17},
-		image = digitsImage;
-		digits = 4;
-		allowNonRound = false;
-		showLeadingZeros = true;
-		fractional = 1;
-		showSign = true;
-		value = function()
-		return preset2
-		end;
-		visible = function()
-		if preset2 == 0  then return false
-		else return true end
-		end
-	},
-	clickable {
-		position = {620, 534, 56, 17 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
+    return true
+    end
+  },
+  textureLit {
+    image = get(green_led),
+    position = {45, 188, 32, 32},
+    visible = function()
+    return get(mode1) > 0 and power2 > 0
+    end,
+  },
+  textureLit {
+    image = get(red_led),
+    position = {444, 188, 32, 32},
+    visible = function()
+    return get(mode1) == 3 and power2 > 0
+    end,
+  },
+  --preset map angle
+  clickable {
+    position = {82, 421, 35, 35},
 
-		onMouseClick = function()
-		preset2 = 0
-		return true
-		end  
-	},	
-	clickable {
-		position = {526, 494, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateleft.png")
-		},  
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
 
-		onMouseClick = function()
-		preset2 = preset2 - 0.1
-		return true
-		end  
-	},	
-	clickable {
-		position = {728, 494, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("rotateright.png")
-		},  
+    onMouseClick = function()
+    set(map_angle, presetangle)
+    return true
+    end
+  },
+  digitstape {
+    position = { 82, 534, 42, 17},
+    image = digitsImage;
+    digits = 3;
+    allowNonRound = false;
+    showLeadingZeros = true;
+    --	fractional = 0;
+    showSign = false;
+    value = function()
+    return presetangle
+    end;
+    visible = function()
+    if presetangle == 0 then return false
+    else return true end
+    end
+  },
+  clickable {
+    position = {82, 534, 42, 17 },
 
-		onMouseClick = function()
-		preset2 = preset2 + 0.1
-		return true
-		end  
-	},	
-	-- clickable area for closing main menu
-	clickable {
-		position = { size[1]-20, size[2]-20, 20, 20 },
-		
-		cursor = { 
-			x = 16, 
-			y = 32,  
-			width = 16, 
-			height = 16, 
-			shape = loadImage("clickable.png")
-		},  
-		
-		onMouseClick = function()
-		set(nas1_subpanel, 0 )
-		return true
-		end
-	},	
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+
+    onMouseClick = function()
+    presetangle = 0
+    return true
+    end
+  },
+  clickable {
+    position = {16, 500, 20, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
+
+    onMouseClick = function()
+    presetangle = presetangle - 1
+    return true
+    end
+  },
+  clickable {
+    position = {165, 500, 20, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
+
+    onMouseClick = function()
+    presetangle = presetangle + 1
+    return true
+    end
+  },
+
+  --preset get(dst1)
+  clickable {
+    position = {334, 393, 35, 35},
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+
+    onMouseClick = function()
+        set(dst1, preset1)
+    return true
+    end
+  },
+  digitstape {
+    position = { 334, 534, 56, 17},
+    image = digitsImage;
+    digits = 4;
+    allowNonRound = false;
+    showLeadingZeros = true;
+    fractional = 1;
+    showSign = true;
+    value = function()
+    return preset1
+    end;
+    visible = function()
+    if preset1 == 0  then return false
+    else return true end
+    end
+  },
+  clickable {
+    position = {334, 534, 56, 17 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+
+    onMouseClick = function()
+    preset1 = 0
+    return true
+    end
+  },
+  clickable {
+    position = {240, 494, 20, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
+
+    onMouseClick = function()
+    preset1 = preset1 - 0.1
+    return true
+    end
+  },
+  clickable {
+    position = {442, 494, 20, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
+
+    onMouseClick = function()
+    preset1 = preset1 + 0.1
+    return true
+    end
+  },
+  --preset get(dst2)
+  clickable {
+    position = {620, 393, 35, 35},
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+
+    onMouseClick = function()
+            set(dst2, preset2)
+
+    return true
+    end
+  },
+  digitstape {
+    position = { 620, 534, 56, 17},
+    image = digitsImage;
+    digits = 4;
+    allowNonRound = false;
+    showLeadingZeros = true;
+    fractional = 1;
+    showSign = true;
+    value = function()
+    return preset2
+    end;
+    visible = function()
+    if preset2 == 0  then return false
+    else return true end
+    end
+  },
+  clickable {
+    position = {620, 534, 56, 17 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+
+    onMouseClick = function()
+    preset2 = 0
+    return true
+    end
+  },
+  clickable {
+    position = {526, 494, 20, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateleft.png")
+    },
+
+    onMouseClick = function()
+    preset2 = preset2 - 0.1
+    return true
+    end
+  },
+  clickable {
+    position = {728, 494, 20, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("rotateright.png")
+    },
+
+    onMouseClick = function()
+    preset2 = preset2 + 0.1
+    return true
+    end
+  },
+  -- clickable area for closing main menu
+  clickable {
+    position = { size[1]-20, size[2]-20, 20, 20 },
+
+    cursor = {
+      x = 16,
+      y = 32,
+      width = 16,
+      height = 16,
+      shape = loadImage("clickable.png")
+    },
+
+    onMouseClick = function()
+    set(nas1_subpanel, 0 )
+    return true
+    end
+  },
 }

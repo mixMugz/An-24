@@ -6,8 +6,15 @@ defineProperty("fromto", globalPropertyi("an-24/gauges/obs1_fromto"))  -- set th
 defineProperty("fromto_lit", globalPropertyi("an-24/gauges/obs1_fromto_lit")) -- Nav-To-From indication, nav1, pilot, 0 is flag, 1 is to, 2 is from.
 -- images table
 defineProperty("digitsImage", loadImage("white-digits.png", 3, 0, 10, 196)) 
-defineProperty("toImage", loadImage("navigator_panel_2d.dds", 1000, 708, 17, 12)) 
-defineProperty("fromImage", loadImage("navigator_panel_2d.dds", 994, 724, 30, 12)) 
+local language = globalPropertyi("an-24/set/language")
+local toImage = {
+  [0] = loadImage("navigator_panel_2d_e.dds", 1000, 708, 17, 12),
+        loadImage("navigator_panel_2d_r.dds", 1000, 708, 17, 12),
+}
+local fromImage = {
+  [0] = loadImage("navigator_panel_2d_e.dds", 994, 724, 30, 12),
+        loadImage("navigator_panel_2d_r.dds", 994, 724, 30, 12),
+}
 
 local switch_sound = loadSample('sounds/custom/metal_switch.wav')
 local cap_sound = loadSample('sounds/custom/cap.wav')
@@ -56,7 +63,9 @@ components = {
 	-- to lamp
 	textureLit {
 		position = { 117, 117, 17, 12},
-		image = get(toImage),
+		image = function()
+		  return toImage[get(language)]
+		end,
 		visible = function()
 			return fromto_light == 1
 		end
@@ -66,7 +75,9 @@ components = {
  	-- from lamp
 	textureLit {
 		position = { 110, 69, 30, 12},
-		image = get(fromImage),
+		image = function()
+		  return fromImage[get(language)]
+		end,
 		visible = function()
 			return fromto_light == 2
 		end

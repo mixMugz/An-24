@@ -72,17 +72,22 @@ defineProperty("ice_left_eng_lit_2d", globalPropertyi("an-24/ice/ice_left_eng_li
 defineProperty("ice_right_eng_lit_2d", globalPropertyi("an-24/ice/ice_right_eng_lit"))  -- for 2D panel
 defineProperty("thermo_angle_2d", globalPropertyf("an-24/ice/thermo_angle"))  -- for 2D panel
 defineProperty("test_btn", globalPropertyi("an-24/ice/test_btn"))  -- for 2D panel
-
 -- time
 defineProperty("frame_time", globalPropertyf("an-24/time/frame_time")) -- flight time
-
 -- images
 defineProperty("green_led", loadImage("leds.dds", 20, 0, 20, 20))
 defineProperty("red_led", loadImage("leds.dds", 40, 0, 20, 20))
 defineProperty("needles_1", loadImage("needles.dds", 0, 0, 16, 88))
 defineProperty("black_cap", loadImage("covers.dds", 0, 55, 56, 56)) -- black cap image
-defineProperty("pos_not_work_img", loadImage("lamps.dds", 50, 60, 50, 30))
-defineProperty("ice_on_plane_img", loadImage("lamps.dds", 100, 60, 50, 30))
+local language = globalPropertyi("an-24/set/language")
+local pos_not_work_img = {
+  [0] = loadImage("lamps_e.dds", 50, 60, 50, 30),
+        loadImage("lamps_r.dds", 50, 60, 50, 30),
+}
+local ice_on_plane_img = {
+  [0] = loadImage("lamps_e.dds", 100, 60, 50, 30),
+        loadImage("lamps_r.dds", 100, 60, 50, 30),
+}
 
 local function bool2int(var)
   if var then return 1 else return 0 end
@@ -613,7 +618,9 @@ textureLit {
 
   -- pos not work light
   textureLit {
-    image = get(pos_not_work_img),
+    image = function()
+      return pos_not_work_img[get(language)]
+    end,
     position = {1004, 516, 50, 30},
     visible = function()
       return pos_not_work_lit
@@ -622,7 +629,9 @@ textureLit {
 
   -- ice on plane light
   textureLit {
-    image = get(ice_on_plane_img),
+    image = function()
+      return ice_on_plane_img[get(language)]
+    end,
     position = {1060, 516, 50, 30},
     visible = function()
       return ice_on_plane_lit

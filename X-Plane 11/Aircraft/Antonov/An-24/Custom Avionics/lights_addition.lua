@@ -29,22 +29,8 @@ defineProperty("nosmokingswitchonoff", globalPropertyi("an-24/nosmokingswitchono
 defineProperty("flightdeckdoor_toggle", globalPropertyf("an-24/flightdeckdoor_toggle"))
 defineProperty("flightdeckdoor", globalPropertyf("an-24/flightdeckdoor"))
 defineProperty("flightdeckdoor_state", globalPropertyf("an-24/flightdeckdoor_state"))
-defineProperty("elev_fail_led", loadImage("lamps.dds", 150, 30, 50, 30))
-defineProperty("ail_fail_led", loadImage("lamps.dds", 200, 30, 50, 30))
-defineProperty("pos_not_work_img", loadImage("lamps.dds", 50, 60, 50, 30))
-defineProperty("ice_on_plane_img", loadImage("lamps.dds", 100, 60, 50, 30))
-defineProperty("elev_force_led", loadImage("lamps.dds", 0, 60, 50, 30))
-defineProperty("left_ahz_fail_txt", loadImage("lamps.dds", 0, 0, 50, 30))
-defineProperty("right_ahz_fail_txt", loadImage("lamps.dds", 100, 0, 50, 30))
-defineProperty("third_ahz_fail_txt", loadImage("lamps.dds", 50, 0, 50, 30))
-defineProperty("roll_left_txt", loadImage("lamps.dds", 150, 0, 50, 30))
-defineProperty("roll_right_txt", loadImage("lamps.dds", 200, 0, 50, 30))
-defineProperty("check_ahz_txt", loadImage("lamps.dds", 0, 30, 50, 30))
-defineProperty("critical_mode", loadImage("lamps.dds", 50, 30, 50, 30))
-defineProperty("warning_img", loadImage("lamps.dds", 100, 30, 50, 30))
 defineProperty("luk", globalPropertyf("an-24/lukbesson"))
 defineProperty("lukbesson_switch", globalPropertyf("an-24/lukbesson_switch"))
-
 defineProperty("main_light_white", globalPropertyf("sim/cockpit2/switches/instrument_brightness_ratio[6]"))
 defineProperty("main_light_red", globalPropertyf("sim/cockpit2/switches/instrument_brightness_ratio[7]"))
 defineProperty("overhead_light_pilot_left_red", globalPropertyf("sim/cockpit2/switches/instrument_brightness_ratio[8]"))
@@ -61,7 +47,6 @@ defineProperty("overhead_light_nav_right_red", globalPropertyf("sim/cockpit2/swi
 defineProperty("overhead_light_nav_right_white", globalPropertyf("sim/cockpit2/switches/instrument_brightness_ratio[19]"))
 defineProperty("overhead_light_rad_red", globalPropertyf("sim/cockpit2/switches/instrument_brightness_ratio[20]"))
 defineProperty("overhead_light_rad_white", globalPropertyf("sim/cockpit2/switches/instrument_brightness_ratio[21]"))
-
 defineProperty("overhead_light_left_ownDR", globalPropertyf("an-24/lights/overhead_lamp_left_bright"))
 defineProperty("overhead_light_left_mode", globalPropertyf("an-24/lights/overhead_lamp_left_mode"))
 defineProperty("overhead_light_right_ownDR", globalPropertyf("an-24/lights/overhead_lamp_right_bright"))
@@ -76,7 +61,6 @@ defineProperty("overhead_light_nav_right_ownDR", globalPropertyf("an-24/lights/o
 defineProperty("overhead_light_nav_right_mode", globalPropertyf("an-24/lights/overhead_lamp_nav_right_mode"))
 defineProperty("overhead_light_rad_ownDR", globalPropertyf("an-24/lights/overhead_lamp_rad_bright"))
 defineProperty("overhead_light_rad_mode", globalPropertyf("an-24/lights/overhead_lamp_rad_mode"))
-
 defineProperty("overhead_lamp_left_rot_updown", globalPropertyf("an-24/lights/overhead_lamp_left_rot_updown"))
 defineProperty("overhead_lamp_left_rot_around", globalPropertyf("an-24/lights/overhead_lamp_left_rot_around"))
 defineProperty("overhead_lamp_right_rot_updown", globalPropertyf("an-24/lights/overhead_lamp_right_rot_updown"))
@@ -91,7 +75,6 @@ defineProperty("overhead_lamp_nav_right_rot_updown", globalPropertyf("an-24/ligh
 defineProperty("overhead_lamp_nav_right_rot_around", globalPropertyf("an-24/lights/overhead_lamp_nav_right_rot_around"))
 defineProperty("overhead_lamp_rad_rot_updown", globalPropertyf("an-24/lights/overhead_lamp_rad_rot_updown"))
 defineProperty("overhead_lamp_rad_rot_around", globalPropertyf("an-24/lights/overhead_lamp_rad_rot_around"))
-
 defineProperty("main_cabin_light", globalPropertyi("an-24/switch/main_cabin_light"))
 defineProperty("main_cabin_light_modeL", globalPropertyi("an-24/switch/main_cabin_light_modeL"))
 defineProperty("main_cabin_light_modeR", globalPropertyi("an-24/switch/main_cabin_light_modeR"))
@@ -271,6 +254,43 @@ defineProperty("light6RAD", globalPropertyf("an-24/lights/overhead_lamp_rad[5]")
 defineProperty("light7RAD", globalPropertyf("an-24/lights/overhead_lamp_rad[6]"))
 defineProperty("light8RAD", globalPropertyf("an-24/lights/overhead_lamp_rad[7]"))
 defineProperty("light9RAD", globalPropertyf("an-24/lights/overhead_lamp_rad[8]"))
+local language = globalPropertyi("an-24/set/language")
+local elev_fail_led = {
+  [0] = loadImage("lamps_e.dds", 150, 30, 50, 30),
+        loadImage("lamps_r.dds", 150, 30, 50, 30),
+}
+local ail_fail_led = {
+  [0] = loadImage("lamps_e.dds", 200, 30, 50, 30),
+        loadImage("lamps_r.dds", 200, 30, 50, 30),
+}
+local elev_force_led = {
+  [0] = loadImage("lamps_e.dds", 0, 60, 50, 30),
+        loadImage("lamps_r.dds", 0, 60, 50, 30),
+}
+local left_ahz_fail_txt = {
+  [0] = loadImage("lamps_e.dds", 0, 0, 50, 30),
+        loadImage("lamps_r.dds", 0, 0, 50, 30),
+}
+local right_ahz_fail_txt = {
+  [0] = loadImage("lamps_e.dds", 100, 0, 50, 30),
+        loadImage("lamps_r.dds", 100, 0, 50, 30),
+}
+local third_ahz_fail_txt = {
+  [0] = loadImage("lamps_e.dds", 50, 0, 50, 30),
+        loadImage("lamps_r.dds", 50, 0, 50, 30),
+}
+local roll_left_txt = {
+  [0] = loadImage("lamps_e.dds", 150, 0, 50, 30),
+        loadImage("lamps_r.dds", 150, 0, 50, 30),
+}
+local roll_right_txt = {
+  [0] = loadImage("lamps_e.dds", 200, 0, 50, 30),
+        loadImage("lamps_r.dds", 200, 0, 50, 30),
+}
+local check_ahz_txt = {
+  [0] = loadImage("lamps_e.dds", 0, 30, 50, 30),
+        loadImage("lamps_r.dds", 0, 30, 50, 30),
+}
 
 local switch_sound = loadSample('sounds/custom/metal_switch.wav')
 
@@ -474,107 +494,107 @@ lightsprefs_sett = {}
 local line
 local notLoaded = true
 function prefslight_read()
-	local filename
-	filename = panelDir .. "/an-24_lamps.ini"
-	local file = io.open(filename, "r")
-	if file then
-		for i=1,14,1 do
-			line=file:read()
-			if line == nil then
-				break
-			end
-			lightsprefs_sett[i] = line
-			lightsprefs_sett[i+14] = line
-		end
-		file:close()
-		set(overhead_lamp_left_rot_updown,lightsprefs_sett[1])
-		set(overhead_lamp_left_rot_around,lightsprefs_sett[2])
-		set(overhead_lamp_right_rot_updown,lightsprefs_sett[3])
-		set(overhead_lamp_right_rot_around,lightsprefs_sett[4])
-		set(overhead_lamp_pilot_right_rot_updown,lightsprefs_sett[5])
-		set(overhead_lamp_pilot_right_rot_around,lightsprefs_sett[6])
-		set(overhead_lamp_pilot_left_rot_updown,lightsprefs_sett[7])
-		set(overhead_lamp_pilot_left_rot_around,lightsprefs_sett[8])
-		set(overhead_lamp_nav_left_rot_updown,lightsprefs_sett[9])
-		set(overhead_lamp_nav_left_rot_around,lightsprefs_sett[10])
-		set(overhead_lamp_nav_right_rot_updown,lightsprefs_sett[11])
-		set(overhead_lamp_nav_right_rot_around,lightsprefs_sett[12])
-		set(overhead_lamp_rad_rot_updown,lightsprefs_sett[13])
-		set(overhead_lamp_rad_rot_around,lightsprefs_sett[14])
-	else
-		print ("No .ini file for lights preferenses. Using default values.")
-	end
-	return true
+  local filename
+  filename = panelDir .. "/an-24_lamps.ini"
+  local file = io.open(filename, "r")
+  if file then
+    for i=1,14,1 do
+      line=file:read()
+      if line == nil then
+        break
+      end
+      lightsprefs_sett[i] = line
+      lightsprefs_sett[i+14] = line
+    end
+    file:close()
+    set(overhead_lamp_left_rot_updown,lightsprefs_sett[1])
+    set(overhead_lamp_left_rot_around,lightsprefs_sett[2])
+    set(overhead_lamp_right_rot_updown,lightsprefs_sett[3])
+    set(overhead_lamp_right_rot_around,lightsprefs_sett[4])
+    set(overhead_lamp_pilot_right_rot_updown,lightsprefs_sett[5])
+    set(overhead_lamp_pilot_right_rot_around,lightsprefs_sett[6])
+    set(overhead_lamp_pilot_left_rot_updown,lightsprefs_sett[7])
+    set(overhead_lamp_pilot_left_rot_around,lightsprefs_sett[8])
+    set(overhead_lamp_nav_left_rot_updown,lightsprefs_sett[9])
+    set(overhead_lamp_nav_left_rot_around,lightsprefs_sett[10])
+    set(overhead_lamp_nav_right_rot_updown,lightsprefs_sett[11])
+    set(overhead_lamp_nav_right_rot_around,lightsprefs_sett[12])
+    set(overhead_lamp_rad_rot_updown,lightsprefs_sett[13])
+    set(overhead_lamp_rad_rot_around,lightsprefs_sett[14])
+  else
+    print ("No .ini file for lights preferenses. Using default values.")
+  end
+  return true
 end
 function savestatelamp()
-	lightsprefs_sett[1]=get(overhead_lamp_left_rot_updown)
-	lightsprefs_sett[2]=get(overhead_lamp_left_rot_around)
-	lightsprefs_sett[3]=get(overhead_lamp_right_rot_updown)
-	lightsprefs_sett[4]=get(overhead_lamp_right_rot_around)
-	lightsprefs_sett[5]=get(overhead_lamp_pilot_right_rot_updown)
-	lightsprefs_sett[6]=get(overhead_lamp_pilot_right_rot_around)
-	lightsprefs_sett[7]=get(overhead_lamp_pilot_left_rot_updown)
-	lightsprefs_sett[8]=get(overhead_lamp_pilot_left_rot_around)
-	lightsprefs_sett[9]=get(overhead_lamp_nav_left_rot_updown)
-	lightsprefs_sett[10]=get(overhead_lamp_nav_left_rot_around)
-	lightsprefs_sett[11]=get(overhead_lamp_nav_right_rot_updown)
-	lightsprefs_sett[12]=get(overhead_lamp_nav_right_rot_around)
-	lightsprefs_sett[13]=get(overhead_lamp_rad_rot_updown)
-	lightsprefs_sett[14]=get(overhead_lamp_rad_rot_around)
-	local filenew = io.open(panelDir .. "/an-24_lamps.ini", "w")
-	for ind=1,14,1 do
-		filenew:write(lightsprefs_sett[ind], "\n")
-	end
-	filenew:close()
+  lightsprefs_sett[1]=get(overhead_lamp_left_rot_updown)
+  lightsprefs_sett[2]=get(overhead_lamp_left_rot_around)
+  lightsprefs_sett[3]=get(overhead_lamp_right_rot_updown)
+  lightsprefs_sett[4]=get(overhead_lamp_right_rot_around)
+  lightsprefs_sett[5]=get(overhead_lamp_pilot_right_rot_updown)
+  lightsprefs_sett[6]=get(overhead_lamp_pilot_right_rot_around)
+  lightsprefs_sett[7]=get(overhead_lamp_pilot_left_rot_updown)
+  lightsprefs_sett[8]=get(overhead_lamp_pilot_left_rot_around)
+  lightsprefs_sett[9]=get(overhead_lamp_nav_left_rot_updown)
+  lightsprefs_sett[10]=get(overhead_lamp_nav_left_rot_around)
+  lightsprefs_sett[11]=get(overhead_lamp_nav_right_rot_updown)
+  lightsprefs_sett[12]=get(overhead_lamp_nav_right_rot_around)
+  lightsprefs_sett[13]=get(overhead_lamp_rad_rot_updown)
+  lightsprefs_sett[14]=get(overhead_lamp_rad_rot_around)
+  local filenew = io.open(panelDir .. "/an-24_lamps.ini", "w")
+  for ind=1,14,1 do
+    filenew:write(lightsprefs_sett[ind], "\n")
+  end
+  filenew:close()
 end
 
 function update()
-	if notLoaded then 
-		prefslight_read()
-		notLoaded = false
-	end
+  if notLoaded then
+    prefslight_read()
+    notLoaded = false
+  end
 if get(overhead_lamp_left_rot_updown)~=lightsprefs_sett[1] then
-	savestatelamp()
-	lightsprefs_sett[1]=get(overhead_lamp_left_rot_updown)
+  savestatelamp()
+  lightsprefs_sett[1]=get(overhead_lamp_left_rot_updown)
 elseif get(overhead_lamp_left_rot_around)~=lightsprefs_sett[2] then
-	savestatelamp()
-	lightsprefs_sett[2]=get(overhead_lamp_left_rot_around)
+  savestatelamp()
+  lightsprefs_sett[2]=get(overhead_lamp_left_rot_around)
 elseif get(overhead_lamp_right_rot_updown)~=lightsprefs_sett[3] then
-	savestatelamp()
-	lightsprefs_sett[3]=get(overhead_lamp_right_rot_updown)
+  savestatelamp()
+  lightsprefs_sett[3]=get(overhead_lamp_right_rot_updown)
 elseif get(overhead_lamp_right_rot_around)~=lightsprefs_sett[4] then
-	savestatelamp()
-	lightsprefs_sett[4]=get(overhead_lamp_right_rot_around)
+  savestatelamp()
+  lightsprefs_sett[4]=get(overhead_lamp_right_rot_around)
 elseif get(overhead_lamp_pilot_right_rot_updown)~=lightsprefs_sett[5] then
-	savestatelamp()
-	lightsprefs_sett[5]=get(overhead_lamp_pilot_right_rot_updown)
+  savestatelamp()
+  lightsprefs_sett[5]=get(overhead_lamp_pilot_right_rot_updown)
 elseif get(overhead_lamp_pilot_right_rot_around)~=lightsprefs_sett[6] then
-	savestatelamp()
-	lightsprefs_sett[6]=get(overhead_lamp_pilot_right_rot_around)
+  savestatelamp()
+  lightsprefs_sett[6]=get(overhead_lamp_pilot_right_rot_around)
 elseif get(overhead_lamp_pilot_left_rot_updown)~=lightsprefs_sett[7] then
-	savestatelamp()
-	lightsprefs_sett[7]=get(overhead_lamp_pilot_left_rot_updown)
+  savestatelamp()
+  lightsprefs_sett[7]=get(overhead_lamp_pilot_left_rot_updown)
 elseif get(overhead_lamp_pilot_left_rot_around)~=lightsprefs_sett[8] then
-	savestatelamp()
-	lightsprefs_sett[8]=get(overhead_lamp_pilot_left_rot_around)
+  savestatelamp()
+  lightsprefs_sett[8]=get(overhead_lamp_pilot_left_rot_around)
 elseif get(overhead_lamp_nav_left_rot_updown)~=lightsprefs_sett[9] then
-	savestatelamp()
-	lightsprefs_sett[9]=get(overhead_lamp_nav_left_rot_updown)
+  savestatelamp()
+  lightsprefs_sett[9]=get(overhead_lamp_nav_left_rot_updown)
 elseif get(overhead_lamp_nav_left_rot_around)~=lightsprefs_sett[10] then
-	savestatelamp()
-	lightsprefs_sett[10]=get(overhead_lamp_nav_left_rot_around)
+  savestatelamp()
+  lightsprefs_sett[10]=get(overhead_lamp_nav_left_rot_around)
 elseif get(overhead_lamp_nav_right_rot_updown)~=lightsprefs_sett[11] then
-	savestatelamp()
-	lightsprefs_sett[11]=get(overhead_lamp_nav_right_rot_updown)
+  savestatelamp()
+  lightsprefs_sett[11]=get(overhead_lamp_nav_right_rot_updown)
 elseif get(overhead_lamp_nav_right_rot_around)~=lightsprefs_sett[12] then
-	savestatelamp()
-	lightsprefs_sett[12]=get(overhead_lamp_nav_right_rot_around)
+  savestatelamp()
+  lightsprefs_sett[12]=get(overhead_lamp_nav_right_rot_around)
 elseif get(overhead_lamp_rad_rot_updown)~=lightsprefs_sett[13] then
-	savestatelamp()
-	lightsprefs_sett[13]=get(overhead_lamp_rad_rot_updown)
+  savestatelamp()
+  lightsprefs_sett[13]=get(overhead_lamp_rad_rot_updown)
 elseif get(overhead_lamp_rad_rot_around)~=lightsprefs_sett[14] then
-	savestatelamp()
-	lightsprefs_sett[14]=get(overhead_lamp_rad_rot_around)
+  savestatelamp()
+  lightsprefs_sett[14]=get(overhead_lamp_rad_rot_around)
 end
 
 set(light4CCFD,get(light4CFD)*0.4)
@@ -586,17 +606,17 @@ set(light4RFDGaugesUpRight,get(light4RFDGaugesDownLeft))
 set(light4RFDGaugesUpLeft,get(light4RFDGaugesDownLeft))
 
 if get(lukbesson_switch) ==1 then
-	if get(luk)<1 then
-		set(luk,get(luk)+0.1)
-	elseif get(luk)>1 then
-		set(luk,1)
-	end
+  if get(luk)<1 then
+    set(luk,get(luk)+0.1)
+  elseif get(luk)>1 then
+    set(luk,1)
+  end
 else
-	if get(luk)> 0 then
-		set(luk,get(luk)-0.1)
-	elseif get(luk) < 0 then
-		set(luk,0)
-	end
+  if get(luk)> 0 then
+    set(luk,get(luk)-0.1)
+  elseif get(luk) < 0 then
+    set(luk,0)
+  end
 end
 
 local power27 = get(bus_DC_27_volt)
@@ -814,207 +834,205 @@ else
   set(overhead_light_rad_white,0)
   set(overhead_light_rad_red,0)
 end
-
 ------------------------
----основное освещение в кабине
-
----все, что касается питания на борту
+---РѕСЃРЅРѕРІРЅРѕРµ РѕСЃРІРµС‰РµРЅРёРµ РІ РєР°Р±РёРЅРµ
+---РІСЃРµ, С‡С‚Рѕ РєР°СЃР°РµС‚СЃСЏ РїРёС‚Р°РЅРёСЏ РЅР° Р±РѕСЂС‚Сѓ
 if get(power27) > 21 then
-	
-	if get(main_cabin_light)==1 then
-		if get(main_cabin_light_mode)==2 then
-			set(main_light_white,1)
-		else
-			set(main_light_white,0)
-		end
-		if get(main_cabin_light_mode)==0 then
-			set(main_light_red,1)
-		else
-			set(main_light_red,0)
-		end
-	else
-		set(main_light_white,0)
-		set(main_light_red,0)
-	end
-	if get(nosmokingswitchonoff)==1 then
-	set(nosmokingswitch,1)
-	else
-	set(nosmokingswitch,0)
-	end
-	if get(cockpit_panel_light_switch)==1 then
-	set(light1LFD,1)
-	set(light1CFD,1)
-	set(light1CCFD,1)
-	set(light1RFD,1)
-	set(light5LFDGaugesDownLeft,0.1)
-	set(light5LFDGaugesDownRight,0.1)
-	set(light5LFDGaugesUpLeft,0.1)
-	set(light5LFDGaugesUpRight,0.1)
-	set(light5RFDGaugesDownLeft,0.1)
-	set(light5RFDGaugesDownRight,0.1)
-	set(light5RFDGaugesUpLeft,0.1)
-	set(light5RFDGaugesUpRight,0.1)
-	elseif get(cockpit_panel_light_switch)==(-1) then
-	set(light1LFD,1)
-	set(light1CFD,1)
-	set(light1CCFD,1)
-	set(light1RFD,0)
-	set(light5LFDGaugesDownLeft,0.1)
-	set(light5LFDGaugesDownRight,0.1)
-	set(light5LFDGaugesUpLeft,0.1)
-	set(light5LFDGaugesUpRight,0.1)
-	set(light5RFDGaugesDownLeft,0)
-	set(light5RFDGaugesDownRight,0)
-	set(light5RFDGaugesUpLeft,0)
-	set(light5RFDGaugesUpRight,0)
-	else
-	set(light1LFD,0)
-	set(light1CFD,0)
-	set(light1CCFD,0)
-	set(light1RFD,0)
-	set(light5LFDGaugesDownLeft,0)
-	set(light5LFDGaugesDownRight,0)
-	set(light5LFDGaugesUpLeft,0)
-	set(light5LFDGaugesUpRight,0)
-	set(light5RFDGaugesDownLeft,0)
-	set(light5RFDGaugesDownRight,0)
-	set(light5RFDGaugesUpLeft,0)
-	set(light5RFDGaugesUpRight,0)
-	end
+
+  if get(main_cabin_light)==1 then
+    if get(main_cabin_light_mode)==2 then
+      set(main_light_white,1)
+    else
+      set(main_light_white,0)
+    end
+    if get(main_cabin_light_mode)==0 then
+      set(main_light_red,1)
+    else
+      set(main_light_red,0)
+    end
+  else
+    set(main_light_white,0)
+    set(main_light_red,0)
+  end
+  if get(nosmokingswitchonoff)==1 then
+  set(nosmokingswitch,1)
+  else
+  set(nosmokingswitch,0)
+  end
+  if get(cockpit_panel_light_switch)==1 then
+  set(light1LFD,1)
+  set(light1CFD,1)
+  set(light1CCFD,1)
+  set(light1RFD,1)
+  set(light5LFDGaugesDownLeft,0.1)
+  set(light5LFDGaugesDownRight,0.1)
+  set(light5LFDGaugesUpLeft,0.1)
+  set(light5LFDGaugesUpRight,0.1)
+  set(light5RFDGaugesDownLeft,0.1)
+  set(light5RFDGaugesDownRight,0.1)
+  set(light5RFDGaugesUpLeft,0.1)
+  set(light5RFDGaugesUpRight,0.1)
+  elseif get(cockpit_panel_light_switch)==(-1) then
+  set(light1LFD,1)
+  set(light1CFD,1)
+  set(light1CCFD,1)
+  set(light1RFD,0)
+  set(light5LFDGaugesDownLeft,0.1)
+  set(light5LFDGaugesDownRight,0.1)
+  set(light5LFDGaugesUpLeft,0.1)
+  set(light5LFDGaugesUpRight,0.1)
+  set(light5RFDGaugesDownLeft,0)
+  set(light5RFDGaugesDownRight,0)
+  set(light5RFDGaugesUpLeft,0)
+  set(light5RFDGaugesUpRight,0)
+  else
+  set(light1LFD,0)
+  set(light1CFD,0)
+  set(light1CCFD,0)
+  set(light1RFD,0)
+  set(light5LFDGaugesDownLeft,0)
+  set(light5LFDGaugesDownRight,0)
+  set(light5LFDGaugesUpLeft,0)
+  set(light5LFDGaugesUpRight,0)
+  set(light5RFDGaugesDownLeft,0)
+  set(light5RFDGaugesDownRight,0)
+  set(light5RFDGaugesUpLeft,0)
+  set(light5RFDGaugesUpRight,0)
+  end
 else
-	set(main_light_white,0)
-	set(main_light_red,0)
-	set(light1LFD,0)
-	set(light1CFD,0)
-	set(light1CCFD,0)
-	set(light1RFD,0)
-	set(light5LFDGaugesDownLeft,0)
-	set(light5LFDGaugesDownRight,0)
-	set(light5LFDGaugesUpLeft,0)
-	set(light5LFDGaugesUpRight,0)
-	set(light5RFDGaugesDownLeft,0)
-	set(light5RFDGaugesDownRight,0)
-	set(light5RFDGaugesUpLeft,0)
-	set(light5RFDGaugesUpRight,0)
+  set(main_light_white,0)
+  set(main_light_red,0)
+  set(light1LFD,0)
+  set(light1CFD,0)
+  set(light1CCFD,0)
+  set(light1RFD,0)
+  set(light5LFDGaugesDownLeft,0)
+  set(light5LFDGaugesDownRight,0)
+  set(light5LFDGaugesUpLeft,0)
+  set(light5LFDGaugesUpRight,0)
+  set(light5RFDGaugesDownLeft,0)
+  set(light5RFDGaugesDownRight,0)
+  set(light5RFDGaugesUpLeft,0)
+  set(light5RFDGaugesUpRight,0)
 end
-	if get(flightdeckdoor_toggle)==1 then
-		if get(flightdeckdoor_state)<1 then
-			if get(flightdeckdoor)<1  then
-				set(flightdeckdoor,get(flightdeckdoor)+0.04)
-				set(flightdeckdoor_state,get(flightdeckdoor_state)+0.04)
-			end
+  if get(flightdeckdoor_toggle)==1 then
+    if get(flightdeckdoor_state)<1 then
+      if get(flightdeckdoor)<1  then
+        set(flightdeckdoor,get(flightdeckdoor)+0.04)
+        set(flightdeckdoor_state,get(flightdeckdoor_state)+0.04)
+      end
 
-		end
-	end
-	if get(flightdeckdoor_toggle)==0 then
-		if get(flightdeckdoor_state)>0 then
-			if get(flightdeckdoor)>0 then
-				set(flightdeckdoor,get(flightdeckdoor)-0.04)
-				set(flightdeckdoor_state,get(flightdeckdoor_state)-0.04)
-			end
+    end
+  end
+  if get(flightdeckdoor_toggle)==0 then
+    if get(flightdeckdoor_state)>0 then
+      if get(flightdeckdoor)>0 then
+        set(flightdeckdoor,get(flightdeckdoor)-0.04)
+        set(flightdeckdoor_state,get(flightdeckdoor_state)-0.04)
+      end
 
-		end
-	end
-	if get(flightdeckdoor)<0 then
-	set(flightdeckdoor,0)
-	end
-	if get(flightdeckdoor_state)<0 then
-	set(flightdeckdoor_state,0)
-	end
-
-
+    end
+  end
+  if get(flightdeckdoor)<0 then
+  set(flightdeckdoor,0)
+  end
+  if get(flightdeckdoor_state)<0 then
+  set(flightdeckdoor_state,0)
+  end
 
 
-	----logic PF button anim
-	if get(autopilot_state_PF) > 1 then
-	 set(autopilot_state_PF,1)
-	end
-	if get(autopilot_state_FO) > 1 then
-	 set(autopilot_state_FO,1)
-	end
-	if get(PF_ApbuttonState) < 1 then
-			set(autopilot_state_PF,get(autopilot_state_PF)+0.1)
-			set(PF_ApbuttonState,get(PF_ApbuttonState)+0.1)
-	end
-	if get(PF_ApbuttonState) == 1 then
-			set(autopilot_state_PF,get(autopilot_state_PF)+0.1)
-			set(PF_ApbuttonState,get(PF_ApbuttonState)+0.1)
-	end
-	if get(PF_ApbuttonState)<2 then
-		if get(PF_ApbuttonState)>1 then
-			set(autopilot_state_PF,get(autopilot_state_PF)-0.1)
-			set(PF_ApbuttonState,get(PF_ApbuttonState)+0.1)
-		end
-	end
-	if get(PF_ApbuttonState)==2 or (get(PF_ApbuttonState)>2 and get(PF_ApbuttonState)<3)then
-				set(autopilot_state_PF_button,0)
-				set(autopilot_state_PF,0)
-				set(PF_ApbuttonState,3)
-				--set(isalerton,0)
-	end
-	---logic FO button anim
-	if get(FO_ApbuttonState) < 1 then
-			set(autopilot_state_FO,get(autopilot_state_FO)+0.1)
-			set(FO_ApbuttonState,get(FO_ApbuttonState)+0.1)
-	end
-	if get(FO_ApbuttonState) == 1 then
-			set(autopilot_state_FO,get(autopilot_state_FO)+0.1)
-			set(FO_ApbuttonState,get(FO_ApbuttonState)+0.1)
-	end
-	if get(FO_ApbuttonState)<2 then
-		if get(FO_ApbuttonState)>1 then
-			set(autopilot_state_FO,get(autopilot_state_FO)-0.1)
-			set(FO_ApbuttonState,get(FO_ApbuttonState)+0.1)
-		end
-	end
 
-	if get(FO_ApbuttonState)==2 or (get(FO_ApbuttonState)>2 and get(FO_ApbuttonState)<3)then
-				set(autopilot_state_FO_button,0)
-				set(autopilot_state_FO,0)
-				set(FO_ApbuttonState,3)
-				--set(isalerton,0)
-	end
-	if get(isalerton)==1 then
-	set(isalerton,2)
-	time_isalert=get(flight_time)
-	end
-	if get(isalerton)==2 then
-	if (get(flight_time)-time_isalert)<3 then
-	else
-	set(isalerton,0)
-	end
-	end
 
-	if get(autopilot_state_PF_button)==1 then
-		set(PF_ApbuttonState,0)
-		if get(ap_on_lit)==1 then
-			playSample(autopilot_off_onn_Sound, 0)
-			set(isalerton,1)
-			commandOnce(autopilot_off_on)
-		else
-			set(autopilot_state_PF_button,0)
-		end
-	end
-	if get(autopilot_state_FO_button)==1 then
-		set(FO_ApbuttonState,0)
-		if get(ap_on_lit)==1 then
-			playSample(autopilot_off_onn_Sound, 0)
-			set(isalerton,1)
-			commandOnce(autopilot_off_on)
-		else
-			set(autopilot_state_FO_button,0)
-		end
-	end
+  ----logic PF button anim
+  if get(autopilot_state_PF) > 1 then
+   set(autopilot_state_PF,1)
+  end
+  if get(autopilot_state_FO) > 1 then
+   set(autopilot_state_FO,1)
+  end
+  if get(PF_ApbuttonState) < 1 then
+      set(autopilot_state_PF,get(autopilot_state_PF)+0.1)
+      set(PF_ApbuttonState,get(PF_ApbuttonState)+0.1)
+  end
+  if get(PF_ApbuttonState) == 1 then
+      set(autopilot_state_PF,get(autopilot_state_PF)+0.1)
+      set(PF_ApbuttonState,get(PF_ApbuttonState)+0.1)
+  end
+  if get(PF_ApbuttonState)<2 then
+    if get(PF_ApbuttonState)>1 then
+      set(autopilot_state_PF,get(autopilot_state_PF)-0.1)
+      set(PF_ApbuttonState,get(PF_ApbuttonState)+0.1)
+    end
+  end
+  if get(PF_ApbuttonState)==2 or (get(PF_ApbuttonState)>2 and get(PF_ApbuttonState)<3)then
+        set(autopilot_state_PF_button,0)
+        set(autopilot_state_PF,0)
+        set(PF_ApbuttonState,3)
+        --set(isalerton,0)
+  end
+  ---logic FO button anim
+  if get(FO_ApbuttonState) < 1 then
+      set(autopilot_state_FO,get(autopilot_state_FO)+0.1)
+      set(FO_ApbuttonState,get(FO_ApbuttonState)+0.1)
+  end
+  if get(FO_ApbuttonState) == 1 then
+      set(autopilot_state_FO,get(autopilot_state_FO)+0.1)
+      set(FO_ApbuttonState,get(FO_ApbuttonState)+0.1)
+  end
+  if get(FO_ApbuttonState)<2 then
+    if get(FO_ApbuttonState)>1 then
+      set(autopilot_state_FO,get(autopilot_state_FO)-0.1)
+      set(FO_ApbuttonState,get(FO_ApbuttonState)+0.1)
+    end
+  end
+
+  if get(FO_ApbuttonState)==2 or (get(FO_ApbuttonState)>2 and get(FO_ApbuttonState)<3)then
+        set(autopilot_state_FO_button,0)
+        set(autopilot_state_FO,0)
+        set(FO_ApbuttonState,3)
+        --set(isalerton,0)
+  end
+  if get(isalerton)==1 then
+  set(isalerton,2)
+  time_isalert=get(flight_time)
+  end
+  if get(isalerton)==2 then
+  if (get(flight_time)-time_isalert)<3 then
+  else
+  set(isalerton,0)
+  end
+  end
+
+  if get(autopilot_state_PF_button)==1 then
+    set(PF_ApbuttonState,0)
+    if get(ap_on_lit)==1 then
+      playSample(autopilot_off_onn_Sound, 0)
+      set(isalerton,1)
+      commandOnce(autopilot_off_on)
+    else
+      set(autopilot_state_PF_button,0)
+    end
+  end
+  if get(autopilot_state_FO_button)==1 then
+    set(FO_ApbuttonState,0)
+    if get(ap_on_lit)==1 then
+      playSample(autopilot_off_onn_Sound, 0)
+      set(isalerton,1)
+      commandOnce(autopilot_off_on)
+    else
+      set(autopilot_state_FO_button,0)
+    end
+  end
 --local power27 = get(bus_DC_27_volt)
 if get(power27) > 21 then
 if get(testmsrp)==1 then
 if get(msrp_switch)==1 then
-	if get(flight_time) - last_lamp_change > math.random(0.28,0.46) then
-				set(msrplight,1)
-				last_lamp_change = get(flight_time)
-				else
-				set(msrplight,0)
-			end
+  if get(flight_time) - last_lamp_change > math.random(0.28,0.46) then
+        set(msrplight,1)
+        last_lamp_change = get(flight_time)
+        else
+        set(msrplight,0)
+      end
 end
 end
 end
@@ -1042,133 +1060,165 @@ end
 components = {
 
 textureLit {
-		position = {1284, 517, 50, 30},
-		image = get(elev_fail_led),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end
-	},
+    position = {1284, 517, 50, 30},
+    image = function()
+      return elev_fail_led[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end
+  },
 textureLit {
-		position = {1340, 517, 50, 30},
-		image = get(ail_fail_led),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end
-	},
+    position = {1340, 517, 50, 30},
+    image = function()
+      return ail_fail_led[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end
+  },
 textureLit {
-		position = {1116, 450, 50, 30},
-		image = get(elev_fail_led),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end
-	},
+    position = {1116, 450, 50, 30},
+    image = function()
+      return elev_fail_led[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end
+  },
 textureLit {
-		position = {1061, 450, 50, 30},
-		image = get(ail_fail_led),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end
-	},
+    position = {1061, 450, 50, 30},
+    image = function()
+      return ail_fail_led[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end
+  },
 textureLit {
-		position = {1229, 517, 50, 30},
-		image = get(elev_force_led),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end
-	},
+    position = {1229, 517, 50, 30},
+    image = function()
+      return elev_force_led[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end
+  },
 textureLit {
-		position = {1172, 450, 50, 30},
-		image = get(elev_force_led),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end
-	},
+    position = {1172, 450, 50, 30},
+    image = function()
+      return elev_force_led[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end
+  },
 textureLit {
-		position = {1398, 518, 45, 27},
-		image = get(left_ahz_fail_txt),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end
-	},
+    position = {1398, 518, 45, 27},
+    image = function()
+      return left_ahz_fail_txt[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end
+  },
 textureLit {
-		position = {1455, 518, 43, 27},
-		image = get(third_ahz_fail_txt),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end
-	},
+    position = {1455, 518, 43, 27},
+    image = function()
+      return third_ahz_fail_txt[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end
+  },
 textureLit {
-		position = {1007, 484, 45, 27},
-		image = get(right_ahz_fail_txt),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end,
-	},
+    position = {1007, 484, 45, 27},
+    image = function()
+      return right_ahz_fail_txt[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end,
+  },
 
 
-	-- left roll indicator
-	textureLit {
-		position = {1062, 484, 45, 27},
-		image = get(roll_left_txt),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end,
-	},
-	-- right roll indicator
-	textureLit {
-		position = {1119, 484, 43, 27},
-		image = get(roll_right_txt),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end,
-	},
+  -- left roll indicator
+  textureLit {
+    position = {1062, 484, 45, 27},
+    image = function()
+      return roll_left_txt[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end,
+  },
+  -- right roll indicator
+  textureLit {
+    position = {1119, 484, 43, 27},
+    image = function()
+      return roll_right_txt[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end,
+  },
 
-	-- check ahz
-	textureLit {
-		position = {1174, 484, 43, 27},
-		image = get(check_ahz_txt),
-		visible = function()
-			return get(test_lamp_pilot) == 1
-		end,
-	},
-
-textureLit {
-		position = {740, 309, 20, 20},
-		image = get(green_led),
-		visible = function()
-			return get(msrplight) == 1
-		end
-	},
+  -- check ahz
+  textureLit {
+    position = {1174, 484, 43, 27},
+    image = function()
+      return check_ahz_txt[get(language)]
+    end,
+    visible = function()
+      return get(test_lamp_pilot) == 1
+    end,
+  },
 
 textureLit {
-		image = get(elev_fail_led),
-		position = {1284, 517, 50, 30},
-		visible = function()
-			return get(isalerton)==2--(get(autopilot_state_PF) > 0 or get(autopilot_state_FO) > 0) and get(isalerton)==2
+    position = {740, 309, 20, 20},
+    image = get(green_led),
+    visible = function()
+      return get(msrplight) == 1
+    end
+  },
 
-		end,
-	},
-	textureLit {
-		image = get(elev_fail_led),
-		position = {1116, 450, 50, 30},
-		visible = function()
-			return get(isalerton)==2--(get(autopilot_state_PF) > 0 or get(autopilot_state_FO) > 0) and get(isalerton)==2
-		end,
-	},
-	textureLit {
-		image = get(ail_fail_led),
-		position = {1340, 517, 50, 30},
-		visible = function()
-			return get(isalerton)==2--(get(autopilot_state_PF) >0 or get(autopilot_state_FO) > 0) and get(isalerton)==2
-		end,
-	},
-	textureLit {
-		image = get(ail_fail_led),
-		position = {1061, 450, 50, 30},
-		visible = function()
-			return get(isalerton)==2--(get(autopilot_state_PF) >0 or get(autopilot_state_FO) > 0) and get(isalerton)==2
-		end,
-	},
+textureLit {
+    image = function()
+      return elev_fail_led[get(language)]
+    end,
+    position = {1284, 517, 50, 30},
+    visible = function()
+      return get(isalerton)==2--(get(autopilot_state_PF) > 0 or get(autopilot_state_FO) > 0) and get(isalerton)==2
+
+    end,
+  },
+  textureLit {
+    image = function()
+      return elev_fail_led[get(language)]
+    end,
+    position = {1116, 450, 50, 30},
+    visible = function()
+      return get(isalerton)==2--(get(autopilot_state_PF) > 0 or get(autopilot_state_FO) > 0) and get(isalerton)==2
+    end,
+  },
+  textureLit {
+    image = function()
+      return ail_fail_led[get(language)]
+    end,
+    position = {1340, 517, 50, 30},
+    visible = function()
+      return get(isalerton)==2--(get(autopilot_state_PF) >0 or get(autopilot_state_FO) > 0) and get(isalerton)==2
+    end,
+  },
+  textureLit {
+    image = function()
+      return ail_fail_led[get(language)]
+    end,
+    position = {1061, 450, 50, 30},
+    visible = function()
+      return get(isalerton)==2--(get(autopilot_state_PF) >0 or get(autopilot_state_FO) > 0) and get(isalerton)==2
+    end,
+  },
 
 
 }

@@ -9,8 +9,15 @@ defineProperty("digitsImage", loadImage("white-digits.png", 3, 0, 10, 196))
 defineProperty("tmb_up", loadImage("tumbler_up.dds")) 
 defineProperty("tmb_dn", loadImage("tumbler_down.dds")) 
 
-defineProperty("toImage", loadImage("navigator_panel_2d.dds", 1000, 708, 17, 12)) 
-defineProperty("fromImage", loadImage("navigator_panel_2d.dds", 994, 724, 30, 12)) 
+local language = globalPropertyi("an-24/set/language")
+local toImage = {
+  [0] = loadImage("navigator_panel_2d_e.dds", 1000, 708, 17, 12),
+        loadImage("navigator_panel_2d_r.dds", 1000, 708, 17, 12),
+}
+local fromImage = {
+  [0] = loadImage("navigator_panel_2d_e.dds", 994, 724, 30, 12),
+        loadImage("navigator_panel_2d_r.dds", 994, 724, 30, 12),
+}
 
 local obs_num = get(obs)
 local fromto_light = get(fromto_lit)
@@ -59,7 +66,9 @@ components = {
 	-- to lamp
 	textureLit {
 		position = { 117, 117, 17, 12},
-		image = get(toImage),
+		image = function()
+		  return toImage[get(language)]
+		end,
 		visible = function()
 			return fromto_light == 1
 		end
@@ -69,7 +78,9 @@ components = {
  	-- from lamp
 	textureLit {
 		position = { 110, 69, 30, 12},
-		image = get(fromImage),
+		image = function()
+		  return fromImage[get(language)]
+		end,
 		visible = function()
 			return fromto_light == 2
 		end

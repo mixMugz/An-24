@@ -24,7 +24,7 @@ defineProperty("ismaster", globalPropertyf("scp/api/ismaster"))  -- 0 - не опред
 -- images
 defineProperty("needle1", loadImage("needles.dds", 464, 15, 23, 237))
 defineProperty("needle2", loadImage("needles.dds", 489, 15, 23, 237))
-defineProperty("scale", loadImage("navigator_panel_2d.dds", 359, 718, 305, 305))
+defineProperty("scale", loadImage("navigator_panel_2d_e.dds", 359, 718, 305, 305))
 
 defineProperty("adf1_test", globalPropertyf("sim/cockpit2/radios/indicators/adf1_relative_bearing_deg"))
 

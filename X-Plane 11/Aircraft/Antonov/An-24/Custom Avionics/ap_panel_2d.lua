@@ -13,12 +13,9 @@ defineProperty("ap_pitch_sw", globalPropertyi("an-24/ap/ap_pitch_sw"))  -- engag
 defineProperty("ap_roll", globalPropertyf("an-24/ap/ap_roll"))   -- roll knob
 defineProperty("ap_mech_off", globalPropertyi("an-24/ap/ap_mech_off"))  -- ap mechanic off. o = mechanics works, 1 = mech off
 defineProperty("ap_mech_off_cap", globalPropertyi("an-24/ap/ap_mech_off_cap"))  -- ap mechanic off cap
-
 defineProperty("gear_valve", globalPropertyi("an-24/hydro/gear_valve")) -- position of gear valve for gydraulic calculations and animations maximum 160.
 defineProperty("flaps_valve", globalPropertyi("an-24/hydro/flaps_valve")) -- position of flaps valve for gydraulic calculations and animations.
-
 defineProperty("ap_panel_subpanel", globalPropertyi("an-24/panels/ap_panel_subpanel"))
-
 -- lights
 defineProperty("ap_ready_lit", globalPropertyi("an-24/ap/ap_ready_lit"))  -- ready light
 defineProperty("ap_on_lit", globalPropertyi("an-24/ap/ap_on_lit"))  -- AP engaged light
@@ -30,26 +27,19 @@ defineProperty("ap_elev_fail_lit", globalPropertyi("an-24/ap/ap_elev_fail_lit"))
 --images
 defineProperty("yellow_led", loadImage("leds.dds", 60, 0, 20, 20))
 defineProperty("green_led", loadImage("leds.dds", 20, 0, 20, 20))
-defineProperty("elev_force_led", loadImage("lamps.dds", 0, 60, 50, 30))
-defineProperty("elev_fail_led", loadImage("lamps.dds", 150, 30, 50, 30))
-defineProperty("ail_fail_led", loadImage("lamps.dds", 200, 30, 50, 30))
 defineProperty("tmb_up", loadImage("tumbler_up.dds"))
 defineProperty("tmb_dn", loadImage("tumbler_down.dds"))
 defineProperty("tmb_ctr", loadImage("tumbler_center.dds"))
-
 defineProperty("small_btn_dn", loadImage("ap_panel_2d_e.dds", 122, 439, 36, 36))
 defineProperty("small_btn_up", loadImage("ap_panel_2d_e.dds", 164, 439, 36, 36))
-
 defineProperty("flap_up_img", loadImage("right_panel_2d_e.dds", 831, 117, 66, 66))
 defineProperty("flap_ctr_img", loadImage("right_panel_2d_e.dds", 831, 330, 66, 66))
 defineProperty("flap_dn_img", loadImage("right_panel_2d_e.dds", 831, 259, 66, 66))
-
 defineProperty("gear_up_img", loadImage("right_panel_2d_e.dds", 906, 117, 66, 66))
 defineProperty("gear_ctr_img", loadImage("right_panel_2d_e.dds", 906, 187, 66, 66))
 defineProperty("gear_dn_img", loadImage("right_panel_2d_e.dds", 906, 259, 66, 66))
 
---defineProperty("background", loadImage("ap_panel_2d.dds", 0, 0, size[1], size[2]))
-
+local language = globalPropertyi("an-24/set/language")
 local bg = {
   [0] = loadImage("ap_panel_2d_e.dds", 0, 0, size[1], size[2]),
         loadImage("ap_panel_2d_r.dds", 0, 0, size[1], size[2]),
@@ -58,9 +48,6 @@ local knob_img = {
   [0] = loadImage("ap_panel_2d_e.dds", 6, 410, 95, 95),
         loadImage("ap_panel_2d_r.dds", 6, 410, 95, 95),
 }
-
-
-local language = globalPropertyi("an-24/set/language")
 
 -- commands
 flaps_command_up = findCommand("sim/flight_controls/flaps_up")

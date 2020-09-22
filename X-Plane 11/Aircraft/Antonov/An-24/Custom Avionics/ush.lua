@@ -10,12 +10,18 @@ defineProperty("ushdb_3_scale_angle", globalPropertyf("an-24/misc/ushdb_3_scale_
 defineProperty("ushdb_3_scale_dir", globalPropertyf("an-24/misc/ushdb_3_scale_dir")) -- поворот шкалы на УШДБ 
 
 -- images
-defineProperty("scale", loadImage("navigator_panel_2d.dds", 691, 774, 196, 196))
 defineProperty("curse_needle", loadImage("needles.dds", 152.5, 26, 267, 36))
-defineProperty("foreground", loadImage("navigator_panel_2d.dds", 0, 682, 341, 341))
-
 -- SmartCopilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster"))  -- 0 - не определено/плагин не найден, 1 - слейв, 2 - мастер
+local language = globalPropertyi("an-24/set/language")
+local foreground = {
+  [0] = loadImage("navigator_panel_2d_e.dds", 0, 682, 341, 341),
+        loadImage("navigator_panel_2d_r.dds", 0, 682, 341, 341),
+}
+local scale = {
+  [0] = loadImage("navigator_panel_2d_e.dds", 691, 774, 196, 196),
+        loadImage("navigator_panel_2d_r.dds", 691, 774, 196, 196),
+}
 
 -- set(obs, 0)
 
@@ -59,13 +65,17 @@ components = {
 	-- inner scale
 	texture {
 		position = {50, 50, 200, 200},
-		image = get(scale),
+		image = function()
+		  return scale[get(language)]
+		end
 	},
 	
 	-- big scale
 	needle {
 		position = {10, 10, 280, 280},
-		image = get(foreground),
+		image = function()
+		  return foreground[get(language)]
+		end,
 		angle = function()
 			return get(ushdb_3_scale_angle)
 		end 

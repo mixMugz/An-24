@@ -36,41 +36,41 @@ function loadrsbn()
 local file = io.open(filename, "r")
 -- if file exist - read it and fill the variables with new values
 if file then
-	repeat
-	local line = file:read("*line")
-	if line == nil then break end
-	channel = string.sub(line, 1, 2)
-	--if this station got the right frequency we'll read out all data
-		if tonumber(channel) == get(rsbn_channel) then
-			i = string.find(line, "|")
-			j = string.find(line, "|", i+1)
-			name = string.sub(line, i+1, j-1)
-			i = string.find(line, "|", j+1)
-			ident = string.sub(line, j+1, i-1)
-			j = string.find(line, "|", i+1)
-			freq = string.sub(line, i+1, j-1)
-			i = string.find(line, "|", j+1)
-			lat2 =  tonumber(string.sub(line, j+1, i-1)) * math.pi / 180 
-			i = string.find(line, "|", j+1)
-			j = string.find(line, "|", i+1)
-			lon2 =  tonumber(string.sub(line, i+1, j-1)) * math.pi / -180 
-			elev = tonumber(string.sub(line, j+1, -1))
-			lat1 = get(lat) * math.pi / 180 
-			lon1 = get(lon) * math.pi / -180 
-			--now we know everything. It's time for some calculations
+  repeat
+  local line = file:read("*line")
+  if line == nil then break end
+  channel = string.sub(line, 1, 2)
+  --if this station got the right frequency we'll read out all data
+    if tonumber(channel) == get(rsbn_channel) then
+      i = string.find(line, "|")
+      j = string.find(line, "|", i+1)
+      name = string.sub(line, i+1, j-1)
+      i = string.find(line, "|", j+1)
+      ident = string.sub(line, j+1, i-1)
+      j = string.find(line, "|", i+1)
+      freq = string.sub(line, i+1, j-1)
+      i = string.find(line, "|", j+1)
+      lat2 =  tonumber(string.sub(line, j+1, i-1)) * math.pi / 180
+      i = string.find(line, "|", j+1)
+      j = string.find(line, "|", i+1)
+      lon2 =  tonumber(string.sub(line, i+1, j-1)) * math.pi / -180
+      elev = tonumber(string.sub(line, j+1, -1))
+      lat1 = get(lat) * math.pi / 180
+      lon1 = get(lon) * math.pi / -180
+      --now we know everything. It's time for some calculations
 orbit = (2 * math.asin(math.sqrt((math.sin((lat1 - lat2) / 2)) ^ 2 + math.cos(lat1) * math.cos(lat2) * (math.sin((lon1 - lon2) / 2)) ^ 2)))
 range = 3.57 * math.sqrt(get(alt)) * 1000
-orbit =orbit * 10800 / math.pi *  1852	
-			if orbit < range and orbit > get(alt) then
-				set(rsbn_receive, 1)
-				set(rsbn_lat, lat2)
-				set(rsbn_lon, lon2)
-				set(rsbn_elev, elev)
-			end
-		end
-	until get(rsbn_receive) == 1
+orbit =orbit * 10800 / math.pi *  1852
+      if orbit < range and orbit > get(alt) then
+        set(rsbn_receive, 1)
+        set(rsbn_lat, lat2)
+        set(rsbn_lon, lon2)
+        set(rsbn_elev, elev)
+      end
+    end
+  until get(rsbn_receive) == 1
 if get(rsbn_receive) ~= 1 then
-	set(rsbn_receive, -1)
+  set(rsbn_receive, -1)
 end
 file:close()
 else print ("RSBN database couldn't be read")
@@ -79,7 +79,7 @@ end
 
 function update()
 if prev_channel ~= get(rsbn_channel) then
-	set(rsbn_receive, 0)
+  set(rsbn_receive, 0)
 prev_channel = get(rsbn_channel)
 end
 
@@ -96,10 +96,10 @@ if notLoaded and get(rsbn_cc) ~= 0 then
 notLoaded = false
 if get(dataset) == 1 then
 filename = panelDir .. "/ussr.dat"
-	else
+  else
 filename = panelDir .. "/cis.dat"
-	end
-	loadrsbn()
+  end
+  loadrsbn()
 end
 
 end
