@@ -1187,7 +1187,7 @@ components = {
     gyro_cc = globalPropertyf("an-24/gauges/GPK_cc"),
     fail = globalPropertyf("sim/operation/failures/rel_cop_dgy"),
     gyro_curse = globalPropertyf("an-24/gauges/gyro2_curse"),
-    },
+  },
   -- engine_logic {},
   ap28_logic {},
   ap_mech {},
