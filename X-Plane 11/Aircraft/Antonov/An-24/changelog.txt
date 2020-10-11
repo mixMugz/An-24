@@ -1,17 +1,72 @@
 Release notes:
 
 ----------
-4.01b09 :: 08.09.2020
+4.01b09 :: 11.10.2020
 ----------
+GLOBAL
+- ADDED
+  + English translation for all 2D panel
+- REMOVED
+  + PaintKit Removed due LFS restriction. PaintKit moved to http://update.hdz.ru/files/an24-paintkit.7z
+
+PROPS
+- ADDED:
+  + Option and ability to set prop park position. X or +
+
+LIGHTS
+- ADDED:
+  + Spill lights for NAV
+- CHANGED:
+  + Taxi/landig lights moved to animation
+  + Beacons light reworked. Now blink asynchronously
+
+COMMANDS
+- ADDED:
+  + Beacon lights command (for up and down)
+
+MANIPULATORS
+- ADDED:
+  + Salon door
+  + WC door
+- CHANGED:
+  + Beacon lights manipulator from dataref to command
+
+LUA
+- ADDED:
+  + payload_panel.lua added ability to change number of crew for external view
+  + prop_anim.lua added function to set prop park position
+- FIX:
+  + dme_set_2d.lua fix switcher_pushed component errors
+
 GRAPHICS
 - ADDED:
+  + Fire extinguisher in salon
   + iPad model for future avitab integration
   + Pilots for external view
+  + Ability to disable reflections inside aircraft
+  + Hole in engine for radiator
+  + Radiator
+- CHANGED:
+  + Glass objects separated and optimised
+  + Added new mapping and texture for external glass
+  + Yoke max distance corrected
+  + Yoke added up movement at max value
+  + KLN90B texture changed to 2k instead 4k
+  + Some textures going to DDS
 - FIX:
+  + Smothness for lots aircraft objects
   + GNS430 knob position
   + GNS430 manipulators reworked
   + KLN90B animation fixed
   + KLN90B texture maping fixed
+
+SOUND
+- CHANGED:
+  + Beacon switches moved to FMOD
+
+SMARTCOPILOT
+- UPDATED:
+  + new datarefs
 
 ----------
 4.01b08 :: 07.09.2020
