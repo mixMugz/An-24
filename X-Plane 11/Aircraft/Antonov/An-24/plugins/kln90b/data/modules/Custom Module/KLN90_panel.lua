@@ -16989,8 +16989,11 @@ function update()
 							local KLNincbrtc_command = sasl.createCommand("custom/KLN90/Increase_Brightness", "Increase Display Brightness")
 							function KLNincbrtc_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
 								if 0 == phase then
-									brt = brt + 0.1
-									if(brt<=1.0) then set(display_brughtness, brt)
+									brt = get(display_brughtness)
+									if(brt<1.0) then
+										brt = brt + 0.1
+										set(display_brughtness, brt)
+										sasl.al.playSample(rotary_click_s, false)
 									end
 								end
 
@@ -17001,8 +17004,11 @@ function update()
 							local KLNdecbrtc_command = sasl.createCommand("custom/KLN90/Decrease_Brightness", "Decrease Display Brightness")
 							function KLNdecbrtc_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
 								if 0 == phase then
-									brt = brt - 0.1
-									if(brt>0) then set(display_brughtness, brt);
+									brt = get(display_brughtness)
+									if(brt>0) then
+										brt = brt - 0.1
+										set(display_brughtness, brt)
+										sasl.al.playSample(rotary_click_s, false)
 									end
 								end
 
