@@ -2,7 +2,7 @@ I
 800
 OBJ
 
-TEXTURE int_ipad.png
+TEXTURE int_ipad.dds
 TEXTURE_NORMAL int_ipad_nml.png
 NORMAL_METALNESS
 GLOBAL_specular 1.0
