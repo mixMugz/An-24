@@ -46,6 +46,10 @@ You can call the APA (GPU) in two ways:
 
 Then everything is simple and as usual. Remove window - switch the frequency (if included in the first option).
 
+## Livery PaintKit
+
+For creating Liveries - use [PaintKit](http://update.hdz.ru/files/an24-paintkit.7z). Deleted from GIT due LFS limitation.
+
 ## Community
 
 A community where you can discuss revision, leave wishes and offer help.
