@@ -22,7 +22,6 @@ defineProperty("sim_bec_light_sw", globalPropertyf("sim/cockpit/electrical/beaco
 defineProperty("sim_lan_light_ratio", globalPropertyf("sim/cockpit2/switches/landing_lights_switch[0]")) -- landing lights switch
 defineProperty("sim_lan_light_slider", globalPropertyf("sim/flightmodel2/misc/custom_slider_ratio[17]")) -- landing lights position
 defineProperty("sim_lan_light_open", globalPropertyf("sim/cockpit2/switches/custom_slider_on[17]")) -- landing lights open/close
-
 -- cockpit lights
 defineProperty("sim_panel_light", globalPropertyf("sim/cockpit2/switches/panel_brightness_ratio[0]")) -- 2D panel light
 defineProperty("sim_cab_light1", globalPropertyf("sim/cockpit2/switches/panel_brightness_ratio[1]")) -- cockpit flood
@@ -57,19 +56,21 @@ defineProperty("sim_version", globalPropertyi("an-24/sim_version"))  -- saved si
 defineProperty("N1", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[0]"))
 defineProperty("N2", globalPropertyf("sim/flightmodel/engine/ENGN_N2_[1]"))
 
+local headlight = globalPropertyf("an-24/anim/headlight")
+local real_hl = globalPropertyi("an-24/set/real_headlight")
 -- commands
 --[[
 -- switch landing light
 lan_light_command = findCommand("sim/lights/landing_lights_toggle")
 function lan_light_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
-	if 0 == phase then
-		if get(lan_light_sw) == 0 then
-			set(lan_light_sw, 1)
-			set(lan_light_open_sw, 1)
-		else
-			set(lan_light_sw, 0)
-			set(lan_light_open_sw, 0)
-		end
+  if 0 == phase then
+    if get(lan_light_sw) == 0 then
+      set(lan_light_sw, 1)
+      set(lan_light_open_sw, 1)
+    else
+      set(lan_light_sw, 0)
+      set(lan_light_open_sw, 0)
+    end
     end
 return 0
 end
@@ -77,14 +78,14 @@ registerCommandHandler(lan_light_command, 0, lan_light_handler)
 -- switch taxi light
 taxi_light_command = findCommand("sim/lights/taxi_lights_toggle")
 function taxi_light_handler(phase)  -- for all commands phase equals: 0 on press; 1 while holding; 2 on release
-	if 0 == phase then
-		if get(lan_light_sw) == 0 then
-			set(lan_light_sw, -1)
-			set(lan_light_open_sw, 1)
-		else
-			set(lan_light_sw, 0)
-			set(lan_light_open_sw, 0)
-		end
+  if 0 == phase then
+    if get(lan_light_sw) == 0 then
+      set(lan_light_sw, -1)
+      set(lan_light_open_sw, 1)
+    else
+      set(lan_light_sw, 0)
+      set(lan_light_open_sw, 0)
+    end
     end
 return 0
 end
@@ -110,142 +111,191 @@ registerCommandHandler(createCommand("An-24/Lights/tl_lights_taxi", "Taxi lights
 registerCommandHandler(createCommand("An-24/Lights/tl_lights_off", "Taxi/Landing lights off."), 0, function(p) if p == 0 and get(lan_light_sw) ~= 0 then set(lan_light_sw, 0) end return 0 end)
 registerCommandHandler(createCommand("An-24/Lights/tl_lights_up", "Taxi/Landing lights switch up."), 0, function(p) if p == 0 and get(lan_light_sw) ~= 1 then set(lan_light_sw, get(lan_light_sw)+1) end return 0 end)
 registerCommandHandler(createCommand("An-24/Lights/tl_lights_down", "Taxi/Landing lights switch down."), 0, function(p) if p == 0 and get(lan_light_sw) ~= -1 then set(lan_light_sw, get(lan_light_sw)-1) end return 0 end)
-registerCommandHandler(createCommand("An-24/Lights/tl_lights_ext", "Taxi/Landing lamp extend."), 0, function(p) if p == 0 and get(lan_light_open_sw) ~= 1 then set(lan_light_open_sw, 1) end return 0 end)
-registerCommandHandler(createCommand("An-24/Lights/tl_lights_ret", "Taxi/Landing lamp retract."), 0, function(p) if p == 0 and get(lan_light_open_sw) ~= 0 then set(lan_light_open_sw, 0) end return 0 end)
-registerCommandHandler(createCommand("An-24/Lights/tl_lights_toggle", "Taxi/Landing lamp toggle."), 0, function(p) if p == 0 then if get(lan_light_open_sw) == 0 then set(lan_light_open_sw, 1) else set(lan_light_open_sw, 0) end end return 0 end)
+
+registerCommandHandler(createCommand("An-24/Lights/tl_lights_ext", "Taxi/Landing lamp extend."), 0,
+function(p)
+  if get(real_hl) == 0 then
+    if p == 0 and get(lan_light_open_sw) ~= 1 then set(lan_light_open_sw, 1) end
+  else
+    if p == 1 then set(lan_light_open_sw, 1) else set(lan_light_open_sw, 0) end
+  end
+  return 0
+end)
+
+registerCommandHandler(createCommand("An-24/Lights/tl_lights_ret", "Taxi/Landing lamp retract."), 0,
+function(p)
+  if get(real_hl) == 0 then
+    if p == 0 and get(lan_light_open_sw) ~= -1 then set(lan_light_open_sw, -1) end
+  else
+    if p == 1 then set(lan_light_open_sw, -1) else set(lan_light_open_sw, 0) end
+  end
+  return 0
+end)
+
+registerCommandHandler(createCommand("An-24/Lights/tl_lights_toggle", "Taxi/Landing lamp toggle."), 0,
+function(p)
+  if get(real_hl) == 0 then
+    if p == 0 then
+      if get(lan_light_open_sw) == -1 then
+        set(lan_light_open_sw, 1)
+      else
+        set(lan_light_open_sw, -1)
+      end
+    end
+  end
+  return 0
+end)
 
 local time_counter = 0
 local not_loaded = true
 
 -- local variables
+local lan_light_angle = 0
+local last_hl_set
 local now = get(sim_time)
 local FREQ = 8
 local angle = -8
 
+function smooth(value)
+  local spd = 0.01
+  if value == 1 and lan_light_angle < 1 then
+    lan_light_angle = lan_light_angle + spd
+  elseif value == -1 and lan_light_angle > 0 then
+    lan_light_angle = lan_light_angle - spd
+  end
+  return lan_light_angle
+end
+
+function check_switch()
+  if (get(real_hl) == 0 and get(lan_light_open_sw) == 0) then set(lan_light_open_sw,-1) end
+  if (get(real_hl) == 1 and (get(lan_light_open_sw) == -1 or get(lan_light_open_sw) == 1)) then set(lan_light_open_sw,0) end
+  last_hl_set = get(real_hl)
+end
+
 function update()
-	-- time variables
-	now = get(sim_time)
-	local passed = get(frame_time)
-if passed > 0 and passed < 0.1 then
+  -- time variables
+  now = get(sim_time)
+  local passed = get(frame_time)
+  if get(real_hl) ~= last_hl_set then check_switch() end
+  if passed > 0 and passed < 0.1 then
+  -- initial switchers values
+  time_counter = time_counter + passed
+  if get(N1) < 70 and get(N2) < 70 and time_counter > 0.3 and time_counter < 0.4 and not_loaded then
+    set(nav_light_sw, 0)
+    set(sim_taxi_light_sw, 0)
+    set(sim_bec_light_sw, 0)
+    set(sim_lan_light_sw, 0)
+    not_loaded = false
+  end
 
-	-- initial switchers values
-	time_counter = time_counter + passed
-	if get(N1) < 70 and get(N2) < 70 and time_counter > 0.3 and time_counter < 0.4 and not_loaded then
-		set(nav_light_sw, 0)
-		set(sim_taxi_light_sw, 0)
-		set(sim_bec_light_sw, 0)
-		set(sim_lan_light_sw, 0)
-		not_loaded = false
-	end
+  -- power calculations
+  local power27 = get(bus_DC_27_volt)
+  local power_em = get(bus_DC_27_volt_emerg)
+  local ano_switch = get(nav_light_sw)
+  local ll_open_sw = get(lan_light_open_sw)
+  -- nav light logic
+  local nav_bright = 0
+  if power_em * ano_switch > 21 then nav_bright = (power_em - 10) * ano_switch / 17 end -- nav lights will fade out when power loss
+  if nav_bright > 1 then nav_bright = 1 end
+  set(nav_light, nav_bright)
+  set(nav_light_cc, nav_bright * 8)
+  -- set default switch
+  if nav_bright > 0 then set(sim_nav_light_sw, 1) else set(sim_nav_light_sw, 0) end
+  -- wing separation will turn off the external lights. i'm too lazy to make it in 3D
+  if get(rel_wing1L) == 6 or get(rel_wing2L) == 6 or get(rel_wing2L) == 6 or get(rel_wing2L) == 6 or get(rel_wing1R) == 6 or get(rel_wing2R) == 6 or get(rel_wing3R) == 6 or get(rel_wing4R) == 6 then set(sim_nav_light_sw, 0) end
 
-	-- power calculations
-	local power27 = get(bus_DC_27_volt)
-	local power_em = get(bus_DC_27_volt_emerg)
-	local ano_switch = get(nav_light_sw)
+  -- beacons logic
+  --if get(azs_beacon_down)==1 then
+    local bec_bright = 0
+  if power27 * ano_switch > 21 then
+    if get(sim_version) ~= 10 then bec_bright = (math.sin(now * FREQ) + 0.5) * (power27 - 10) / (2 * 15) else bec_bright = 0 end
+    --set(sim_bec_light_sw, 1)
+  else --set(sim_bec_light_sw, 0)
+  end
+  if power27 > 21 then
+  if get(azs_beacon_down)==1 or get(azs_beacon_up)==1 then
+    set(sim_bec_light_sw,1)
+  else
+    set(sim_bec_light_sw,0)
+  end
+  end
+  set(beacon_light, bec_bright)
+  set(bec_light_cc, bec_bright * 8)
+  --else
+  --set(sim_bec_light_sw, 0)
 
-	-- nav light logic
-	local nav_bright = 0
-	if power_em * ano_switch > 21 then nav_bright = (power_em - 10) * ano_switch / 17 end -- nav lights will fade out when power loss
-	if nav_bright > 1 then nav_bright = 1 end
-	set(nav_light, nav_bright)
-	set(nav_light_cc, nav_bright * 8)
-	-- set default switch
-	if nav_bright > 0 then set(sim_nav_light_sw, 1) else set(sim_nav_light_sw, 0) end
-	-- wing separation will turn off the external lights. i'm too lazy to make it in 3D
-	if get(rel_wing1L) == 6 or get(rel_wing2L) == 6 or get(rel_wing2L) == 6 or get(rel_wing2L) == 6 or get(rel_wing1R) == 6 or get(rel_wing2R) == 6 or get(rel_wing3R) == 6 or get(rel_wing4R) == 6 then set(sim_nav_light_sw, 0) end
+  --end
 
-	-- beacons logic
-	--if get(azs_beacon_down)==1 then
-		local bec_bright = 0
-	if power27 * ano_switch > 21 then
-		if get(sim_version) ~= 10 then bec_bright = (math.sin(now * FREQ) + 0.5) * (power27 - 10) / (2 * 15) else bec_bright = 0 end
-		--set(sim_bec_light_sw, 1)
-	else --set(sim_bec_light_sw, 0)
-	end
-	if power27 > 21 then
-	if get(azs_beacon_down)==1 or get(azs_beacon_up)==1 then
-		set(sim_bec_light_sw,1)
-	else
-		set(sim_bec_light_sw,0)
-	end
-	end
-	set(beacon_light, bec_bright)
-	set(bec_light_cc, bec_bright * 8)
-	--else
-	--set(sim_bec_light_sw, 0)
+  -- landing light logic
+  local lan_sw = get(lan_light_sw)
+  local lan_brt = 0
+  local taxi_brt = 0
+  if power27 > 21 and lan_sw == 1 then
+    lan_brt = 1 -- 0.7
+    taxi_brt = 0
+  elseif power27 > 21 and lan_sw == -1 then
+    lan_brt = 0
+    taxi_brt = 1		--0.4
+  else
+    lan_brt = 0
+    taxi_brt = 0
+  end
+  set(lan_light_cc, 20 * lan_brt)
 
-	--end
+  -- open landing light
+  if power27 > 21 and ll_open_sw ~= 0 then set(headlight, smooth(ll_open_sw)) end
+  --print(get(sim_lan_light_open))
+  -- set angle for light
 
-	-- landing light logic
-	local lan_sw = get(lan_light_sw)
-	local lan_brt = 0
-	local taxi_brt = 0
-	if power27 > 21 and lan_sw == 1 then
-		lan_brt = 1 -- 0.7
-		taxi_brt = 0
-	elseif power27 > 21 and lan_sw == -1 then
-		lan_brt = 0
-		taxi_brt = 1		--0.4
-	else
-		lan_brt = 0
-		taxi_brt = 0
-	end
-	set(lan_light_cc, 20 * lan_brt)
+  if lan_sw ~= 0 then angle = -9 - 90 * (-get(sim_lan_light_slider) + 1) + lan_sw * 1.5 end
 
-	-- open landing light
-	if power27 > 21 then set(sim_lan_light_open, get(lan_light_open_sw)) end
-	--print(get(sim_lan_light_open))
-	-- set angle for light
-
-	if lan_sw ~= 0 then angle = -9 - 90 * (-get(sim_lan_light_slider) + 1) + lan_sw * 1.5 end
-
-	--if angle < -30 then lan_brt = 0 taxi_brt = 0 end
-	--print(lan_brt)
-	if lan_brt > 0 then
-		set(sim_lan_light_sw, 1)
-		--set(sim_taxi_light_sw, 1)
-	else
-		set(sim_lan_light_sw, 0)
-		--set(sim_taxi_light_sw, 0)
-	end
-	if taxi_brt > 0 then
-		set(sim_taxi_light_sw, 1)
-		--set(sim_taxi_light_sw, 1)
-	else
-		set(sim_taxi_light_sw, 0)
-		--set(sim_taxi_light_sw, 0)
-	end
-
-
-	--set(sim_taxi_light_sw, 0)
+  --if angle < -30 then lan_brt = 0 taxi_brt = 0 end
+  --print(lan_brt)
+  if lan_brt > 0 then
+    set(sim_lan_light_sw, 1)
+    --set(sim_taxi_light_sw, 1)
+  else
+    set(sim_lan_light_sw, 0)
+    --set(sim_taxi_light_sw, 0)
+  end
+  if taxi_brt > 0 then
+    set(sim_taxi_light_sw, 1)
+    --set(sim_taxi_light_sw, 1)
+  else
+    set(sim_taxi_light_sw, 0)
+    --set(sim_taxi_light_sw, 0)
+  end
 
 
-	set(sim_lan_light_angle, angle)
-	set(sim_lan_light_ratio, lan_brt)
-	-- button for open landing lights
-	-- set(sim_lan_light_ratio, 0.5)
+  --set(sim_taxi_light_sw, 0)
 
-	-- cockpit light
-	local panel_ratio = get(cockpit_panel)
-	if panel_ratio == 1 then panel_ratio = 2
-	elseif panel_ratio == -1 then panel_ratio = 1.5
-	else panel_ratio = 0 end
 
-	local cockpit_ratio = get(cockpit_red)
-	local spot1 = get(cockpit_spot1)
-	local spot2 = get(cockpit_spot2)
-	if power_em > 21 then
-		set(sim_panel_light, math.max(panel_ratio, (cockpit_ratio * 2 + spot1 + spot2) / 1.5, 0.1))
-		set(sim_cab_light1, cockpit_ratio * 1.5 + 0.1)
-		set(sim_cab_light2, spot1 * 1.5 + 0.1)
-		set(sim_cab_light3, spot2 * 1.5 + 0.1)
-		set(cockpit_light_cc, panel_ratio * 4 + cockpit_ratio * 15 + spot1 * 4 + spot2 * 4)
-	else
-		set(sim_panel_light, 0.1)
-		set(sim_cab_light1, 0.1)
-		set(sim_cab_light2, 0.1)
-		set(sim_cab_light3, 0.1)
-		set(cockpit_light_cc, 0)
-	end
+  set(sim_lan_light_angle, angle)
+  set(sim_lan_light_ratio, lan_brt)
+  -- button for open landing lights
+  -- set(sim_lan_light_ratio, 0.5)
+
+  -- cockpit light
+  local panel_ratio = get(cockpit_panel)
+  if panel_ratio == 1 then panel_ratio = 2
+  elseif panel_ratio == -1 then panel_ratio = 1.5
+  else panel_ratio = 0 end
+
+  local cockpit_ratio = get(cockpit_red)
+  local spot1 = get(cockpit_spot1)
+  local spot2 = get(cockpit_spot2)
+  if power_em > 21 then
+    set(sim_panel_light, math.max(panel_ratio, (cockpit_ratio * 2 + spot1 + spot2) / 1.5, 0.1))
+    set(sim_cab_light1, cockpit_ratio * 1.5 + 0.1)
+    set(sim_cab_light2, spot1 * 1.5 + 0.1)
+    set(sim_cab_light3, spot2 * 1.5 + 0.1)
+    set(cockpit_light_cc, panel_ratio * 4 + cockpit_ratio * 15 + spot1 * 4 + spot2 * 4)
+  else
+    set(sim_panel_light, 0.1)
+    set(sim_cab_light1, 0.1)
+    set(sim_cab_light2, 0.1)
+    set(sim_cab_light3, 0.1)
+    set(cockpit_light_cc, 0)
+  end
 end
 end
