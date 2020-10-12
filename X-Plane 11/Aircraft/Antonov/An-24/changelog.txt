@@ -15,6 +15,7 @@ PROPS
 
 LIGHTS
 - ADDED:
+  + Real headlight option. Retract/extend only when holding switch.
   + Spill lights for NAV
 - CHANGED:
   + Taxi/landig lights moved to animation
