@@ -1,4 +1,13 @@
 ----------------------------------------------------------
+SASL 3.11.0 (XP11.25+ support)
+----------------------------------------------------------
+
+- Fixed 'readConfig', 'writeConfig' functions (make them correctly save information about values types)
+- Fixed possible CTD in case of calling subprocess creation function on Mac OS
+- Fixed the bug with  broken graphics processing in case of calling SASL project command in 2D draw callback
+- Added function to save textures to files in common formats
+
+----------------------------------------------------------
 SASL 3.10.2 (XP11.25+ support)
 ----------------------------------------------------------
 
