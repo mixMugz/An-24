@@ -117,23 +117,17 @@ if passed > 0 then
 	elseif rotate < -180 then rotate = rotate + 360 end
 
 	-- calculate result
-	if get(SC_master) == 1 then
 		corr_angle = get(sc_corr_angle)
-	else
 		corr_angle = corr_angle + earth_rot + rotate
 		if corr_angle > 180 then corr_angle = corr_angle - 360
 		elseif corr_angle < -180 then corr_angle = corr_angle + 360 end
 		set(sc_corr_angle, corr_angle)
-	end
 
-	if get(SC_master) == 1 then
 		corr_ap_angle = get(sc_corr_ap_angle)
-	else
 		corr_ap_angle = corr_ap_angle + earth_rot
 		if corr_ap_angle > 180 then corr_ap_angle = corr_ap_angle - 360
 		elseif corr_ap_angle < -180 then corr_ap_angle = corr_ap_angle + 360 end
 		set(sc_corr_ap_angle,corr_ap_angle)
-	end
 	--print(earth_rot, corr_ap_angle)
 
 	-- set result

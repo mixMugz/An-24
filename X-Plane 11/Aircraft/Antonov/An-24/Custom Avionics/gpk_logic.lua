@@ -32,10 +32,7 @@ function update()
   local passed = get(frame_time)
 -- time bug workaround
 if passed > 0 then
-
-  if get(SC_master) == 1 then
     curse_angle = get(sc_curse_angle)
-  else
     local v = get(gyro) + get(correct)
     local delta = v - curse_angle
     if delta > 180 then delta = delta - 360
@@ -45,12 +42,9 @@ if passed > 0 then
     elseif curse_angle < -180 then curse_angle = curse_angle + 360 end
 
     set(sc_curse_angle,curse_angle)
-  end
 
   -- calculate new angle with smooth move for autopilot
-  if get(SC_master) == 1 then
     ap_curse_angle = get(sc_ap_curse_angle)
-  else
     local w = get(gyro) + get(correct_ap)
     local ap_delta = w - ap_curse_angle
     if ap_delta > 180 then ap_delta = ap_delta - 360
@@ -60,7 +54,6 @@ if passed > 0 then
     elseif ap_curse_angle < -180 then ap_curse_angle = ap_curse_angle + 360 end
 
     set(sc_ap_curse_angle,ap_curse_angle)
-  end
 
 --[[
   -- calculate new angle with smooth move

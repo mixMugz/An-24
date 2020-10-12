@@ -92,6 +92,7 @@ function update()
 		--local rotation = (get(turn) + 0) * 3.005 / 20 * passed  --get(turn) * 3 / 20 * passed
 		--local rotation = (get(turn3) / math.cos(math.rad(get(roll)))) * passed
 		--local rotation = get(turn) * passed 
+		curse = get(gyro_curse)
 		local curs = get(true_psi)
 		
 		
