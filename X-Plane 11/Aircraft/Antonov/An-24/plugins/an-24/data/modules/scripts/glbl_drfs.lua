@@ -104,6 +104,5 @@ olradra = cGPf(pfx.."lights/overhead_lamp_rad_rot_around", -6)
 olradru = cGPf(pfx.."lights/overhead_lamp_rad_rot_updown", 20)
 
 -- Animations
-drf_anim = {
-  crew = cGPi(pfx.."anim/crew"),
-}
+cGPi(pfx.."anim/crew")
+cGPf(pfx.."anim/headlight")
