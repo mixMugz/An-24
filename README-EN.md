@@ -4,6 +4,10 @@
   <img alt="Antonov An-24" src="readme-head-en.png">
 </h4>
 
+---
+
+![Discord](https://img.shields.io/discord/395223818869669889?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2) ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/mixMugz/An-24?label=latest) ![GitHub All Releases](https://img.shields.io/github/downloads/mixMugz/An-24/total)
+
 ***What's going on in here?*** This is the hub for the An-24 aircraft modification for X-Plane 11 (64bit).
 This version is based on files from [Felis Planes](http://felis-planes.com/) and additional editing from [Nikolai Parshukov](https://github.com/parshukov/An24-Felis-for-XP11).
 With their official permission and approval, the project continues to live and develop under the GPL3 license.
